@@ -1,0 +1,51 @@
+<table class="details won" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="character">
+      <%= render("boss_fights/create/character",
+            :fight    => fight,
+            :picture  => :normal
+          ) %>
+
+      <div class="message">
+        <%= t(".messages.character",
+              :attacker => content_tag(:span, character_name(fight.character, :capitalize => true),
+                :class => :attacker
+              ),
+              :victim   => content_tag(:span, fight.boss.name, :class => :victim),
+              :damage   => content_tag(:span, fight.boss_hp_loss, :class => :damage)
+            ).html_safe %>
+      </div>
+    </td>
+    <td class="middle">
+      <div class="result">
+        <%= t(".messages.result",
+              :boss => content_tag(:span, fight.boss.name, :class => :boss)
+            ).html_safe %>
+      </div>
+
+      <div class="buttons">
+        <%= link_to_function(button(:publish), stream_dialog(:boss_defeated, fight.boss),
+              :class => "publish button"
+            ) %>
+      </div>
+    </td>
+    <td class="boss">
+      <%= render("boss_fights/create/boss",
+            :fight    => fight,
+            :picture  => :small
+          ) %>
+
+      <div class="message">
+        <%= t(".messages.boss",
+              :attacker => content_tag(:span, fight.boss.name, :class => :attacker),
+              :victim   => content_tag(:span, character_name(fight.character), :class => :victim),
+              :damage   => content_tag(:span, fight.character_hp_loss, :class => :damage)
+            ).html_safe %>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<% dom_ready do %>
+  $(document).trigger('boss.won', <%= fight.id %>);
+<% end %>

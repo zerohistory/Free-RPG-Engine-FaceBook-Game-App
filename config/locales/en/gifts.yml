@@ -1,0 +1,9 @@
+en:
+  gifts:
+    new:
+      title: "Send Gifts to Your Alliance"
+      note: "Please choose the item you want to send to your friends. Each of your friends can accept one gift from you every %{hours} hours."
+      request:
+        message: "Please accept this %{app} gift: %{item}!"
+      buttons:
+        send: "Send"

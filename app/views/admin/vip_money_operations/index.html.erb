@@ -1,0 +1,43 @@
+<%= admin_title(t(".title.#{operation_type}")) %>
+
+<%= render "controls" %>
+
+<div class="data_filter clearfix">
+  <h2><%= t(".filter.title") %></h2>
+
+  <% form_tag admin_vip_money_operations_path(:type => operation_type), :method => :get do %>
+    <%= hidden_field_tag :type, operation_type %>
+  
+    <%= label_tag :reference_type, t(".filter.reference_type") %>
+    <%= select_tag(:reference_type, options_for_select([''] + operation_class.reference_type_options_for_select, params[:reference_type])) %>
+
+    <%= label_tag :profile_ids, t(".filter.profile_ids") %>
+    <%= text_field_tag :profile_ids, params[:profile_ids], :size => 30 %>
+
+    <%= submit_tag t(".filter.submit") %>
+  <% end %>
+</div>
+
+<%= will_paginate(@operations) %>
+
+<% collection(@operations) do %>
+  <table class="data">
+    <tr>
+      <th><%= VipMoneyOperation.human_attribute_name("created_at") %></th>
+      <th><%= Character.human_name %></th>
+      <th><%= VipMoneyOperation.human_attribute_name("reference") %></th>
+      <th><%= VipMoneyOperation.human_attribute_name("amount") %></th>
+    </tr>
+    <% @operations.each do |operation| %>
+      <tr>
+        <td><%= l(operation.created_at, :format => :short) %></td>
+        <td><%= link_to(character_name(operation.character), character_url(operation.character.key, :canvas => true)) %></td>
+        <td><%= admin_statistics_reference(operation.reference) %></td>
+        <td><%= operation.amount %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate(@operations) %>
+<% end %>
+

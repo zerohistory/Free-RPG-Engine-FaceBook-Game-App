@@ -1,0 +1,15 @@
+en:
+  item_collections:
+    index:
+      title: "Collections"
+    item_collection:
+      buttons:
+        request: "Ask Alliance"
+        collect: "Collect"
+    update:
+      buttons:
+        publish: "Brag About It!"
+      messages:
+        success: "You've successfully collected all the required items!"
+      you_received: "You received:"
+      you_spent: "You spent:"

@@ -1,0 +1,7 @@
+<% requirement(requirement.name, false) do %>
+  <p>
+    <%= t(".message",
+          :premium_page => link_to(t(".premium_page"), premium_path)
+        ).html_safe %>
+  </p>
+<% end %>

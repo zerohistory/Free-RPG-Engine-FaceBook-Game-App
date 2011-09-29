@@ -1,0 +1,72 @@
+<% requirement(requirement.name, false) do %>
+  <% if [:shop, :special].include?(requirement.item.availability) %>
+    <div class="buttons">
+      <%= link_to_remote(button(:buy),
+            :url => inventories_path(
+              :item_id  => requirement.item,
+              :amount   => requirement.missing_amount(current_character)
+            ),
+            :update => :result,
+            :before => "$(document).bind('item.purchase', Mission.onItemPurchase);",
+            :html   => {
+              :"data-click-once" => true,
+              :class => "buy button"
+            }
+          ) %>
+    </div>
+
+    <% link = capture do %>
+      <span class="image">
+        <%= item_image(requirement.item, :icon,
+              :alt    => t(".shop_link_title", :item => requirement.item.plural_name),
+              :title  => t(".shop_link_title", :item => requirement.item.plural_name)
+            ) %>
+      </span>
+
+      <span class="label">
+        <%= t(".message",
+              :name   => content_tag(:span, requirement.item.name, :class => :value),
+              :amount => requirement.amount
+            ).html_safe %>
+      </span>
+    <% end %>
+
+    <p>
+      <%= link_to_remote(link,
+            :url    => new_inventory_path(
+              :item_id  => requirement.item,
+              :amount   => requirement.missing_amount(current_character)
+            ),
+            :method => :get,
+            :update => :ajax,
+            :before => "$(document).bind('item.purchase', Mission.onItemPurchase);",
+            :html   => {
+              :title => t(".shop_link_title", :item => requirement.item.plural_name)
+            }
+          ) %>
+    </p>
+
+    <p>
+      <%= t(".buy_missing",
+            :amount => requirement.missing_amount(current_character),
+            :price  => content_tag(:span,
+              item_price_inline(requirement.item, requirement.missing_amount(current_character)),
+              :class => :price
+            )
+          ).html_safe %>
+    </p>
+  <% else %>
+    <p>
+      <span class="image">
+        <%= item_image(requirement.item, :icon) %>
+      </span>
+
+      <span class="label">
+        <%= t(".message",
+              :name   => content_tag(:span, requirement.item.name, :class => :value),
+              :amount => requirement.amount
+            ).html_safe %>
+      </span>
+    </p>
+  <% end %>
+<% end %>

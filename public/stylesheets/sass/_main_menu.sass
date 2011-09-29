@@ -1,0 +1,82 @@
+// Main menu
+
+#menu_items
+  ul
+    width: 710px
+    height: 90px
+    margin-top: 38px
+    li
+      padding: 3px 30px 0px 0px
+      line-height: 0px
+      
+      .img_val
+        float: left
+        margin-top: 8px
+	  
+	  
+#main_menu
+  position: absolute
+  top: 240px
+  
+  a
+    &:hover
+      text-decoration: none
+  li
+    float: left
+    min-height: 30px
+    position: relative
+    background: 0 0 no-repeat
+
+    &
+      margin-left: 4px
+
+    &.first
+      margin-left: 220px
+      width: 90px
+
+    &.premium
+      padding-left: 0
+      
+      .value
+        width: 40px
+        height: 40px
+        line-height: 92px
+        display: block
+        background:
+          position: top left
+          repeat: no-repeat
+          image = !asset_icons_menu_gem_store
+        margin-left: 16px
+        float: left
+        margin-top: 4px
+        padding-left: 10px
+
+    &.alliance
+      padding-left: 0
+      
+      .value
+        +c_icon_bg(!asset_icons_menu_alliance)
+        margin-left: 5px
+        float: right
+
+    &.profile
+      position: absolute
+      left: 140px
+      //background-image= !asset_icons_menu_profile
+
+    &.inventory
+      left: 65px
+      position: absolute
+      //background-image = !asset_icons_menu_inventory
+
+    &.missions
+      left: 0px
+      position: absolute
+      //background-image = !asset_icons_menu_missions
+	  
+    &.img_val
+      float: left
+      margin-top: 8px
+
+    &.properties
+      //background-image = !asset_icons_menu_properties

@@ -1,0 +1,7 @@
+<div class="serializable_item clearfix" id="item_<%= item.object_id %>">
+  <div class="controls">
+    <%= link_to_function(t(".remove"), "SerializableList.remove('#item_#{item.object_id}')", :class => :remove) %>
+  </div>
+
+  <%= select_tag("item_collection[item_ids][]", grouped_options_for_select(Item.to_grouped_dropdown, item.try(:id)).html_safe) %>
+</div>

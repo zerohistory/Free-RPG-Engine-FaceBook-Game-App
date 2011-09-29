@@ -1,0 +1,38 @@
+<table id="fight_attributes" cellspacing="0" cellpadding="0">
+  <tr>
+    <th><%= t(".personal") %></th>
+    <th><%= t(".relations") %></th>
+    <th><%= t(".inventory") %></th>
+    <th><%= t(".offence") %></th>
+    <th><%= t(".defence") %></th>
+  </tr>
+  <tr>
+    <td class="values">
+      <div class="attack"><%= current_character.attack %></div>
+      <div class="defence"><%= current_character.defence %></div>
+    </td>
+    <td class="values">
+      <div class="relations"><%= current_character.relations.effective_size %></div>
+    </td>
+    <td class="values">
+      <div class="attack"><%= current_character.equipment.effect(:attack) %></div>
+      <div class="defence"><%= current_character.equipment.effect(:defence) %></div>
+    </td>
+    <% %w(best_offence best_defence).each do |group| %>
+      <td class="inventories">
+        <% current_character.equipment.send(group).each do |inventory| %>
+          <%= item_image(inventory, :icon,
+                :class    => :inventory,
+                :tooltip  => dom_id(inventory, :tooltip)
+              ) %>
+
+          <%= item_tooltip(inventory) %>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+</table>
+
+<% dom_ready do %>
+  Character.initFightAttributes();
+<% end %>

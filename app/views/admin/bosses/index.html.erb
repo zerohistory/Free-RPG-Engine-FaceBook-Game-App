@@ -1,0 +1,49 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_boss_path) %>
+</div>
+
+<% collection @bosses do %>
+  <table id="boss_list" class="data">
+    <tr>
+      <th><%= Boss.human_attribute_name("image") %></th>
+      <th><%= Boss.human_attribute_name("name") %></th>
+      <th><%= MissionGroup.human_name %></th>
+      <th><%= Boss.human_attribute_name("health") %></th>
+      <th><%= Boss.human_attribute_name("attack") %></th>
+      <th><%= Boss.human_attribute_name("defence") %></th>
+      <th><%= Boss.human_attribute_name("requirements") %></th>
+      <th><%= Boss.human_attribute_name("payouts") %></th>
+      <th><%= Boss.human_attribute_name("state") %></th>
+      <th></th>
+    </tr>
+    <% @bosses.each do |boss| %>
+      <tr>
+        <td class="image"><%= image_tag(boss.image.url(:icon)) if boss.image? %></td>
+        <td class="name"><%= link_to(boss.name, edit_admin_boss_path(boss)) %></td>
+        <td class="mission_group"><%= boss.mission_group.name %></td>
+        <td class="health"><%= boss.health %></td>
+        <td class="attack"><%= boss.attack %></td>
+        <td class="defence"><%= boss.defence %></td>
+        <td class="requirements"><%= admin_requirements_preview(boss.requirements) %></td>
+        <td class="payouts"><%= admin_payouts_preview(boss.payouts) %></td>
+        <td class="state"><%= admin_state(boss) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_boss_path(boss)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_boss_path(boss),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if boss.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_boss_path(boss),
+                :method => :put
+              ) if boss.can_hide? %>
+          <%= link_to(t(".controls.delete"), admin_boss_path(boss),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) if boss.can_mark_deleted? %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

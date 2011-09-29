@@ -1,0 +1,73 @@
+en:
+  characters:
+    attributes:
+      bonus: "+%{amount} from Equipment"
+    index:
+      overview:
+        title: "Profile Overview"
+    show:
+      title: "%{user} Profile"
+      title_my: "My Profile: %{user}"
+      relations: "Popularity"
+      buttons:
+        upgrade: "Upgrade"
+        attack: "Attack!"
+        hitlist: "Add to Hitlist"
+      titles:
+        empty_set: "%{user} doesn't have any titles yet"
+        empty_set_my: "You don't have any titles yet"
+      items:
+        amount: "%{name} X&nbsp;%{amount}"
+      properties:
+        title: "Properties"
+        name: "%{name} (Level %{level})"
+      wall:
+        title: "%{user} Wall"
+    upgrade:
+      title: "Upgrade"
+      buy_more:
+        text: "Buy more points at the %{premium_page}"
+        premium_page: "Gem Market"
+      finished:
+        note: "You spent all your upgrade points. Now you can %{profile} or %{get_more} to get more points"
+        profile: "go to profile"
+        get_more: "visit the Gem Market"
+      points:
+        one: "1 upgrade point"
+        other: "%{count} upgrade points"
+    upgrade_result:
+      messages:
+        success: "You've successfully upgraded %{attribute} to %{number}"
+        not_enough_points: "You cannot upgrade %{attribute} because you don't have enough points"
+    fight_attributes:
+      personal: "Your Skills"
+      inventory: "Your Inventory"
+      relations: "Your Alliance"
+      offence: "Best Offence"
+      defence: "Best Defence"
+    new:
+      title: "Welcome to %{app}!"
+      submit: "Start Playing!"
+      note: "After clicking '%{submit}' you'll be asked to install %{application}. Click 'Allow' in the appeared window to start playing."
+      already_registered:
+        text: "Already registered earlier? Simply %{skip_form}"
+        skip_form: "skip this form »"
+    edit:
+      title: "Update Your Character"
+      submit: "Save"
+    form_fields:
+      labels:
+        character_type: "Choose Your Class:"
+        name: "Enter Your Nickname (optional):"
+    hospital:
+      title: "Hospital"
+      note: "You can ask a healer to increase your health. Be careful, you can only do this every now and then!"
+      price: "Full Heal Price:"
+      messages:
+        full_health: "Your health is now full. Please visit Hospital when you'll need healing."
+        success: "Your health has been restored!"
+      buttons:
+        heal: "Heal"
+      premium_refill:
+        text: "You can also visit the %{premium} to refill your health."
+        link: "Gem Market"

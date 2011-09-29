@@ -1,0 +1,16 @@
+<% dialog do |d| %>
+  <h2><%= t(".title") %></h2>
+
+  <p class="message">
+    <%= t(".message",
+          :reward => content_tag(:span, number_to_currency(@hit_listing.reward), :class => "attribute basic_money"),
+          :victim => character_name_link(@hit_listing.victim)
+        ).html_safe %>
+  </p>
+
+  <% d.on_ready do %>
+    $(document).trigger('remote_content.received');
+
+    <%= stream_dialog(:hit_listing_new, @hit_listing) %>
+  <% end %>
+<% end %>

@@ -1,0 +1,7 @@
+<%= admin_title(t(".title", :name => @skin.name)) %>
+
+<% form_for([:admin, @skin]) do |form| %>
+  <%= form.fields %>
+
+  <%= form.submit_and_continue %>
+<% end %>

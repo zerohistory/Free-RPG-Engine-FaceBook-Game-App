@@ -1,0 +1,3 @@
+<% if payout.item.requirements_satisfied?(current_character) %>
+  <%= payout(:item, item_image(payout.item, :icon), :label => payout.item.name, :tag => :span) %>
+<% end %>

@@ -1,0 +1,16 @@
+<div id="fan_specials" class="block">
+  <%= hide_block_link(:fan_specials) %>
+
+  <h2><%= t(".title") %></h2>
+
+  <p>
+    <%= t(".text", :app => t("app_name")).html_safe  %>
+  </p>
+
+  <%= fb_fan_box(
+        :stream       => 0,
+        :connections  => 6,
+        :width        => 230,
+        :logobar      => 0
+      ) %>
+</div>

@@ -1,0 +1,30 @@
+<div id="inventory_fight_attributes">
+  <%#= render "characters/fight_attributes" %>
+</div>
+
+<%= title(t(".title")) %>
+
+<%= render "inventories/buttons", :current => :inventory %>
+
+<% inventory_free_slots_note do |free_slots| %>
+  <div class="note">
+    <%= t(".free_slots.text",
+          :count => free_slots,
+          :count_label => content_tag(:span, free_slots, :class => :value)
+        ).html_safe %>
+
+    <%= link_to(t(".free_slots.link").html_safe, equipment_inventories_path) %>
+  </div>
+<% end %>
+
+<div id="inventory_list" class="inventory_list">
+  <% if @inventories.blank? && @boosts.blank? %>
+    <div class="empty_set">
+      <%= t(".empty_set.text",
+            :shop => link_to(t(".empty_set.shop"), items_path)
+          ).html_safe %>
+    </div>
+  <% end %>
+
+  <%= render "list", :inventories => @inventories %>
+</div>

@@ -1,0 +1,40 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_global_payout_path) %>
+</div>
+
+<% collection @global_payouts do %>
+  <table id="title_list" class="data">
+    <tr>
+      <th><%= GlobalPayout.human_attribute_name("alias") %></th>
+      <th><%= GlobalPayout.human_attribute_name('name') %></th>
+      <th><%= GlobalPayout.human_attribute_name('payouts') %></th>
+      <th><%= GlobalPayout.human_attribute_name("state") %></th>
+      <th></th>
+    </tr>
+
+    <% @global_payouts.each do |global_payout| %>
+      <tr>
+        <td class="alias"><%= link_to(global_payout.alias, edit_admin_global_payout_path(global_payout)) %></td>
+        <td class="name"><%= global_payout.name %></td>
+        <td class="payouts"><%= admin_payouts_preview(global_payout.payouts) %></td>
+        <td class="state"><%= admin_state(global_payout) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_global_payout_path(global_payout)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_global_payout_path(global_payout),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if global_payout.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_global_payout_path(global_payout),
+                :method => :put
+              ) if global_payout.can_hide? %>
+          <%= link_to(t(".controls.delete"), admin_global_payout_path(global_payout),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

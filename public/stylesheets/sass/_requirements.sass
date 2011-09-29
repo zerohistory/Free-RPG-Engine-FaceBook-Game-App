@@ -1,0 +1,99 @@
+.requirements
+  .requirement
+    padding: 1px 0 1px 21px
+    background-position: left top
+    background-repeat: no-repeat
+    clear: both
+    margin-bottom: 5px
+
+    p
+      margin: 0 0 10px 0
+
+  .buttons
+    float: right
+
+    .premium
+      +button(!requirement_premium_icon)
+
+  .value
+    font-weight: bold
+
+  .basic_money
+    background-image = !requirement_basic_money_icon
+
+  .vip_money
+    background-image = !requirement_vip_money_icon
+
+  .health_point
+    background-image = !requirement_health_point_icon
+
+  .energy, .energy_point
+    background-image = !requirement_energy_icon
+
+  .stamina_point
+    background-image = !requirement_stamina_icon
+
+  .alliance
+    background-image = !requirement_alliance_icon
+
+  .attack
+    background-image = !requirement_attack_icon
+
+  .defence
+    background-image = !requirement_defence_icon
+
+  .title
+    background-image = !requirement_title_icon
+
+  .level
+    background-image = !requirement_level_icon
+
+  .item
+    .image
+      display: block
+      float: left
+      margin-right: 5px
+      margin-bottom: 10px
+      line-height: 0
+
+    .label
+      line-height: 40px
+
+    .price
+      .basic_money, .vip_money
+        line-height: 20px
+        padding: 2px 0px 2px 21px
+        background-position: left center
+        background-repeat: no-repeat
+        font-weight: bold
+
+    p
+      clear: left
+
+  .not_satisfied
+    color: #000000
+    font-weight: bold
+
+    img
+      border: 3px solid #ff5353
+
+    p
+      a
+        color: #000000
+
+        &:hover
+          text-decoration: underline
+
+#result
+  .requirement
+    white-space: normal
+    height: auto
+    line-height: inherit
+    background-position: top left
+    clear: both
+
+  .requirements
+    .item
+      float: left
+      width: 100%
+      margin: 0 10px 10px 0px

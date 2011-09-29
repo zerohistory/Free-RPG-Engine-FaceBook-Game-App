@@ -1,0 +1,13 @@
+<% dialog do %>
+  <h2><%= t(".title").html_safe %></h2>
+
+  <div id="user_mailing_lists">
+    <h3><%= t(".mailing_lists").html_safe %></h3>
+      <% form_for current_user do |form| %>
+        
+      <%= form.submit %>
+      
+    <% end %>
+    
+  </div>
+<% end %>

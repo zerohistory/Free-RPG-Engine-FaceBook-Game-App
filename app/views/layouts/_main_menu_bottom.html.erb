@@ -1,0 +1,10 @@
+<ul id="<%= opts[:id] || "" %>" class="<%= opts[:class] || "" %>">
+  <li class="premium first"><%= link_to (t(".vip")).html_safe, premium_path %></li>
+  	<li class="alliance">
+		<%= link_to (t(".relations")).html_safe, relations_path %>
+	</li>
+  <li class="profile"><%= link_to t(".character"), character_path(current_character.key) %></li>
+  <li class="inventory"><%= link_to t(".inventories"), inventories_path %></li>
+  <li class="missions"><%= link_to t(".missions"),  'mission_groups/show' %></li>
+  <li class="missions"><%= link_to t(".properties"), properties_path  %></li>
+</ul>

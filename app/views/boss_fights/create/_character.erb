@@ -1,0 +1,7 @@
+<div class="name"><%= character_name(fight.character, :capitalize => true) %></div>
+
+<div class="image">
+  <%= character_picture(fight.character, :size => picture) %>
+</div>
+
+<%= character_health_bar(fight.character) %>

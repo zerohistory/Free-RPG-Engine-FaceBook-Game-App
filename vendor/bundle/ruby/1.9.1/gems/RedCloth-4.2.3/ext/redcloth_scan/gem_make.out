@@ -1,0 +1,7 @@
+"C:/Documents and Settings/innozonL5/.pik/rubies/Ruby-192dev-preview3-1/bin/ruby.exe" extconf.rb 
+creating Makefile
+
+make
+C:/Documents and Settings/innozonL5/.pik/rubies/Ruby-192dev-preview3-1/bin/ruby -e "puts 'EXPORTS', 'Init_redcloth_scan'"  > redcloth_scan-i386-mingw32.def
+/bin/sh: C:/Documents: No such file or directory
+make: *** [redcloth_scan-i386-mingw32.def] Error 127

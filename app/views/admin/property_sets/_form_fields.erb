@@ -1,0 +1,16 @@
+<%= form.text_field :name, :required => true %>
+
+<% form.field_set(t(".properties")) do %>
+  <div id="property_set" class="properties">
+    <%= form.error_message_on :properties %>
+
+    <% form.object.properties.each do |property, frequency| %>
+      <%= render("property_fields", :property => property, :frequency => frequency) %>
+    <% end %>
+  </div>
+
+<%= link_to_remote(t(".add_property"),
+      :url  => add_property_new_admin_property_set_path,
+      :html => {:class => :add_property}
+    ) %>
+<% end %>

@@ -1,0 +1,50 @@
+<% dialog do |d| %>
+  <% if can_make_gift %>
+    <h1>Make a Gift</h1>
+    <h2><%= gift[:name] %></h2>
+    <h2>
+      <%= t(".amount", :amount => amount) %>
+      <% if cost > 0 %>
+        <%= "," + t(".cost", :cost => cost) %>
+      <% end %>
+    </h2>
+    <% form_tag gift[:url] do %>
+
+      <%= hidden_field_tag 'relation_id' %>
+      <%= hidden_field_tag 'amount', amount %>
+      <%= hidden_field_tag 'cost', cost %>
+
+      <div id="allies" class="list">
+        <% if relations = current_character.relations.can_accept(gift[:item]) and relations.any? %>
+          <table class="relations" cellspacing="0" cellpadding="0">
+            <tr>
+              <th colspan="2"><%= t(".columns.user") %></th>
+            </tr>
+            <% relations.each do |relation| %>
+              <tr value="<%= relation.id %>" class="relation">
+                <td class="picture"><%= character_picture(relation.character) %></td>
+                <td class="name"><%= character_name(relation.character) %></td>
+              </tr>
+            <% end %>
+            </table>
+        <% else %>
+          <div class="empty_set"><%= t(".empty_set") %></div>
+        <% end %>
+      </div>
+
+      <%= submit_tag t(".submit") %>
+    <% end %>
+
+    <% d.on_ready do %>
+      GiftForm.setup();
+
+      $(document).trigger('remote_content.received');
+    <% end %>
+  <% else %>
+    <h2>
+      <%= t(".cannot_make_gift") %><br/>
+      <%= t(".gems_to_complete", :cost => cost, :gems => current_character.vip_money) %><br/>
+      <%= link_to t(".purchase_gems"), premium_path %>
+    </h2>
+  <% end %>
+<% end %>

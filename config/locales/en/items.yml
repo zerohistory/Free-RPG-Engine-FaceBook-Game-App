@@ -1,0 +1,18 @@
+en:
+  items:
+    index:
+      title: "Shop"
+      next_item: "Reach level %{level} to unlock new items"
+      buttons:
+        inventory: "Go to Inventory"
+    item:
+      free: "FREE"
+      buttons:
+        buy: "Buy"
+    specials:
+      header: "Limited Time Offers"
+      buttons:
+        buy: "Buy"
+    limit:
+      amount_limit: "Only %{amount} left!"
+      time_limit: "Time Left: %{amount}"

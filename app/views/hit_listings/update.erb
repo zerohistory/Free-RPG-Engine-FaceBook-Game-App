@@ -1,0 +1,73 @@
+<% result_for :hit_listing do |builder| %>
+  <% if @fight %>
+    <% if !@fight.new_record? %>
+      <% unless @hit_listing.completed? %>
+        <% builder.buttons do %>
+          <%= link_to_remote(button(:attack_again),
+                :url    => hit_listing_path(@hit_listing),
+                :method => :put,
+                :update => :result,
+                :html   => {
+                  :"data-click-once" => true,
+                  :class => "attack_again button"
+                }
+              ) %>
+        <% end %>
+      <% end %>
+
+      <%= builder.render("fights/create/#{@fight.winner == current_character ? :success : :failure}",
+            :fight => @fight
+          ) %>
+
+     <% if @hit_listing.completed? %>
+        <% dialog do %>
+          <p class="completed">
+            <%= t(".completed.message", :victim => character_name_link(@hit_listing.victim)).html_safe %>
+          </p>
+
+          <table class="payouts" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="received">
+                <h3><%= t(".you_received") %></h3>
+
+                <%= payout(:basic_money, number_to_currency(@hit_listing.reward)) %>
+              </td>
+            </tr>
+          </table>
+
+          <p><%= t(".completed.publish") %></p>
+
+          <div class="buttons">
+            <%= link_to_function(button(:publish), stream_dialog(:hit_listing_completed, @hit_listing),
+                  :class => "publish button"
+                ) %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="incomplete"><%= t(".incomplete") %></p>
+      <% end %>
+    <% elsif !@fight.enough_stamina? %>
+      <%= builder.render("requirements/not_satisfied/stamina_point",
+            :requirement => @fight.stamina_requirement
+          ) %>
+    <% elsif current_character.weak? %>
+      <%= builder.render("requirements/not_satisfied/health_point",
+            :requirement => current_character.weakness_requirement
+          ) %>
+    <% else %>
+      <% builder.fail do %>
+        <%= @fight.errors.on(:character) %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% builder.notice do %>
+      <%= @hit_listing.errors.on(:base) %>
+    <% end %>
+  <% end %>
+
+  <% if @hit_listing.completed? %>
+    <% builder.on_ready do %>
+      $('#hitlist').html(<%= render("list", :hit_listings => @hit_listings).to_json.html_safe %>)
+    <% end %>
+  <% end %>
+<% end %>

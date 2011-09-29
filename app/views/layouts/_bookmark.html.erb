@@ -1,0 +1,11 @@
+<div id="bookmark" class="block">
+  <%= hide_block_link(:bookmark) %>
+
+  <h2><%= t(".title") %></h2>
+
+  <p>
+    <%= t(".text", :app => t("app_name")).html_safe %>
+  </p>
+
+  <%= link_to_function(asset_image_tag(:bookmark), "bookmark()") %>
+</div>

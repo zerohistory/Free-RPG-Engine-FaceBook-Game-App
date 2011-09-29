@@ -1,0 +1,29 @@
+<table id="equipment">
+  <tr>
+    <td>
+      <div id="equipment_inventories">
+        <%= render "inventories/equippables" %>
+      </div>
+
+    </td>
+
+    <td>
+      <div id="equipment_buttons" class="buttons clearfix">
+        <%= link_to_remote(button(:auto_equip),
+              :url => equip_inventories_path,
+              :update => :result,
+              :html => {:class => "button auto_equip"}
+            ) %>
+        <%= link_to_remote(button(:unequip),
+              :url => unequip_inventories_path,
+              :update => :result,
+              :html => {:class => "button unequip"}
+            ) %>
+      </div>
+
+      <div id="equipment_placements">
+        <%= render "inventories/placements", :character => current_character %>
+      </div>
+    </td>
+  </tr>
+</table>

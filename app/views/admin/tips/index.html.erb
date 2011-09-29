@@ -1,0 +1,39 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_tip_path) %>
+</div>
+
+<% collection @tips do %>
+  <%= will_paginate @tips %>
+
+  <table id="tip_list" class="data">
+    <tr>
+      <th><%= Tip.human_attribute_name("text") %></th>
+      <th><%= Tip.human_attribute_name("state") %></th>
+      <th></th>
+    </tr>
+    <% @tips.each do |tip| %>
+      <tr>
+        <td class="text"><%= tip.text.html_safe %></td>
+        <td class="state"><%= admin_state(tip) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_tip_path(tip)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_tip_path(tip),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if tip.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_tip_path(tip),
+                :method => :put
+              ) if tip.can_hide? %>
+          <%= link_to(t(".controls.delete"), admin_tip_path(tip),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @tips %>
+<% end %>

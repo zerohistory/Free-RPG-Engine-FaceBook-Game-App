@@ -1,0 +1,52 @@
+#dialog
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 100
+  text-align: left
+
+  .popup
+    position: relative
+
+  .body
+    background-color = !dialog_bg_color
+    width = !dialog_width
+    padding: 15px
+
+  .loading, .image
+    text-align: center
+
+  img
+    border: 0
+    margin: 0
+
+  .header
+    float: right
+
+    .close
+      float: right
+      width = !dialog_close_width
+      height = !dialog_close_height
+      background:
+        image = !dialog_close_icon
+        position: center
+        repeat: no-repeat
+
+#dialog_overlay
+  position: fixed
+  top: 0px
+  left: 0px
+  height: 100%
+  width: 100%
+
+
+.dialog_hide
+  z-index: -100
+
+.dialog_overlayBG
+  background-color: #000
+  z-index: 99
+
+* html #dialog_overlay
+  position: absolute
+  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px')

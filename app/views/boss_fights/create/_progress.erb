@@ -1,0 +1,65 @@
+<table class="details progress" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="character">
+      <%= render("boss_fights/create/character",
+            :fight    => fight,
+            :picture  => :small
+          ) %>
+
+      <div class="message">
+        <%= t(".messages.character",
+              :attacker => content_tag(:span, character_name(fight.character, :capitalize => true),
+                :class => :attacker
+              ),
+              :victim   => content_tag(:span, fight.boss.name, :class => :victim),
+              :damage   => content_tag(:span, fight.boss_hp_loss, :class => :damage)
+            ).html_safe %>
+      </div>
+    </td>
+    <td class="middle">
+      <div class="buttons clearfix">
+        <%= link_to_remote(button(:attack),
+              :url    => boss_fight_path(fight),
+              :method => :put,
+              :update => :result,
+              :html   => {
+                :"data-click-once" => true,
+                :class => "attack button"
+              }
+            ) %>
+      </div>
+
+      <% if fight.time_limit? %>
+        <div class="timer">
+          <%= t(".time_left",
+                :value => content_tag(:span, "", :id => :boss_fight_time_left, :class => :value)
+              ).html_safe %>
+        </div>
+
+        <% dom_ready do %>
+          Timer.start('#boss_fight_time_left', <%= fight.time_left %>, function(){
+            <%= remote_function(
+                  :url    => boss_fight_path(fight),
+                  :method => :put,
+                  :update => :result
+                ) %>
+          })
+        <% end %>
+      <% end %>
+    </td>
+    <td class="boss">
+      <%= render("boss_fights/create/boss",
+            :fight    => fight,
+            :picture  => :small
+          ) %>
+
+      <div class="message">
+        <%= t(".messages.boss",
+              :attacker => content_tag(:span, fight.boss.name, :class => :attacker),
+              :victim   => content_tag(:span, character_name(fight.character), :class => :victim),
+              :damage   => content_tag(:span, fight.character_hp_loss, :class => :damage)
+            ).html_safe %>
+      </div>
+    </td>
+  </tr>
+</table>

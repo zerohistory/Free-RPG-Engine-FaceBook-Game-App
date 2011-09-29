@@ -1,0 +1,47 @@
+en:
+  fights:
+    descriptions:
+      attack_won: "%{attacker} attacked %{victim} and WON the battle! You received %{money}, %{experience_points} points of experience, and %{attacker_damage} points of damage. %{victim} was damaged for %{victim_damage} points"
+      attack_lost: "%{attacker} attacked %{victim} and LOST the battle! You lost %{money} and took %{attacker_damage} points of damage. %{victim} received %{victim_damage} points of damage."
+      defence_won: "%{attacker} attacked %{victim} and you WON the battle!  You received %{money}, %{experience_points} points of experience, and %{victim_damage} points of damage. %{attacker} was damaged for %{attacker_damage} points"
+      defence_lost: "%{attacker} attacked %{victim} and you LOST the battle! You lost %{money} and took %{victim_damage} points of damage. %{attacker} received %{attacker_damage} points of damage."
+    buttons:
+      buttons:
+        fight: "Fights"
+        hitlist: "Hitlist"
+    create:
+      buttons:
+        attack_again: "Attack Again!"
+      success:
+        message: "You attacked %{user_name} and WON the battle against %{pronoun}!"
+        you_received: "You received:"
+        you_lost: "You lost:"
+        victim_lost: "%{user_name} lost:"
+      failure:
+        message: "You attacked %{user_name} and LOST the battle against %{pronoun}!"
+        you_lost: "You lost:"
+        victim_lost: "%{user_name} lost:"
+        victim_received: "%{user_name} received: "
+      details:
+        vs: "VS."
+        best_offence: "Your Best Offence:"
+        best_defence: "Their Best Defence:"
+        show_items: "Show all items used"
+        best_attacking_boost: "Your attacking boost:"
+        best_defending_boost: "Their defending boost:"
+    used_items:
+      attacker: "Your items:"
+      victim: "Their items:"
+      item: "%{name} x %{amount}"
+    new:
+      title: "Fighting Arena"
+      messages:
+        too_weak: "You are too weak to fight! Take a rest until your health will grow to %{hp_number} points. You need to wait about %{minute_number} minutes."
+        not_enough_stamina: "You don't have enough stamina to fight! Take a rest until your stamina will grow. You need to wait about %{minute_number} minutes."
+      empty_set: "There are no opponents for you at this time."
+      buttons:
+        auto_equip: "Auto-Equip"
+        unequip: "Unequip all"
+    victim_list:
+      buttons:
+        attack: "Attack!"

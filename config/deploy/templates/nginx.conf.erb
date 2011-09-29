@@ -1,0 +1,37 @@
+server {
+  listen 80;
+
+  server_name <%= URI.parse(facebooker_config[:callback_url]).host %>;
+
+  root <%= current_path %>/public;
+
+  rails_env <%= rails_env %>;
+
+  access_log off;
+
+  # Ignored URLs
+  location ~ null { return 404; }
+  location ~ google-analytics\.com/ga\.js { return 404; }
+
+  location / {
+    error_page 405 = /system/maintenance.html;
+    
+    try_files $uri /system/maintenance.html @passenger;
+  }
+
+  location @passenger {
+    passenger_enabled on;
+  }
+
+  location /system {
+    expires 1y;
+
+    try_files $uri =404;
+  }
+
+  location ~* ^.+\.(jpg|jpeg|gif|png|css|bmp|ico|swf)$ {
+    expires 1y;
+
+    try_files $uri =404;
+  }
+}

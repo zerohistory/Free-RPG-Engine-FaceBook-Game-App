@@ -1,0 +1,6 @@
+<%= admin_title(t(".title")) %>
+
+<% form_for [:admin, @element_interaction] do |form| %>
+  <%= form.fields %>
+  <%= form.submit_and_continue %>
+<% end %>

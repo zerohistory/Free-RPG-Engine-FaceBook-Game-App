@@ -1,0 +1,42 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_help_page_path) %>
+</div>
+
+<% collection(@pages) do %>
+  <table id="help_page_list" class="data">
+    <tr>
+      <th><%= HelpPage.human_attribute_name("name") %></th>
+      <th><%= HelpPage.human_attribute_name("alias") %></th>
+      <th><%= HelpPage.human_attribute_name("state") %></th>
+      <th><%= t(".page_preview") %></th>
+      <th></th>
+    </tr>
+    <% @pages.each do |page| %>
+      <tr>
+        <td class="name"><%= link_to(page.name, edit_admin_help_page_path(page)) %></td>
+        <td class="alias"><%= page.alias %></td>
+        <td class="state"><%= admin_state(page) %></td>
+        <td class="preview">
+          <%= link_to(t(".controls.preview.dialog"), help_page_path(page.alias), :class => :help) %>
+          <%= link_to(t(".controls.preview.page"), help_page_url(page.alias, :canvas => true), :target => :_blank) %>
+        </td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_help_page_path(page)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_help_page_path(page),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if page.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_help_page_path(page),
+                :method => :put
+              ) if page.can_hide? %>
+          <%= link_to(t(".controls.delete"), admin_help_page_path(page),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) if page.can_mark_deleted? %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

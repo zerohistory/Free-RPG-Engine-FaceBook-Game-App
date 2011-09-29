@@ -1,0 +1,18 @@
+<div class="actor">
+  <%= character_picture_link(news.character) %>
+</div>
+
+<div class="subject">
+  <%= property_image(news.property, :icon) %>
+</div>
+
+<div class="description">
+  <%= t(".text",
+        :actor    => character_name_link(news.character, {}, {:useyou => true, :capitalize => true}),
+        :property => content_tag(:strong, news.property.name)
+      ).html_safe %>
+
+  <% if news.payouts %>
+    <%= t("news.payouts.text", :payouts => payout_string(news.payouts, t("news.payouts.and"))).html_safe %>
+  <% end %>
+</div>

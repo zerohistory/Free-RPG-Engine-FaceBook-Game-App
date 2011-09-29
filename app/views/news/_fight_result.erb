@@ -1,0 +1,23 @@
+<div class="actor attacker">
+  <%= character_picture_link(news.fight.attacker) %>
+</div>
+
+<div class="subject victim">
+  <%= character_picture_link(news.fight.victim) %>
+</div>
+
+<div class="description">
+  <%= fight_description(news.fight) %>
+</div>
+
+<div class="controls">
+  <%= link_to_remote(button(:respond),
+        :url    => respond_fight_path(news.fight),
+        :update => :result,
+        :html   => {
+          :id     => dom_id(news.fight, :respond),
+          :"data-click-once" => true,
+          :class  => "respond button"
+        }
+      ) if news.fight.victim == current_character and news.fight.respondable? %>
+</div>

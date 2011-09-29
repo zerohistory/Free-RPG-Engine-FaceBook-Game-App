@@ -1,0 +1,30 @@
+<%= admin_title(t(".title")) %>
+
+<%= render "controls" %>
+
+<table class="data">
+  <tr>
+    <th><%= t(".parameter") %></th>
+    <th><%= t(".value") %></th>
+    <th><%= t(".change") %></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><%= t(".values.users") %></td>
+    <td><%= @statistics.total_users %></td>
+    <td>+ <%= @statistics.users_by_period %></td>
+    <td class="controls"><%= link_to(t(".details"), user_admin_statistics_path) %></td>
+  </tr>
+  <tr>
+    <td><%= t(".values.deposit") %></td>
+    <td><%= @statistics.total_deposit %></td>
+    <td><%= @statistics.deposit_by_period %></td>
+    <td class="controls"><%= link_to(t(".details"), vip_money_admin_statistics_path) %></td>
+  </tr>
+  <tr>
+    <td><%= t(".values.withdraw") %></td>
+    <td><%= @statistics.total_withdrawal %></td>
+    <td><%= @statistics.withdrawal_by_period %></td>
+    <td class="controls"><%= link_to(t(".details"), vip_money_admin_statistics_path) %></td>
+  </tr>
+</table>

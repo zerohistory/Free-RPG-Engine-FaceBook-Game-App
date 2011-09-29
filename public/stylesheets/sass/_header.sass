@@ -1,0 +1,62 @@
+#header
+  width: 730px
+  height: 535px
+  position: relative
+  color: #FFF
+  left: 16px
+  font-weight: bold
+
+  a
+    color: #FFFF00
+    font-weight: bold
+
+  .header_nav_block
+    position: absolute
+    top: 155px
+    left: 9px
+    overflow: hidden
+    width: 715px
+    height: 340px
+
+.percentage_bar
+  padding-right: 4px
+  overflow: show
+  font-size: 0
+  position: relative
+  height: 17px
+  max-height: 16px
+  width: 100px
+  //background-color: #655033
+  //border: 1px solid #A4783E
+
+  .lc
+    z-index: 10
+    position: absolute
+    display: block
+    height: 33px
+    width: 7px
+    background: 0 0
+    background-image = !asset_percentage_lc
+    top: -8px
+    left: -8px
+
+  .rc
+    position: absolute
+    display: block
+    height: 33px
+    width: 12px
+    background: 0 0
+    background-image = !asset_percentage_rc
+    top: -8px
+    right: -8px
+
+  .complete
+    z-index: 9
+    position: relative
+    top: 0px
+    left: -8px
+    padding-left: 5px
+    height: 16px
+    min-height: 17px
+    background: #7B6D52sz left center repeat-x
+    background-image = !asset_percentage_bg

@@ -1,0 +1,49 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_mission_group_path) %>
+</div>
+
+<% collection @groups do %>
+  <table id="mission_group_list" class="data">
+    <tr>
+      <th>#</th>
+      <th><%= MissionGroup.human_attribute_name("name") %></th>
+      <th><%= MissionGroup.human_attribute_name("missions") %></th>
+      <th><%= MissionGroup.human_attribute_name("requirements") %></th>
+      <th><%= MissionGroup.human_attribute_name("payouts") %></th>
+      <th><%= MissionGroup.human_attribute_name("state") %></th>
+      <th></th>
+    </tr>
+    <% @groups.each do |group| %>
+      <tr>
+        <td class="position"><%= group.position %></td>
+        <td class="name"><%= link_to(group.name, edit_admin_mission_group_path(group)) %></td>
+        <td class="missions"><%= group.missions.size %></td>
+        <td class="requirements"><%= admin_requirements_preview(group.requirements) %></td>
+        <td class="payouts"><%= admin_payouts_preview(group.payouts) %></td>
+        <td class="state"><%= admin_state(group) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.move_up"), move_admin_mission_group_path(group, :direction => :up),
+                :method => :put
+              ) unless group.first? %>
+          <%= link_to(t(".controls.move_down"), move_admin_mission_group_path(group, :direction => :down),
+                :method => :put
+              ) unless group.last? %>
+          <%= link_to(t(".controls.edit"), edit_admin_mission_group_path(group)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_mission_group_path(group),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if group.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_mission_group_path(group),
+                :method => :put
+              ) if group.can_hide? %>
+          <%= link_to(t(".controls.delete"), admin_mission_group_path(group),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) if group.can_mark_deleted? %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

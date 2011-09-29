@@ -1,0 +1,48 @@
+<% result_for :fight do |builder| %>
+  <% if !@fight.new_record? %>
+    <% if @fight.winner == current_character %>
+      <%= builder.render "fights/create/success", :fight => @fight %>
+    <% else %>
+      <% builder.buttons do %>
+        <%= link_to_remote(button(:attack_again),
+              :url    => @fight.cause ? respond_fight_path(@fight.cause) : fights_path(:victim_id => @fight.victim),
+              :update => :result,
+              :html   => {
+                :"data-click-once" => true,
+                :class => "attack_again button"
+              }
+            ) %>
+      <% end %>
+
+      <%= builder.render "fights/create/failure", :fight => @fight %>
+    <% end %>
+
+    <%= builder.render "fights/create/details", :fight => @fight %>
+
+    <% if @fight.cause %>
+      <% builder.on_ready do %>
+        $('#<%= dom_id(@fight.cause, :respond) %>').hide();
+      <% end %>
+    <% end %>
+  <% elsif !@fight.enough_stamina? %>
+    <%= builder.render("requirements/not_satisfied/stamina_point",
+          :requirement => @fight.stamina_requirement
+        ) %>
+
+    <% builder.on_ready do %>
+      <%= ga_track_event('Fights', 'Not Enough Stamina') %>
+    <% end %>
+  <% elsif current_character.weak? %>
+    <%= builder.render("requirements/not_satisfied/health_point",
+          :requirement => current_character.weakness_requirement
+        ) %>
+
+    <% builder.on_ready do %>
+      <%= ga_track_event('Fights', 'Not Enough Health') %>
+    <% end %>
+  <% else %>
+    <% builder.fail do %>
+      <%= @fight.errors.collect{|e| e.last }.join(' ') %>
+    <% end %>
+  <% end %>
+<% end %>

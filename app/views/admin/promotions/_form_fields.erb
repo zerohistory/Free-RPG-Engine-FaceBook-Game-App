@@ -1,0 +1,7 @@
+<%= form.text_area :text, :required => true, :cols => 80, :rows => 5 %>
+<%= form.datetime_select :valid_till, :required => true %>
+<%= form.check_box :forwardable %>
+
+<h2><%= Promotion.human_attribute_name("payouts") %></h2>
+
+<%= form.fields "admin/payouts/collection" %>

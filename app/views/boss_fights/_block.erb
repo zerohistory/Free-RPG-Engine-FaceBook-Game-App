@@ -1,0 +1,47 @@
+<div id="boss_fight_block">
+  <% fights.each do |fight| %>
+    <% div_for fight, :class => :clearfix do %>
+      <div class="buttons">
+        <%= link_to_remote(button(:attack),
+              :url    => boss_fight_path(fight),
+              :method => :put,
+              :update => :result,
+              :html   => {
+                :"data-click-once" => true,
+                :class => "attack button"
+              }
+            ) %>
+      </div>
+
+      <div class="image"><%= image_tag(fight.boss.image.url(:small)) if fight.boss.image? %></div>
+
+      <div class="text">
+        <%= t(".text",
+              :boss => content_tag(:span, fight.boss.name, :class => :name)
+            ).html_safe %>
+      </div>
+
+      <% if fight.time_limit? %>
+        <div class="timer">
+          <%= t(".time_left",
+                :value => content_tag(:span, "", :id => dom_id(fight, :timer), :class => :value)
+              ).html_safe %>
+        </div>
+
+        <% dom_ready do %>
+          Timer.start('#<%= dom_id(fight, :timer) %>', <%= fight.time_left %>, function(){
+            <%= remote_function(
+                  :url    => boss_fight_path(fight),
+                  :method => :put,
+                  :update => :result
+                ) %>
+          });
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<% dom_ready do %>
+  BossFight.initBlock();
+<% end %>

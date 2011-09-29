@@ -1,0 +1,13 @@
+<div class="help_page_content">
+  <h1><%= @page.name %></h1>
+
+  <div class="content"><%= @page.content_processed.html_safe %></div>
+
+  <div class="controls">
+    <% if request.xhr? %>
+      <%= link_to_function(button(:close), '$.dialog.close()', :class => "button close") %>
+    <% else %>
+      <%= link_to(button(:return), root_path, :class => "button return") %>
+    <% end %>
+  </div>
+</div>

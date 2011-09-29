@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+  ServerName <%= URI.parse(facebooker_config[:callback_url]).host %>
+  DocumentRoot <%= current_path %>/public
+  RailsEnv <%= rails_env %>
+
+  <Directory <%= current_path %>/public>
+     AllowOverride all
+     Options FollowSymlinks -MultiViews
+     Order allow,deny
+     Allow from all
+  </Directory>
+</VirtualHost>

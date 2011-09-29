@@ -1,0 +1,5 @@
+<% content = capture do %>
+  <%= render("item_fields", :item => @item, :frequency => 10) %>
+<% end %>
+
+$('#item_set').append('<%= escape_javascript(content) %>')

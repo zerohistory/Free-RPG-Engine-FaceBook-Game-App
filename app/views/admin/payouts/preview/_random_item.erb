@@ -1,0 +1,19 @@
+<% content_tag :div, :class => payout.name do %>
+  <% if payout.item_set %>
+    <%= "%s: Random Item from %s (%d%% %s)" % [
+          payout.apply_on_label,
+          payout.item_set.name,
+          payout.chance,
+          payout.action
+        ] %>
+  <% else %>
+    <%= "%s: Random Item %s %s %s (%d%% %s)" % [
+          payout.apply_on_label,
+          payout.availability || "any",
+          payout.value,
+          payout.allow_vip ? "vip" : "basic",
+          payout.chance,
+          payout.action
+        ] %>
+  <% end %>
+<% end %>

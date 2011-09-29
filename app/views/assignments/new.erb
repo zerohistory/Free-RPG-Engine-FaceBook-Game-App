@@ -1,0 +1,65 @@
+<% dialog do |d| %>
+  <% form_for [@assignment.context, @assignment] do |f| %>
+    <h2><%= t(".title") %></h2>
+
+    <%= f.hidden_field :role %>
+    <%= f.hidden_field :relation_id %>
+
+    <% filters = %w{not_assigned assigned} %>
+
+    <div class="tabs">
+      <% filters.each do |filter| %>
+        <%= link_to(t(".#{filter}.title"), :anchor => filter) %>
+      <% end %>
+    </div>
+
+    <% filters.each do |filter| %>
+      <div id="<%= filter %>" class="list">
+        <% if relations = @relations.send(filter) and relations.any? %>
+          <table class="relations" cellspacing="0" cellpadding="0">
+            <tr>
+              <th colspan="3"><%= t(".columns.user") %></th>
+              <th><%= t("assignments.roles.#{@assignment.role}.description") %></th>
+            </tr>
+            <% relations.each do |relation| %>
+              <% content_tag_for :tr, relation.becomes(Relation), :value => relation.id do %>
+                <% if relation.is_a?(FriendRelation) %>
+                  <td class="picture"><%= character_picture(relation.character) %></td>
+                  <td class="name"><%= character_name(relation.character) %></td>
+                <% else %>
+                  <td class="picture"><%= asset_image_tag(:mercenary) %></td>
+                  <td class="name"><%= relation.name %></td>
+                <% end %>
+
+                <td class="level">
+                  <%= Character.human_attribute_name("level") %>
+                  <%= relation.level %>
+                </td>
+                <td class="effect"><%= assignment_effect(@assignment, relation, :format => :short) %></td>
+              <% end %>
+            <% end %>
+          </table>
+        <% else %>
+          <div class="empty_set"><%= t(".#{filter}.empty_set") %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= link_to_remote(button(:promote),
+          :url  => polymorphic_path([@assignment.context, @assignment]),
+          :with   => "$(this).parents('form').serialize()",
+          :update => :ajax,
+          :after  => '$.dialog.close()',
+          :html   => {
+            :'data-click-once' => true,
+            :class => 'promote button'
+          }
+        ) %>
+  <% end %>
+
+  <% d.on_ready do %>
+    AssignmentForm.setup();
+
+    $(document).trigger('remote_content.received');
+  <% end %>
+<% end %>

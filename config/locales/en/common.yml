@@ -1,0 +1,19 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  app_name: "Sword & Magic"
+  common:
+    empty_set: "Nothing here"
+  number:
+    currency:
+      format:
+        unit: ""
+        precision: 0
+  forms:
+    select_multiple: "Hold 'Ctrl' to select multiple items"
+  form_builder:
+    submit_and_continue: "Save & Continue Editing"
+    remove_attachment: "Remove Image"
+  blocks:
+    hide: "Hide"

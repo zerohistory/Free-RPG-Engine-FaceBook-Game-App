@@ -1,0 +1,28 @@
+<%= form.text_field :name, :required => true, :size => 50 %>
+<%= form.text_area :description, :cols => 80, :rows => 5 %>
+
+<%= form.file_field :image, :after_field => form.attachment_preview(:image, :small) %>
+
+<%= form.text_field :level, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :health, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :attack, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :defence, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :minimum_damage, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :maximum_damage, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :minimum_response, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :maximum_response, :required => true, :size => 6, :autocomplete => :off %>
+
+<%= form.text_field :fight_time, :size => 4 %>
+
+<%= form.fields 'admin/visibilities/form_fields' %>
+
+<% form.field_set MonsterType.human_attribute_name("requirements") do %>
+  <%= form.fields "admin/requirements/collection" %>
+<% end %>
+
+<% form.field_set MonsterType.human_attribute_name("payouts") do %>
+  <%= form.text_field :experience, :required => true, :size => 6, :autocomplete => :off %>
+  <%= form.text_field :money, :required => true, :size => 6, :autocomplete => :off %>
+
+  <%= form.fields "admin/payouts/collection" %>
+<% end %>

@@ -1,0 +1,64 @@
+#market_item
+  .item
+    margin-bottom: 15px
+
+    .picture
+      float: left
+      margin-right: 15px
+
+    .name
+      font-size: 14px
+      font-weight: bold
+
+  table
+    td.and
+      font-weight: bold
+      vertical-align: middle
+      text-align: center
+      padding: 0 15px
+
+#market_item_list
+  width: 100%
+  td
+    padding: 10px 0
+    border-bottom = !shop_item_border
+
+  .picture
+    width: 80px
+
+  .info
+    padding-right: 10px
+
+    .name
+      font-size: 16px
+      font-weight: bold
+
+    .name, .description
+      margin-bottom: 10px
+
+    .limit
+      color = !shop_item_limit_color
+
+  .info, .payouts, .requirements
+    padding-right: 10px
+
+  .seller
+    img
+      float: left
+      margin-right: 10px
+
+  .controls
+    text-align: right
+    width: 130px
+
+    .buy
+      +button(!market_item_buy_icon)
+
+    .delete
+      +button(!market_item_delete_icon)
+
+#market_result
+  background-image = !market_result_icon
+
+  .inventory
+    +button(!market_result_inventory_icon, !market_result_inventory_width)

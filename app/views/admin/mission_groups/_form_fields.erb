@@ -1,0 +1,12 @@
+<%= form.text_field :name, :required => true %>
+
+<%= form.file_field :image, :after_field => form.attachment_preview(:image, :original) %>
+
+<% form.field_set MissionGroup.human_attribute_name("requirements") do %>
+  <%= form.fields "admin/requirements/collection" %>
+  <%= form.check_box :hide_unsatisfied %>
+<% end %>
+
+<% form.field_set MissionGroup.human_attribute_name("payouts") do %>
+  <%= form.fields "admin/payouts/collection" %>
+<% end %>

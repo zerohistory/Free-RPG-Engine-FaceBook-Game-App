@@ -1,0 +1,23 @@
+<% mission_group_tabs do |tabs| %>
+  <% tabs.previous_tab do %>
+    <%= asset_image_tag(:icons_previous, :alt => t(".previous.name")) %>
+  <% end %>
+
+  <% idx = 0 %>
+  <% tabs.group_tab do |group, locked| %>
+    <div class="icon" style="left: <%= 8 + idx*144 %>px">
+      <%= image_tag group.image.url, :size => "32x32" if group.image? %>
+    </div>
+
+    <%= link_to(locked ? t(".locked") : group.name, mission_group_path(group),
+          :class => :name
+        ) %>
+
+    <%= requirement_list(group.requirements[0, 1]) %>
+    <% idx += 1 %>
+  <% end %>
+
+  <% tabs.next_tab do %>
+    <%= asset_image_tag(:icons_next, :alt => t(".next.name")) %>
+  <% end %>
+<% end %>

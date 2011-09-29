@@ -1,0 +1,188 @@
+// Application wide html elements styles
+
+html, body
+  margin: 0
+  padding: 0
+  font: normal 24px/18px 'ParchmentMFRegular', Arial, Tahoma, sans-serif
+  color: #000
+
+a
+  color: #0A0908
+  text-decoration: underline
+a:hover
+  text-decoration: none
+
+li
+  list-style: none
+ul
+  margin: 0
+  padding: 0
+
+h1
+  font-size: 40px
+  color: #402819
+
+h2
+  font-size: 28px
+  margin-top: 0
+
+h3
+  font-size: 24px
+  margin: 0 0 10px 0
+
+p
+  margin: 0 0 1em 0
+
+
+// Application styles
+
+#content
+  width: 760px
+  background: #D0A35F 0 repeat-y
+  background-image = !asset_bg_cont
+
+.welcome
+  height: 695px
+  background: #FFF 0 no-repeat
+  background-image = !asset_bg_welcome
+  position: relative
+
+#wrapper
+  background: 0 0 no-repeat
+  background-image = !asset_bg_main
+
+#maintenance_warning
+  margin: 20px 0
+  border: 2px dashed orange
+  padding: 20px
+  text-align: center
+
+#admin_menu
+  margin: 20px
+  padding: 20px
+  border: 2px dashed green
+  text-align: center
+
+  a
+    color: #3B5998 !important
+    font-weight: bold
+
+#main
+  zoom: 1
+  overflow: hidden
+  padding: 0 16px 215px
+  background: bottom no-repeat
+  background-image = !asset_bg_bottom
+
+  .title
+    margin: 0
+    padding: 0
+    font-size: 40px
+    font-weight: bold
+    line-height: 26px
+    text-align: center
+
+  .energy
+    padding-left: 30px
+    background: left no-repeat
+    background-image = !asset_icons_energy
+
+  .stamina
+    padding-left: 30px
+    background: left no-repeat
+    background-image = !asset_icons_stamina
+
+  .vip_money
+    padding-left: 30px
+    background: left no-repeat
+    background-image = !asset_icons_gem_store
+
+  .basic_money
+    padding-left: 30px
+    background: left no-repeat
+    background-image = !asset_icons_gold
+
+  .attack
+    padding-left: 30px
+    background: left no-repeat
+    background-image = !asset_icons_attack
+
+  .defence
+    padding-left: 30px
+    background: left no-repeat
+    background-image = !asset_icons_defence
+
+  .experience
+    padding-left: 30px
+    background: left no-repeat
+    background-image = !asset_icons_experience
+
+  .health
+    padding-left: 30px
+    background: left no-repeat
+    background-image = !asset_icons_health
+
+#bottom_nav
+  padding: 10px 0 10px 45px
+  overflow: hidden
+  zoom: 1
+
+  li
+    float: left
+    margin-left: 15px
+
+// Tip block in the main
+#tip
+  padding: 10px
+  text-align: center
+
+  .label
+    font-weight: bold
+
+// AJAX spinner displayed when loading data from server
+#spinner
+  position: absolute
+  top = !spinner_top
+  left = !spinner_left
+  width = !spinner_width
+  height = !spinner_height
+  padding: 5px
+  z-index: 1000
+  background:
+    color = !spinner_bg_color
+  border = !spinner_border
+
+  img
+    float: left
+    margin-right: 10px
+    margin-left: -1px
+
+=c_percentage_bar(!icon, !width)
+  width = !width
+
+  .complete
+    background-image = !icon
+
+=c_block(!top, !left)
+  position: absolute
+  top = !top
+  left = !left
+
+=c_icon(!image)
+  padding-left: 40px
+  background:
+    position: top left
+    repeat: no-repeat
+    image = !image
+
+=c_icon_bg(!image)
+  width: 40px
+  height: 40px
+  line-height: 40px
+  text-align: center
+  display: block
+  background:
+    position: top left
+    repeat: no-repeat
+    image = !image
+

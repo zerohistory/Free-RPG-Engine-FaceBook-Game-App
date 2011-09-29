@@ -1,0 +1,645 @@
+// Content container
+
+!content_bg_color = white
+!content_bg_image = !asset_1px
+!content_text_color = black
+
+
+// Global settings
+
+!label_color = #3B5998
+!subheader_color = black
+
+!link_color = #3B5998
+
+!main_border = 1px solid #6D84B4
+!thin_border = 1px solid #D8DFEA
+!splitter_border = 1px solid #e0e0e0
+
+!current_item_bg_color = #FFFFD5
+
+
+// Buttons
+
+!button_color = #3B5998
+!button_border = !main_border
+!button_bg_color = white
+!button_bg_color_hover = #F1F7FA
+!button_icons = true
+
+=button(!icon, !width = '')
+  @if !width != ''
+    width = !width
+
+  @if !button_icons == true
+    .icon
+      background-image = !icon
+
+
+// Spinner
+
+!spinner_top = 240px
+!spinner_left = 300px
+!spinner_width = 150px
+!spinner_height = 50px
+!spinner_bg_color = !content_bg_color
+!spinner_border = !main_border
+
+
+// Page switcher
+
+!pagination_border = 1px solid #3b5998
+!pagination_current_bg_color = #d8dfea
+!pagination_current_color = #3b5998
+
+
+// Dialog window
+
+!dialog_width = 500px
+!dialog_bg_color = white
+!dialog_close_icon = !asset_icons_delete
+!dialog_close_width = 16px
+!dialog_close_height = 16px
+
+
+// Progress bars
+
+!progress_border_color = #d0d0d0
+!progress_bg_color = #51a2e2
+!progress_bg_image = !asset_progress
+!progress_complete_bg_color = #3ddd3d
+!progress_complete_bg_image = !asset_progress_completed
+
+
+// Top header
+
+!header_border = !splitter_border
+
+
+// Logo
+
+!logo_image = !asset_logo_main
+!logo_width = 200px
+!logo_height = 75px
+
+
+// Main menu
+
+!menu_link_border = 1px solid transparent
+!menu_link_border_hover = 1px solid #d0d0d0
+!menu_icons_home = !asset_icons_home
+!menu_icons_profile = !asset_icons_profile
+!menu_icons_missions = !asset_icons_missions
+!menu_icons_fights = !asset_icons_fights
+!menu_icons_inventory = !asset_icons_inventory
+!menu_icons_shop = !asset_icons_shop
+!menu_icons_alliance = !asset_icons_alliance
+!menu_icons_rating = !asset_icons_rating
+!menu_icons_properties = !asset_icons_properties
+!menu_icons_premium = !asset_icons_vip_money
+
+// Character overview block
+
+!co_border = !splitter_border
+!co_icons_basic_money = !asset_icons_basic_money
+!co_icons_level = !asset_icons_level
+!co_icons_experience = !asset_icons_experience
+!co_icons_vip_money = !asset_icons_vip_money
+!co_icons_health = !asset_icons_health
+!co_icons_energy = !asset_icons_energy
+!co_icons_stamina = !asset_icons_stamina
+!co_upgrade_link_color = red
+!co_timer_color = #b0b0b0
+
+
+// Tip
+
+!tip_border = !splitter_border
+
+
+// Blocks
+
+!block_hide_icon = !asset_icons_hide
+
+!block_fan_specials_border = 1px solid #3ebace
+!block_fan_specials_bg_color = #f1f7fa
+!block_fan_specials_header_color = #003f95
+
+!block_bookmark_border = 1px solid #3ebace
+!block_bookmark_bg_color = #f1f7fa
+!block_bookmark_header_color = #003f95
+
+
+// Tutorial block
+
+!tutorial_border = 2px solid #BDC7D8
+!tutorial_complete_color = #00d000
+!tutorial_continue_icon = !asset_icons_accept
+
+
+// Character attributes
+
+!character_attributes_attack_icon = !asset_icons_attack
+!character_attributes_defence_icon = !asset_icons_defence
+!character_attributes_health_icon = !asset_icons_health
+!character_attributes_energy_icon = !asset_icons_energy
+!character_attributes_stamina_icon = !asset_icons_stamina
+!character_attributes_basic_money_icon = !asset_icons_basic_money
+!character_attributes_vip_money_icon = !asset_icons_vip_money
+
+!character_rank_icon = !asset_icons_level
+
+!character_buttons_attack_icon = !asset_icons_attack
+!character_buttons_upgrade_icon = !asset_icons_add
+!character_buttons_hitlist_icon = !asset_icons_fights
+
+
+// Dashboard page
+
+!dashboard_newsfeed_border = !splitter_border
+!dashboard_newsfeed_basic_money_icon = !asset_icons_basic_money
+!dashboard_newsfeed_health_icon = !asset_icons_health
+!dashboard_newsfeed_experience_icon = !asset_icons_experience
+!dashboard_newsfeed_fight_respond_icon = !asset_icons_attack
+!dashboard_newsfeed_monster_fight_start_icon = !asset_icons_attack
+!dashboard_newsfeed_monster_fight_defeat_icon = !asset_icons_basic_money
+
+
+// Result block
+
+!result_border = 2px solid #3B5998
+!result_publish_icon = !asset_icons_publish
+!result_premium_icon = !asset_icons_vip_money
+!result_buy_icon = !asset_icons_basic_money
+
+
+// Mission buttons
+
+!mission_buttons_missions_icon = !asset_icons_missions
+!mission_buttons_monsters_icon = !asset_icons_monsters
+
+// Mission groups
+
+!mission_group_border_top = !splitter_border
+!mission_group_border_bottom = !splitter_border
+!mission_group_current_bg_color = #e8ebf3
+
+
+// Mission list
+
+!mission_border = !splitter_border
+!mission_fulfill_icon = !asset_icons_missions
+
+
+// Mission result block
+
+!mission_result_icon = !asset_icons_missions
+!mission_result_zero_spending_color = green
+!mission_result_fulfill_again_icon = !asset_icons_missions
+!mission_result_fulfill_again_width = 120px
+!mission_result_request_help_icon = !asset_icons_alliance
+!mission_result_request_help_width = 230px
+!mission_result_child_mission_icon = !asset_icons_missions
+
+// Mission completion dialog
+!mission_dialog_continue_icon = !asset_icons_publish
+
+// Mission help result
+
+!mission_help_result_icon = !asset_icons_missions
+!mission_help_result_continue_icon = !asset_icons_home
+
+// Mission help list block
+
+!mission_help_list_border = !main_border
+!mission_help_list_collect_icon = !asset_icons_basic_money
+
+// Mission help reward result block
+
+!mission_help_reward_result_icon = !asset_icons_basic_money
+
+
+
+// Payout blocks
+
+!payout_experience_icon = !asset_icons_experience
+!payout_basic_money_icon = !asset_icons_basic_money
+!payout_vip_money_icon = !asset_icons_vip_money
+!payout_health_icon = !asset_icons_health
+!payout_energy_icon = !asset_icons_energy
+!payout_stamina_icon = !asset_icons_stamina
+!payout_restore_health_icon = !asset_icons_health
+!payout_restore_energy_icon = !asset_icons_energy
+!payout_upgrade_icon = !asset_icons_level
+!payout_mercenaries_icon = !asset_icons_alliance
+!payout_attack_icon = !asset_icons_attack
+!payout_defence_icon = !asset_icons_defence
+!payout_title_icon = !asset_icons_level
+
+
+// Requirement blocks
+
+!requirement_basic_money_icon = !asset_icons_basic_money
+!requirement_vip_money_icon = !asset_icons_vip_money
+!requirement_health_point_icon = !asset_icons_health
+!requirement_energy_icon = !asset_icons_energy
+!requirement_stamina_icon = !asset_icons_stamina
+!requirement_alliance_icon = !asset_icons_alliance
+!requirement_attack_icon = !asset_icons_attack
+!requirement_defence_icon = !asset_icons_defence
+!requirement_premium_icon = !asset_icons_vip_money
+!requirement_title_icon = !asset_icons_level
+!requirement_level_icon = !asset_icons_level
+
+
+// Shop - item groups
+
+!item_group_border = !splitter_border
+!item_group_current_bg_color = #e8ebf3
+
+
+// Shop - item list
+
+!shop_item_border = !splitter_border
+!shop_item_limit_color = red
+!shop_item_buy_icon = !asset_icons_basic_money
+
+
+// Shop - special items
+
+!shop_special_item_limit_color = red
+!shop_special_item_buy_icon = !asset_icons_basic_money
+!shop_special_item_border = 2px solid #EC7000
+
+!shop_next_item_border = 1px solid #d0d0d0
+
+
+// Shop result block
+
+!shop_result_icon = !asset_icons_basic_money
+!shop_result_inventory_width = 150px
+!shop_result_inventory_icon = !asset_icons_inventory
+!shop_result_use_icon = !asset_icons_accept
+
+
+// Inventory buttons
+
+!inventory_buttons_shop_icon = !asset_icons_shop
+!inventory_buttons_inventory_icon = !asset_icons_inventory
+!inventory_buttons_collections_icon = !asset_icons_collections
+!inventory_buttons_equipment_icon = !asset_icons_profile
+!inventory_buttons_market_icon = !asset_icons_basic_money
+
+
+// Inventory item list
+
+!inventory_item_border = !splitter_border
+!inventory_item_sell_icon = !asset_icons_basic_money
+!inventory_item_market_icon = !asset_icons_basic_money
+!inventory_item_use_icon = !asset_icons_accept
+
+
+// Inventory result block
+
+!inventory_sell_result_icon = !asset_icons_basic_money
+!inventory_use_result_icon = !asset_icons_accept
+
+
+//Inventory give form
+
+!inventory_give_button_icon = !asset_icons_accept
+
+// Fight buttons
+
+!fight_buttons_fight_icon = !asset_icons_fights
+!fight_buttons_hitlist_icon = !asset_icons_fights
+
+// Character fight attributes block
+
+!fight_attributes_border = !splitter_border
+!fight_attributes_attack_icon = !asset_icons_attack
+!fight_attributes_defence_icon = !asset_icons_defence
+!fight_attributes_relations_icon = !asset_icons_alliance
+
+
+// Fight opponent list
+
+!fight_victim_border = !splitter_border
+!fight_victim_larger_alliance_color = red
+!fight_victim_attack_icon = !asset_icons_fights
+
+
+// Fight result block
+
+!fight_result_icon = !asset_icons_fights
+!fight_result_attack_again_icon = !asset_icons_fights
+!fight_result_details_border = !splitter_border
+!fight_result_character_attack_icon = !asset_icons_attack
+!fight_result_character_defence_icon = !asset_icons_defence
+!fight_result_character_relations_icon = !asset_icons_alliance
+!fight_result_items_border = !splitter_border
+
+
+// Hitlist
+
+!hitlist_attack_icon = !asset_icons_fights
+
+// Hitlist result block
+
+!hitlist_result_basic_money_icon = !asset_icons_basic_money
+!hitlist_result_incomplete_color = red
+!hitlist_result_completed_color = green
+
+
+// Character upgrade page
+
+!upgrade_list_points_border = !splitter_border
+!upgrade_list_attack_icon = !asset_icons_attack
+!upgrade_list_defence_icon = !asset_icons_defence
+!upgrade_list_health_icon = !asset_icons_health
+!upgrade_list_energy_icon = !asset_icons_energy
+!upgrade_list_stamina_icon = !asset_icons_stamina
+!upgrade_list_upgrade_icon = !asset_icons_add
+
+
+// Character upgrade result block
+
+!upgrade_result_icon = !asset_icons_add
+
+
+
+// Alliance invitation displayed at the separate page
+
+!invitation_accept_icon = !asset_icons_accept
+!invitation_decline_icon = !asset_icons_delete
+
+
+// Alliance invitation result block
+
+!invitation_result_icon = !asset_icons_alliance
+
+
+// Alliance buttons
+
+!alliance_buttons_relations_icon = !asset_icons_alliance
+!alliance_buttons_invite_icon = !asset_icons_add
+!alliance_buttons_send_gifts_icon = !asset_icons_gift
+!alliance_buttons_accept_requests_icon = !asset_icons_accept
+!alliance_buttons_mercenaries_icon = !asset_icons_add
+
+
+// Alliance member list
+
+!alliance_members_member_border = !splitter_border
+!alliance_members_delete_icon = !asset_icons_delete
+
+
+// Alliance member assignments
+
+!assignments_position_border = !splitter_border
+!assignments_promote_icon = !asset_icons_accept
+!assignments_demote_icon = !asset_icons_delete
+
+
+// Assignment form
+
+!new_assignment_tabs_border = !splitter_border
+!new_assignment_relation_border = !splitter_border
+!new_assignment_selected_bg_color = !current_item_bg_color
+!new_assignment_selected_border = 1px solid #EC7000
+
+
+// Invitation form
+
+!invitation_form_type_border = !splitter_border
+!invitation_form_text_color = !label_color
+!invitation_form_invite_icon = !asset_icons_publish
+!invitation_form_invite_width = 70px
+!invitation_form_invite_other_width = 160px
+
+
+// Rating buttons
+
+!rating_buttons_rating_width = 130px
+!rating_buttons_rating_icon = !asset_icons_rating
+
+
+// Rating tables
+
+!rating_current_color = #3B5998
+!rating_current_bg_color = !current_item_bg_color
+!rating_current_border = 1px solid #EC7000
+
+
+// Bank page
+
+!bank_value_icon = !asset_icons_basic_money
+
+
+// Property 'Collect all' block
+
+!property_collect_all_icon = !asset_icons_accept
+
+
+// Property list
+
+!property_list_item_border = !splitter_border
+!property_list_buy_icon = !asset_icons_basic_money
+!property_list_upgrade_icon = !asset_icons_basic_money
+!property_list_collect_icon = !asset_icons_accept
+!property_list_button_width = 90px
+
+
+// Property result block
+
+!property_result_icon = !asset_icons_basic_money
+
+
+// Premium service page
+
+!premium_current_vip_money_icon = !asset_icons_vip_money
+
+!premium_service_border = !splitter_border
+!premium_basic_money_icon = !asset_icons_basic_money
+!premium_points_icon = !asset_icons_level
+!premium_accept_width = 100px
+!premium_accept_icon = !asset_icons_accept
+
+!premium_result_icon = !asset_icons_vip_money
+
+// Gift form
+
+!gifts_item_border = !splitter_border
+!gifts_item_image_size = 130px
+!gifts_item_width = !gifts_item_image_size + 200px
+!gifts_item_send_icon = !asset_icons_gift
+
+// Gift list
+
+!gifts_list_accept_icon = !asset_icons_accept
+!gifts_list_send_icon = !asset_icons_gift
+
+
+// Boss list
+
+!boss_list_item_border = 2px solid #BDC7D8
+!boss_list_attack_button = !asset_icons_fights
+
+
+// Boss fight block
+
+!boss_fight_border = 2px solid #BDC7D8
+!boss_fight_attack_icon = !asset_icons_fights
+
+
+// Boss fight result block
+
+!boss_fight_result_icon = !asset_icons_missions
+!boss_fight_result_success_color = green
+!boss_fight_result_failure_color = red
+!boss_fight_result_attack_icon = !asset_icons_fights
+!boss_fight_result_publish_icon = !asset_icons_publish
+
+
+// Monster list
+
+!monster_list_attack_icon = !asset_icons_fights
+!monster_list_attack_width = 80px
+!monster_list_engage_icon = !asset_icons_fights
+!monster_list_engage_width = 90px
+!monster_list_reward_icon = !asset_icons_basic_money
+!monster_list_reward_width = 120px
+!monster_list_view_icon = !asset_icons_monsters
+!monster_list_view_width = 70px
+
+// Monster fight
+
+!monster_attack_icon = !asset_icons_fights
+!monster_invite_icon = !asset_icons_publish
+!monster_reward_icon = !asset_icons_basic_money
+
+// Monster fight result block
+
+!monster_result_attack_icon = !asset_icons_fights
+
+// Monster completion dialog
+
+!monster_dialog_continue_icon = !asset_icons_publish
+
+
+// Character creation/modification form
+
+!character_form_type_width = 125px
+!character_form_type_border = !splitter_border
+!character_form_type_hover_border = 1px solid #3B5998
+!character_form_type_selected_border = 2px solid #3B5998
+!character_form_type_selected_bg_color = #e8ebf3
+
+
+// Character equipment placements
+
+!placements_bg_image = !asset_placements
+!placements_height = 490px
+!placements_remove_icon = !asset_icons_delete
+!placements_remove_width = 16px
+!placements_remove_height = 16px
+
+!placements_head_top = 3px
+!placements_head_left = 155px
+!placements_head_width = 72px
+!placements_head_height = 72px
+
+!placements_right_hand_top = 111px
+!placements_right_hand_left = 3px
+!placements_right_hand_width = 120px
+!placements_right_hand_height = 120px
+
+!placements_left_hand_top = 111px
+!placements_left_hand_left = 261px
+!placements_left_hand_width = 120px
+!placements_left_hand_height = 120px
+
+!placements_body_top = 81px
+!placements_body_left = 132px
+!placements_body_width = 120px
+!placements_body_height = 120px
+
+!placements_legs_top = 361px
+!placements_legs_left = 132px
+!placements_legs_width = 120px
+!placements_legs_height = 120px
+
+!placements_additional_width = 72px
+!placements_additional_height = 72px
+!placements_additional_border = 1px solid #BDC7D8
+!placements_additional_zero_color = red
+
+
+// Unequipped items at the equipment page
+
+!equippables_width = 210px
+!equippables_border = 2px solid #BDC7D8
+!equippables_item_border = !splitter_border
+!equippables_equip_icon = !asset_icons_accept
+
+!equipment_buttons_auto_equip_icon = !asset_icons_accept
+!equipment_buttons_unequip_icon = !asset_icons_delete
+
+// Promotion result
+
+!promotion_result_icon = !asset_icons_basic_money
+
+
+// Character level up block
+
+!level_up_continue_icon = !asset_icons_level
+
+// Friends to invite notification
+
+!friends_to_invite_invite_icon = !asset_icons_add
+!friends_to_invite_invite_other_icon = !asset_icons_alliance
+
+// Send gift notification
+
+!send_gift_item_border = !splitter_border
+!send_gift_item_width = !gifts_item_image_size + 10px
+!send_gift_item_height = !gifts_item_image_size + 80px
+!send_gift_send_icon = !asset_icons_gift
+!send_gift_send_width = 70px
+
+// Market
+
+!market_item_buy_icon = !asset_icons_basic_money
+!market_item_delete_icon = !asset_icons_delete
+
+// Market result block
+
+!market_result_icon = !asset_icons_basic_money
+!market_result_inventory_width = 150px
+!market_result_inventory_icon = !asset_icons_inventory
+
+// Collections
+
+!collection_collect_icon = !asset_icons_collections
+!collection_publish_icon = !asset_icons_publish
+
+// Colelction result block
+
+!collection_result_icon = !asset_icons_collections
+
+// Wall
+
+!wall_author_post_bg_color = !current_item_bg_color
+!wall_publish_icon = !asset_icons_publish
+
+// Stories
+
+!story_result_icon = !asset_icons_basic_money
+!story_result_continue_icon = !asset_icons_home
+
+// App Requests
+
+!app_requests_accept_icon = !asset_icons_accept
+!app_requests_send_icon = !asset_icons_gift
+!app_requests_alliance_icon = !asset_icons_alliance
+!app_requests_fight_icon = !asset_icons_fights

@@ -1,0 +1,12 @@
+en:
+  shared:
+    gift:
+      submit: "Gift"
+      amount: "amount: {{amount}}"
+      cost: "it will cost you {{cost}} gems"
+      columns:
+        user: "Alliance member"
+      empty_set: "Your alliance is empty or there is nobody who can accept this gift"
+      cannot_make_gift: "You don't have enough gems to make a gift."
+      gems_to_complete: "Gems to complete: {{cost}}, you have {{gems}}."
+      purchase_gems: "Purchase gems"

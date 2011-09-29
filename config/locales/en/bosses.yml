@@ -1,0 +1,41 @@
+en:
+  bosses:
+    boss:
+      payout: "Payout:"
+      requirements: "Requirements:"
+      buttons:
+        attack: "Attack!"
+  boss_fights:
+    block:
+      text: "You're currently fighting with %{boss}."
+      time_left: "Time Left: %{value}"
+      buttons:
+        attack: "Attack!"
+    create:
+      requirements_not_satisfied:
+        message: "Some boss fight requirements are not satisfied:"
+      progress:
+        time_left: "Time Left: %{value}"
+        messages:
+          character: "%{attacker} attacked %{victim} and did %{damage} damage"
+          boss: "%{attacker} attacked %{victim} and did %{damage} damage"
+        buttons:
+          attack: "Attack!"
+      lost:
+        messages:
+          result: "You lost the battle against %{boss}!"
+          character: "%{attacker} attacked %{victim} and did %{damage} damage"
+          boss: "%{attacker} attacked %{victim} and did %{damage} damage"
+      won:
+        messages:
+          result: "You defeated %{boss}!"
+          character: "%{attacker} attacked %{victim} and did %{damage} damage"
+          boss: "%{attacker} attacked %{victim} and did %{damage} damage"
+        buttons:
+          publish: "Brag About It!"
+      expired:
+        messages:
+          result: "Time is up! You missed your chance to defeat %{boss}!"
+      payouts:
+        you_received: "You received:"
+        you_lost: "You lost:"

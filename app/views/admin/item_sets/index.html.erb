@@ -1,0 +1,39 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_item_set_path) %>
+</div>
+
+<% collection @item_sets do %>
+  <table id="item_set_list" class="data">
+    <tr>
+      <th><%= ItemSet.human_attribute_name("name") %></th>
+      <th><%= ItemSet.human_attribute_name("items") %></th>
+      <th></th>
+    </tr>
+
+    <% @item_sets.each do |item_set| %>
+      <tr>
+        <td class="name"><%= link_to(item_set.name, edit_admin_item_set_path(item_set)) %></td>
+        <td class="items">
+          <table>
+          <% item_set.items.each do |item, frequency| %>
+            <tr class="item">
+              <td>
+                <% unless item.visible? %>
+                  <span class="state"><%= admin_state(item) %></span>
+                <% end %>
+                <%= item.name %>
+              </td>
+              <td><%= frequency %></td>
+            </tr>
+          <% end %>
+          </table>
+        </td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_item_set_path(item_set)) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

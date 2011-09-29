@@ -1,0 +1,74 @@
+<%= admin_title(t(".title")) %>
+
+<div id="character_search">
+  <h2><%= t(".search.title") %></h2>
+
+  <% form_tag search_admin_characters_path do %>
+    <%= label_tag :profile_ids, t(".search.profile_ids") %>
+    <%= text_field_tag :profile_ids, params[:profile_ids], :size => 30 %>
+
+    <%= label_tag :facebook_ids, t(".search.facebook_ids") %>
+    <%= text_field_tag :facebook_ids, params[:facebook_ids], :size => 30 %>
+
+    <%= submit_tag t(".search.submit") %>
+  <% end %>
+</div>
+
+<table>
+  <tr>
+    <td>
+      <%= will_paginate @characters %>
+
+      <% collection(@characters) do %>
+        <% form_tag "", :id => :character_form do %>
+          <table id="character_list" class="data">
+            <tr>
+              <th><%= check_box_tag("all_ids") %></th>
+              <th><%= Character.human_attribute_name("id") %></th>
+              <th><%= Character.human_attribute_name("name") %></th>
+              <th><%= Character.human_attribute_name("level") %></th>
+              <th><%= Character.human_attribute_name("created_at") %></th>
+              <th><%= User.human_attribute_name("reference") %></th>
+            </tr>
+            <% @characters.each do |character| %>
+              <tr>
+                <td><%= check_box_tag("ids[]", character.id) %></td>
+                <td><%= link_to(character.id, character_url(character.key, :canvas => true)) %></td>
+                <td>
+                  <%= link_to(character_name(character), edit_admin_character_path(character)) %>
+                  <%= link_to(t(".profile"), fb_profile_url(character.user),
+                        :class  => :profile,
+                        :target => :_blank
+                      ) %>
+                </td>
+                <td><%= character.level %></td>
+                <td><%= l(character.created_at, :format => :short) %></td>
+                <td><%= character.user.reference %></td>
+                <td class="controls">
+                  <%= link_to(t(".controls.edit"), edit_admin_character_path(character)) %>
+                  <%= link_to(t(".controls.payout"), payout_admin_characters_path(:ids => character)) %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+
+        <%= will_paginate @characters %>
+      <% end %>
+    </td>
+    <td>
+      <div id="character_batch" style="display: none;">
+        <h2><%= t(".batch.title") %></h2>
+
+        <p><%= t(".batch.note") %></p>
+
+        <div class="controls">
+          <%= link_to_function(
+                t(".batch.payout"),
+                "$('#character_form').attr({action : '%s'}).submit();" % payout_admin_characters_path
+              ) %>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>

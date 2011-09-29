@@ -1,0 +1,23 @@
+<div class="serializable payouts">
+  <div id="payout_list" class="list">
+    <% form.object.payouts.each do |payout| %>
+      <%= render("admin/payouts/payout", :payout => payout, :container  => form.object.class) %>
+    <% end %>
+  </div>
+
+  <div class="controls">
+    <b><%= t(".add_payout") %></b><br>
+
+    <% Payouts::Base.types.sort_by{|type| t("payouts.#{type.payout_name}.name") }.each do |type| %>
+      <%= link_to_remote(t("payouts.#{type.payout_name}.name"),
+            :url    => new_admin_payout_path(:type => type.payout_name, :container => form.object_name),
+            :method => :get,
+            :update => :result
+          ) %>
+    <% end %>
+  </div>
+</div>
+
+<% dom_ready do %>
+  SerializableList.init('#payout_list', '<%= form.object_name %>[payouts]');
+<% end %>

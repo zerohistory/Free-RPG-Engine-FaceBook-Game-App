@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.js"></script>
+  </head>
+  <body id="" onload="">    
+    <form method="GET" accept-charset="utf-8" target="canvas">
+      <input type="hidden" name="stored_signed_request" value="PD4AqTviotxZshxNEnDEbR7L9HiurFDHgjt2duTu5x8.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjEyOTQ5OTU2MDAsImlzc3VlZF9hdCI6MTI5NDk4OTQ0OSwib2F1dGhfdG9rZW4iOiIxMTg5ODE2NjE0OTYyNTl8Mi5nTlBkdk1MWm1vZl9tQk5JYlhueDlRX18uMzYwMC4xMjk0OTk1NjAwLTY4MjE4MDk3MXxteFpFX3k0Yk1GdTY5eEhRb2w5dGRMTER5bTgiLCJ1c2VyIjp7ImxvY2FsZSI6ImVuX1VTIiwiY291bnRyeSI6InJ1In0sInVzZXJfaWQiOiI2ODIxODA5NzEifQ">      
+
+      <input type="text" value="/" id="url" size="50">
+
+      <input type="submit" name="submit" value="Submit">
+    </form>
+    
+    <iframe name="canvas" id="canvas" width="760" height="2000" border="0"></iframe>
+
+    <script type="text/javascript" charset="utf-8">
+      $(function(){
+        $('form').submit(function(){
+          $(this).attr('action', $('#url').val());
+        });
+      })
+    </script>
+  </body>
+</html>

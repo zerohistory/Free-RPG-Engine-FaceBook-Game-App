@@ -1,0 +1,36 @@
+<% dialog :id => :friends_to_invite_notification do |d| %>
+  <h2><%= t(".title") %></h2>
+
+  <p class="text">
+    <%= t(".text") %>
+  </p>
+
+  <div class="users clearfix">
+    <% notification.data[:friend_ids][0, 6].each do |facebook_id| %>
+      <div class="user">
+        <div class="name"><%= fb_name(facebook_id, :linked => false) %></div>
+        <div class="picture"><%= fb_profile_pic(facebook_id, :linked => false, :size => :small) %></div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="controls">
+    <%= link_to(button(:invite_other), new_relation_path, :class => 'invite_other button')%>
+
+    <%= link_to_function(button(:invite), 
+          fb_request_dialog(:invitation,
+            :title    => t('.title'),
+            :message  => t('relations.new.invitation_message', :app_name => t('app_name')),
+            :filters => [
+              {
+                :name     => t('.suggested_users'),
+                :user_ids => notification.data[:friend_ids]
+              }
+            ]
+          ), 
+          :class => 'invite button'
+        ) %>
+  </div>
+
+  <%= render("notifications/disable", :notification => notification) %>
+<% end %>

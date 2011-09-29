@@ -1,0 +1,188 @@
+!dialog_width = 500px
+!dialog_bg_color = white
+!dialog_close_icon = url("/images/icons/delete.gif")
+!dialog_close_width = 16px
+!dialog_close_height = 16px
+!dialog_overlay_opacity = 0.6
+
+@import clearfix
+@import admin/globals
+@import admin/data
+@import admin/forms
+@import admin/collections
+@import admin/serializable
+@import dialog
+
+
+
+
+h1.title
+  margin-top: 20px
+  height: 40px
+
+.documentation
+  font-size: 12px
+  vertical-align: super
+  font-weight: normal
+
+.note
+  margin: 10px 0px
+  padding: 8px
+  border: 1px solid #D8DFEA
+  font-size: 14px
+
+
+.missing
+  color: red
+  font-style: italic
+
+.controls
+  margin: 10px 0
+
+  a
+    line-height: 30px
+    margin-bottom: 5px
+    padding: 3px
+    border: 1px solid #3B5998
+    white-space: nowrap
+    text-decoration: none
+
+    &:hover
+      background-color: #BEDDFE
+
+
+.state
+  .deleted
+    color: red
+
+  .hidden, .draft
+    color: #D900C9
+
+  .visible, .delivered
+    color: green
+
+  .delivering
+    color: blue
+
+  .paused
+    color: #D900C9
+
+
+#mission_list, #item_list
+  .name
+    font-weight: bold
+
+
+
+#promotion_list
+  .text
+    width: 250px
+
+  .valid
+    color: green
+
+  .invalid
+    color: red
+
+
+#stylesheet_list .current
+  background-color: #fff1c6
+
+
+#field_for_stylesheet_content textarea
+  width: 750px
+  height: 500px
+  font-family: monospace
+
+
+#skin_list .current
+  background-color: #fff1c6
+
+
+#field_for_skin_content textarea
+  width: 900px
+  height: 400px
+  font-family: monospace
+
+
+#translation_list
+  width: 100%
+
+  .splitter
+    border: 0
+
+  .key
+    width: 40%
+
+  .customized
+    .key, .value a
+      font-weight: bold
+
+
+#property_type_list .default
+  color: #c0c0c0
+  font-style: italic
+
+
+#field_for_boss_time_limit .after
+  margin: -20px 0 0 60px
+
+#setting_list
+  .empty
+    color: #888888
+
+#character_search
+  margin-bottom: 20px
+
+  input
+    margin-right: 20px
+
+#character_list, #latest_users
+  .profile
+    vertical-align: super
+    font-size: 10px
+
+#character_batch
+  margin-left: 20px
+
+#field_for_help_page_alias
+  .label
+    display: block
+    float: left
+
+  .before_field
+    float: left
+    clear: left
+    margin: 5px 5px 0 0
+
+#vip_money_operations
+  width: 100%
+
+  td
+    vertical-align: top
+
+#item_balance_list
+  width: 100%
+
+  td
+    vertical-align: top
+
+  table
+    width: 100%
+
+    td
+      border: 0
+      vertical-align: middle
+
+    .image
+      width: 45px
+
+.new_item_collection, .edit_item_collection, .new_item_set, .edit_item_set
+  a.add_item
+    display: block
+    padding: 10px
+    margin: 10px 0
+    border: 1px solid #e0e0e0
+
+    &:hover
+      background-color: #e9f4Ff

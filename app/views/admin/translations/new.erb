@@ -1,0 +1,9 @@
+<% remote_form_for([:admin, @translation], :update => translation_id(@translation.key)) do |form| %>
+  <%= form.hidden_field :key %>
+
+  <%= form.text_field :value,
+        :required     => true,
+        :after_field  => content_tag(:strong, t(".current_value")) + @current_value %>
+
+  <%= form.submit %>
+<% end %>

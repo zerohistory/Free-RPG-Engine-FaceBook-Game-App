@@ -1,0 +1,16 @@
+<%= form.text_field :name, :required => true %>
+
+<% form.field_set(t(".items")) do %>
+  <div id="item_set" class="items">
+    <%= form.error_message_on :items %>
+
+    <% form.object.items.each do |item, frequency| %>
+      <%= render("item_fields", :item => item, :frequency => frequency) %>
+    <% end %>
+  </div>
+
+<%= link_to_remote(t(".add_item"),
+      :url  => add_item_new_admin_item_set_path,
+      :html => {:class => :add_item}
+    ) %>
+<% end %>

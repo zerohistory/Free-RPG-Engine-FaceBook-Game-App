@@ -1,0 +1,11 @@
+<div class="assignment">
+  <% if assignment.relation.is_a?(FriendRelation) %>
+    <div class="image"><%= character_picture_link(assignment.relation.character) %></div>
+    <div class="name"><%= character_name_link(assignment.relation.character) %></div>
+  <% else %>
+    <div class="image"><%= asset_image_tag(:mercenary) %></div>
+    <div class="name"><%= assignment.relation.name %></div>
+  <% end %>
+
+  <div class="effect"><%= assignment_effect(assignment) %></div>
+</div>

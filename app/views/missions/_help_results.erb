@@ -1,0 +1,33 @@
+<div id="mission_help_list">
+  <div class="controls">
+    <%= link_to_remote(button(:collect), 
+          :url    => collect_help_reward_missions_path, 
+          :update => :result,
+          :html   => {
+            :"data-click-once" => true,
+            :class => 'collect button'
+          }
+        ) %>
+  </div>
+  
+  <p><%= t('.message', :amount => content_tag(:strong, help_results.count)).html_safe %></p>
+  
+  <table>
+    <tr>
+      <td class="payouts">
+        <h3><%= t('.reward') %></h3>
+    
+        <%= payout(:basic_money, help_results.sum(:basic_money)) %>
+        <%= payout(:experience, help_results.sum(:experience)) %>
+      </td>
+  
+      <td class="helpers">
+        <h3><%= t('.helpers') %></h3>
+    
+        <% help_results.characters.each do |character| %>
+          <%= character_picture_link(character) %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

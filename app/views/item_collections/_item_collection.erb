@@ -1,0 +1,41 @@
+<% div_for(collection, :class => :clearfix) do %>
+  <div class="info">
+    <h2><%= collection.name %></h2>
+
+    <div class="items clearfix">
+      <% collection_items(collection) do |item, inventory| %>
+        <% content_tag :div, :class => [:item, dom_id(item), ('present' if inventory)].join(" ") do %>
+          <div class="name"><%= item.name %></div>
+
+          <div class="image"><%= item_image(item, :small) %></div>
+          <div class="amount"><%= inventory.try(:amount).to_i %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="payouts">
+    <h3><%= ItemCollection.human_attribute_name("payouts") %></h3>
+
+    <%= payout_list(collection, collection.payouts,
+          :format   => :preview,
+          :triggers => current_character.collections.next_payout_triggers(collection)
+        ) %>
+
+    <div class="controls">
+      <%= link_to_function(button(:request), stream_dialog(:collection_missing_items, collection),
+            :class => 'publish button'
+          ) unless collection.missing_items(current_character).empty? %>
+
+      <%= link_to_remote(button(:collect),
+            :url    => item_collection_path(collection),
+            :method => :put,
+            :update => :result,
+            :html   => {
+              :"data-click-once" => true,
+              :class => "collect button"
+            }
+          ) %>
+    </div>
+  </div>
+<% end %>

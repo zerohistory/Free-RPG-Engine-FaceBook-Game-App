@@ -1,0 +1,7 @@
+<%= admin_title(t(".title")) %>
+
+<% form_for([:admin, @global_payout]) do |form| %>
+  <%= form.fields %>
+
+  <%= form.submit_and_continue %>
+<% end %>

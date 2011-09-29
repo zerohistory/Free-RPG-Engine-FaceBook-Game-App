@@ -1,0 +1,31 @@
+<%= title(t(".title", :character => character_name(@character))) %>
+
+<% form_tag give_inventories_path, :id => :give_inventory do %>
+  <%= hidden_field_tag :request_data, params[:request_data] %>
+
+  <div class="clearfix">
+    <table>
+      <% @inventories.each do |inventory| %>
+        <tr>
+          <td class="image"><%= item_image(inventory, :small) %></td>
+          <td class="name"><%= inventory.name %></td>
+          <td class="amount">
+            <%= t('.you_have') %>
+            <span class="value"><%= inventory.amount %></span>
+          </td>
+          <td class="give">
+            <%= t('.give') %>
+            <%= select_tag "inventory[#{inventory.id}]", options_for_select([''] + (1 .. inventory.amount).to_a) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <div class="character">
+      <div class="name"><%= character_name_link(@character) %></div>
+      <div class="image"><%= character_picture_link(@character, {}, {:size => :normal}) %></div>
+    </div>
+  </div>
+
+  <%= link_to_function(button(:give), "$(this).parents('form').submit()", :class => "give button") %>
+<% end %>

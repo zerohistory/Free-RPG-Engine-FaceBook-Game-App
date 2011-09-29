@@ -1,0 +1,8 @@
+<% if tip = Tip.with_state(:visible).random %>
+  <div id="tip" class="block">
+    <%= hide_block_link(:tip) %>
+    
+    <span class="label"><%= t(".label") %></span>
+    <span class="text"><%= tip.text.html_safe %></span>
+  </div>
+<% end %>

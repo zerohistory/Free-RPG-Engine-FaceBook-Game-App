@@ -1,0 +1,5 @@
+<% content = capture do %>
+  <%= render("item_fields", :item => @item) %>
+<% end %>
+
+$('#item_collection').append(<%= content.to_json.html_safe %>)

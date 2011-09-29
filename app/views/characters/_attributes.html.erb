@@ -1,0 +1,118 @@
+<table class="character_attributes" cellspacing="0" cellpadding="0">
+  <% if character == current_character %>
+    <tr>
+      <th><%= Character.human_attribute_name("attack") %></th>
+      <td class="attack value">
+        <%= character.attack %>
+
+        <span class="bonus">
+          <%= t(".bonus",
+                :amount => content_tag(:span, character.equipment.effect(:attack))
+              ).html_safe %>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("defence") %></th>
+      <td class="defence value">
+        <%= character.defence %>
+
+        <span class="bonus">
+          <%= t(".bonus",
+                :amount => content_tag(:span, character.equipment.effect(:defence))
+              ).html_safe %>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("health") %></th>
+      <td class="health value">
+        <%= "%d/%d" % [character.hp, character.health_points] %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("energy") %></th>
+      <td class="energy value">
+        <%= "%d/%d" % [character.ep, character.energy_points] %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("stamina") %></th>
+      <td class="stamina value">
+        <%= "%d/%d" % [character.sp, character.stamina_points] %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("basic_money") %></th>
+      <td class="basic_money value">
+        <%= number_to_currency(character.basic_money) %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("vip_money") %></th>
+      <td class="vip_money value">
+        <%= number_to_currency(character.vip_money) %>
+      </td>
+    </tr>
+  <% elsif  character.has_allie?(current_character) %>
+    <tr>
+      <th><%= Character.human_attribute_name("attack") %></th>
+      <td class="attack value"><%= character.attack %></td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("defence") %></th>
+      <td class="defence value">
+        <%= character.defence %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("health") %></th>
+      <td class="health value">
+        <%= character.health_points %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("energy") %></th>
+      <td class="energy value">
+        <%= character.energy_points %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("stamina") %></th>
+      <td class="stamina value">
+        <%= character.stamina_points %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("basic_money") %></th>
+      <td class="basic_money value">
+        <%= number_to_currency(character.basic_money) %>
+      </td>
+    </tr>
+  <% else %>
+    <tr>
+      <th><%= Character.human_attribute_name("energy") %></th>
+      <td class="energy value">
+        <%= character.energy_points %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("stamina") %></th>
+      <td class="stamina value">
+        <%= character.stamina_points %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("health") %></th>
+      <td class="health value">
+        <%= character.health_points %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Character.human_attribute_name("basic_money") %></th>
+      <td class="basic_money value">
+        <%= number_to_currency(character.basic_money) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

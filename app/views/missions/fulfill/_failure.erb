@@ -1,0 +1,31 @@
+<% builder.buttons do %>
+  <%= link_to_function(button(:request_help), stream_dialog(:mission_help, mission),
+        :class => "request_help button"
+      ) %>
+  <%= link_to_remote(button(:try_again),
+        :url    => fulfill_mission_path(mission),
+        :update => :result,
+        :html   => {
+          :"data-click-once" => true,
+          :class => "fulfill_again button"
+        }
+      ) %>
+<% end %>
+
+<% builder.fail do %>
+  <%= t(".message") %> <%= mission.failure_text.to_s.html_safe %>
+<% end %>
+
+<%= builder.render "missions/fulfill/payouts", :mission => mission, :result => result %>
+
+<% builder.on_ready do %>
+  var mission = $('#<%= dom_id(mission) %>');
+
+  mission.find('a.fulfill.button').css('visibility', 'visible');
+  
+  <%= ga_track_event('Missions',
+        result.level_rank.completed? ? 'Repeat Failure' : 'Failure', 
+        "#{mission.name} - Level #{result.level.position}", 
+        result.level_rank.progress
+      ) %>
+<% end %>

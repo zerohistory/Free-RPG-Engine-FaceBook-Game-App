@@ -1,0 +1,120 @@
+#boss_list
+  .boss
+    margin-top: 15px
+    padding: 10px
+    width: 100%
+    border = !boss_list_item_border
+
+    .image
+      width: 220px
+
+    .details
+      width: 100%
+      margin-bottom: 10px
+
+      .image
+        width: auto
+
+      .payouts
+        width: 50%
+
+  .buttons .boss_attack
+    +button(!boss_list_attack_button)
+
+
+#boss_fight_block
+  padding: 10px
+  border = !boss_fight_border
+
+  .boss_fight
+    margin: 5px 0
+
+  .image
+    float: left
+    padding-right: 10px
+
+  .text
+    font-size: 14px
+
+    .name
+      font-weight: bold
+
+  .timer
+    margin-top: 10px
+    font-weight: bold
+
+    .value
+      font-weight: normal
+
+  .buttons
+    float: right
+    padding-left: 10px
+
+    .attack
+      +button(!boss_fight_attack_icon)
+
+
+#boss_fight_result
+  background-image = !boss_fight_result_icon
+
+  .details
+    width: 100%
+
+    .character, .boss
+      width: 220px
+
+    .name
+      margin-bottom: 10px
+      font-size: 16px
+      font-weight: bold
+
+    .message
+      margin-top: 10px
+
+      span
+        font-weight: bold
+        white-space: nowrap
+
+    .character .message .attacker, .boss .message .victim
+      color = !boss_fight_result_success_color
+
+    .character .message .victim, .boss .message .attacker
+      color = !boss_fight_result_failure_color
+
+    .buttons
+      float: none
+
+      .button
+        margin-left: 0
+
+      .attack
+        +button(!boss_fight_result_attack_icon)
+
+      .publish
+        +button(!boss_fight_result_publish_icon)
+
+  .progress .progress_bar
+    width: 100px
+
+  .middle .result
+    font-size: 16px
+    margin-bottom: 15px
+
+    span
+      font-weight: bold
+
+  .timer
+    margin-top: 10px
+    font-weight: bold
+
+    .value
+      font-weight: normal
+
+  .lost .result, .expired .result
+    color = !boss_fight_result_failure_color
+
+  .won .result
+    color = !boss_fight_result_success_color
+
+  .payouts
+    margin-top: 20px

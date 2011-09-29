@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <script type="text/javascript">
+    var signed_request = '<%= escape_javascript(facebook_signed_request) %>';
+  </script>
+
+  <%= stylesheet_link_tag(skin_path) %>
+
+  <%= include_jquery_from_google %>
+  <%= javascript_include_tag "jquery/tooltip", "jquery/scroll_to", "jquery/dialog", "jrails", "application", :cache => "cache/help_pages" %>
+
+  <%= google_analytics %>
+</head>
+<body>
+  <% fb_connect_js(:channel_url => Facebooker2.callback_url + '/channel.html', :cache_url => javascript_path('cache/facebook_connect.js'), :weak_cache => Setting.b(:app_weak_fb_js_cache)) do %>
+    $(function(){
+      $(document).trigger('facebook.ready');
+    });
+  <% end %>
+
+  <div id="content">
+    <div id="header" class="clearfix">
+      <%= link_to("", root_path, :id => :logo) %>
+    </div>
+
+    <%= yield %>
+  </div>
+
+  <%= dom_ready %>
+
+  <%= google_analytics %>
+</body>
+</html>

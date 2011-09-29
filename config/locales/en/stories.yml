@@ -1,0 +1,65 @@
+en:
+  stories:
+    # Story controller texts
+    show:
+      you_received: "You Received:"
+      buttons:
+        continue: "Continue"
+    
+    # Default story content
+    default:
+      action_link: "Play %{app} »"
+      payout_message: "Thank you for playing %{app}!"
+      
+    level_up:
+      title: "I've just advanced to Level %{level} in %{app}!"
+      description: ""
+      action_link: ""
+    item_purchased:
+      title: "I've just bought a \"%{name}\" in %{app}!"
+      description: ""
+      action_link: ""
+    mission_help:
+      title: "Please help me with the %{name} mission in %{app}!"
+      description: "Help your friend with this mission to get bonus gold and experience!"
+      action_link: "Help %{player_name} »"
+    mission_completed:
+      title: "I've just completed the \"%{name}\" mission in %{app}!"
+      description: ""
+      action_link: ""
+    boss_defeated:
+      title: "I've just defeated the %{name} in %{app}!"
+      description: ""
+      action_link: ""
+    monster_invite:
+      title: "I need your assistance to defeat %{name} in %{app}!"
+      description: "Join our fight against %{name} in %{app}! Together we can slay this monster and get reward!"
+      action_link: "Engage! »"
+    monster_defeated:
+      title: "I've just defeated %{name} in %{app}!"
+      description: ""
+      action_link: ""
+    property:
+      title: "I've just bought %{name} in %{app}!"
+      description: ""
+      action_link: ""
+    collection_completed:
+      title: "I've just finished the '%{name}' Collection in %{app}!"
+      description: ""
+      action_link: ""
+    collection_missing_items:
+      title: "Please help me to finish my collection in %{app}!"
+      description: "I need these items to finish the '%{name}' collection: %{items}."
+      action_link: "Give Items »"
+    promotion:
+      title: "I got a secret bonus link for %{app}!"
+      description: "Click the link to get the game bonus. Hurry up, this special link expires at %{expires_at}!"
+      action_link: "Get Bonus »"
+    hit_listing_new:
+      title: "Hitlist Offer"
+      description: "I'm offering a %{amount} bounty for any friend who'll win my %{level} level enemy in %{app}!"
+      action_link: "Attack! »"
+    hit_listing_completed:
+      title: "Hitlist Reward"
+      description: "I've just received a %{amount} bounty for hitting the %{level} level enemy in %{app}!"
+      action_link: ""

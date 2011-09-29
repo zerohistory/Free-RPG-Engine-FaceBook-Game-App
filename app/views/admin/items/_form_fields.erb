@@ -1,0 +1,77 @@
+<%= form.select :item_group_id, ItemGroup.to_dropdown, :required => true %>
+
+<%= form.text_field :name, :required => true, :size => 40 %>
+<%= form.text_field :plural_name, :size => 40 %>
+
+<%= form.text_area :description, :cols => 80, :rows => 5 %>
+
+<%= form.file_field :image, :after_field => form.attachment_preview(:image, :small) %>
+
+<% form.field_set form.object.class.human_attribute_name('placements') do %>
+  <% Character::Equipment::PLACEMENTS.each do |p| %>
+    <div>
+      <%= check_box_tag "#{form.object_name}[placements][]", p, form.object.placements.include?(p), :id => "placement_#{p}" %>
+      <%= label_tag "placement_#{p}",Character::Equipment.placement_name(p) %>
+    </div>
+  <% end %>
+<% end %>
+
+<%# form.field_set form.object.class.human_attribute_name('visibility') do %>
+  <%#= form.text_field :level, :required => true, :size => 6, :autocomplete => :off %>
+  <%#= form.select :availability, Item::AVAILABILITIES, :required => true %>
+  <%#= form.fields 'admin/visibilities/form_fields' %>
+<%# end %>
+<table>
+  <tr>
+    <td>
+      <% form.field_set form.object.class.human_attribute_name('visibility') do %>
+  <%= form.text_field :level, :required => true, :size => 6, :autocomplete => :off %>
+  <%= form.select :availability, Item::AVAILABILITIES, :required => true %>
+  <%= form.fields 'admin/visibilities/form_fields' %>
+<% end %>
+    </td>
+      <td>
+      <% form.field_set form.object.class.human_attribute_name('ownership') do %>
+  <%#= form.text_field :level, :required => true, :size => 6, :autocomplete => :off %>
+  <%#= form.select :availability, Item::AVAILABILITIES, :required => true %>
+  <%= form.fields 'admin/ownerships/form_fields' %>
+<% end %>
+    </td>
+  </tr>
+</table>
+
+<% form.field_set form.object.class.human_attribute_name('sales') do %>
+  <%= form.text_field :basic_price, :size => 6, :autocomplete => :off %>
+  <%= form.text_field :vip_price, :size => 6, :autocomplete => :off %>
+  <%= form.text_field :package_size, :size => 6, :autocomplete => :off %>
+  <%= form.check_box :can_be_sold %>
+  <%= form.check_box :can_be_sold_on_market %>
+  <%= form.text_field :limit, :size => 6, :autocomplete => :off %>
+  <%= form.datetime_select :available_till, :prompt => true %>
+<% end %>
+
+<% form.field_set Item.human_attribute_name("effects") do %>
+  <%= form.check_box :boost %>
+
+  <% Item::EFFECTS.each do |attribute| %>
+    <%= form.text_field(attribute, :size => 6, :autocomplete => :off) %>
+  <% end %>
+<% end %>
+
+<% form.field_set Item.human_attribute_name("requirements") do %>
+  <%= form.fields "admin/requirements/collection" %>
+<% end %>
+
+<% form.field_set Item.human_attribute_name("payouts") do %>
+  <%= form.check_box :usable %>
+  <%= form.text_field :use_button_label, :comment => t(".use_button_label", :default_value => t('inventories.list.buttons.use')) %>
+  <%= form.text_area :use_message, :rows => 2, :cols => 80 %>
+
+  <%= form.select :usage_type, Item::USAGE_TYPES, :required => true %>
+  <%= form.check_box :can_be_gifted %>
+  <%= form.text_field :gift_cost, :size => 6, :autocomplete => :off %>
+  <%= form.check_box :can_be_lost %>
+  <%= form.check_box :can_be_found %>
+
+  <%= form.fields "admin/payouts/collection" %>
+<% end %>

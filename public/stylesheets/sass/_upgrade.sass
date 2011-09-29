@@ -1,0 +1,45 @@
+#upgrade_list
+  td
+    padding: 5px
+    vertical-align: middle
+
+  .points td
+    border-bottom = !upgrade_list_points_border
+    padding: 10px 5px
+
+  .name
+    font-weight: bold
+
+  .value
+    padding-left: 28px
+    background-position: center left
+    background-repeat: no-repeat
+
+  .attack .value
+    background-image = !upgrade_list_attack_icon
+
+  .defence .value
+    background-image = !upgrade_list_defence_icon
+
+  .health .value
+    background-image = !upgrade_list_health_icon
+
+  .energy .value
+    background-image = !upgrade_list_energy_icon
+
+  .stamina .value
+    background-image = !upgrade_list_stamina_icon
+
+  .controls .upgrade
+    +button(!upgrade_list_upgrade_icon)
+    margin-top: 0
+
+#upgrade_result
+  background:
+    image = !upgrade_result_icon
+    repeat: no-repeat
+  padding-left: 20px
+  margin: 10px 0
+
+  .value
+    font-weight: bold

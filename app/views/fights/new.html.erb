@@ -1,0 +1,27 @@
+<%#= render "characters/fight_attributes" %>
+
+<%= title(t(".title")) %>
+
+<%= render "fights/buttons", :current => :fight %>
+
+<% if current_character.weak? %>
+  <p>
+    <%= t(".messages.too_weak",
+          :hp_number      => current_character.weakness_minimum,
+          :minute_number  => (current_character.hp_restore_time(current_character.weakness_minimum) / 1.minute).ceil
+        ).html_safe %>
+  </p>
+<% elsif current_character.sp < Setting.i(:fight_stamina_required) %>
+  <p>
+    <%= t(".messages.not_enough_stamina",
+          :minute_number => (current_character.sp_restore_time(Setting.i(:fight_stamina_required)) / 1.minute).ceil
+        ).html_safe %>
+  </p>
+<% else %>
+  <% collection(@victims) do %>
+    <%= render "victim_list", :victims => @victims %>
+  <% end %>
+
+  <%= render "inventories/equipment" %>
+
+<% end %>

@@ -1,0 +1,82 @@
+en:
+  mission_groups:
+    show:
+      title: "Missions"
+      requirements_not_satisfied: "Some of the mission group requirements are not satisfied:"
+    index:
+      overview:
+        title: "Profile Overview"  
+    complete:
+      title: "Mission Group Completed!"
+      message: "You've completed all missions in this group!"
+      title_received: "You received new title:"
+      you_received: "You received:"
+    tabs:
+      locked: "Locked"
+      previous:
+        name: "« Previous"
+      next:
+        name: "Next »"
+  missions:
+    buttons:
+      buttons:
+        missions: "Missions"
+        monsters: "Monsters"
+    fulfill:
+      completed:
+        message: "You've just completed this mission!"
+        new_title: "You've got the new title:"
+        child_missions: "You also opened new missions:"
+        buttons:
+          publish: "Brag About It!"
+          continue: "Continue"
+        dialog:
+          title: "You've just completed this mission!"
+          message: "Let your friends know about your success!"
+      success:
+        message: "Well done!"
+        buttons:
+          continue: "Fulfill Again!"
+          request_help: "Request Help & Earn Bonus"
+
+      failure:
+        message: "Ouch!"
+        buttons:
+          try_again: "Try Again!"
+          request_help: "Request Help & Earn Bonus"
+
+      payouts:
+        you_received:
+          title: "You received:"
+        you_spent:
+          title: "You spent:"
+          zero_energy: "%{user} helped to save energy!"
+          boost: "You've used a boost:"
+        progress:
+          title: "Mission Progress"
+
+      already_completed:
+        message: "You already completed this mission"
+      requirements_not_satisfied:
+        message: "Some mission requirements are not satisfied:"
+    list:
+      empty_set: "You have no missions available at this time"
+    mission:
+      completed: "Completed!"
+      level: "Level %{level}"
+      buttons:
+        fulfill: "Fulfill"
+    help:
+      success: "You've successfully helped %{user} to fulfill the %{mission} mission!"
+      you_received: "You received:"
+      buttons:
+        continue: "Continue"
+    help_results:
+      message: "%{amount} of your friends helped you to fulfill missions. It's time for you to collect your reward!"
+      reward: "Your Reward:"
+      helpers: "Helpers:"
+      buttons:
+        collect: "Collect"
+    collect_help_reward:
+      message: "You've successfully collected your reward!"
+      you_received: "You Received:"

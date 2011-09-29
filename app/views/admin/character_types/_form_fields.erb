@@ -1,0 +1,20 @@
+<%= form.text_field :name, :required => true, :size => 50 %>
+<%= form.text_area :description, :cols => 80, :rows => 5 %>
+
+<%= form.file_field :image, :after_field => form.attachment_preview(:image, :small) %>
+
+<% form.field_set t(".basic_attributes") do %>
+  <% CharacterType::APPLICABLE_ATTRIBUTES.each do |attribute| %>
+    <%= form.text_field attribute, :required => true, :size => 6, :autocomplete => :off %>
+  <% end %>
+<% end %>
+
+<% form.field_set t(".bonuses") do %>
+  <% %w{health_restore_bonus energy_restore_bonus stamina_restore_bonus income_period_bonus}.each do |attribute| %>
+    <%= form.text_field attribute, :size => 6, :autocomplete => :off %>
+  <% end %>
+<% end %>
+
+<% form.field_set t(".other") do %>
+  <%= form.text_field :equipment_slots, :size => 6, :autocomplete => :off %>
+<% end %>

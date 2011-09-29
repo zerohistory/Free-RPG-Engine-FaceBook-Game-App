@@ -1,0 +1,11 @@
+<% content_tag :div, :class => requirement.name do %>
+  <% if requirement.item %>
+  <%= ("%s %s X %s" % [
+        (requirement.item.visible? ? '' : content_tag(:span, admin_state(requirement.item), :class => :state)),
+        requirement.item.name,
+        requirement.amount
+      ]).html_safe %>
+  <% else %>
+    <span class="missing"><%= t("requirements.item.missing") %></span>
+  <% end %>
+<% end %>

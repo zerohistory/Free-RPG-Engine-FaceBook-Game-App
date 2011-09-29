@@ -1,0 +1,2 @@
+module AppRequestsHelper
+end

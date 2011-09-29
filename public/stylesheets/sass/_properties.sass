@@ -1,0 +1,48 @@
+#property_collect_all
+  margin-bottom: 10px
+
+  .collect_all
+    +button(!property_collect_all_icon)
+
+
+#property_list
+  table
+    width: 100%
+
+  td
+    width: 33%
+    padding: 10px
+    text-align: center
+    border = !property_list_item_border
+
+  .picture
+    margin: 10px 0
+
+  .requirements, .payouts
+    text-align: left
+
+  .payout, .requirement
+    clear: left
+
+  .timer
+    font-weight: bold
+    margin-bottom: 10px
+
+    .value
+      font-weight: normal
+
+  .controls
+    float: right
+
+    .buy
+      +button(!property_list_buy_icon)
+
+    .upgrade
+      +button(!property_list_upgrade_icon)
+
+    .collect
+      +button(!property_list_collect_icon)
+
+
+#property_result
+  background-image = !property_result_icon

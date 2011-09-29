@@ -1,0 +1,39 @@
+en:
+  app_requests:
+    index:
+      title: 'Friend Requests'
+      note: "Here you can accept requests from your friends. You can accept one gift per each friend every %{hours} hours."
+      empty_set: "Your friends didn't send you any requests yet."
+      buttons:
+        accept: 'Accept'
+    details:
+      gift:
+        text: "%{user} sends you %{item}"
+      monster_invite:
+        text: "%{user} invites you to join fight against %{monster}"
+      invitation:
+        text: "%{user} invites you to join their Alliance"
+    update:
+      gift:
+        accepted: 'Gift accepted!'
+        buttons:
+          send: "Send Back"
+      monster_invite:
+        accepted: 'Invitation accepted!'
+        buttons:
+          fight: "Fight Now"
+      invitation:
+        accepted: 'Invitation accepted!'
+        buttons:
+          alliance: 'View Alliance'
+    create:
+      gift:
+        title: "Send Gifts to Your Alliance"
+        message: "Your gifts have been sent to your friends! They'll be notified immediately."
+      invitation:
+        title: "Recruit Friends To Your Alliance"
+        message: "Your invitations have been sent to your friends! They'll be notified immediately."
+      monster_invite:
+        title: "Call to Arms"
+        message: "Your call to arms have been sent to your friends! They'll be notified immediately."
+    

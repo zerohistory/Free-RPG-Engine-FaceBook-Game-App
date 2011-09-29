@@ -1,0 +1,46 @@
+en:
+  payouts:
+    item:
+      name: "Item"
+      missing: "Missing item!"
+      label: "%{name} X %{amount}"
+    property:
+      name: "Property"
+      missing: "Missing property type!"
+    random_property:
+      name: "Random Property"
+    vip_money:
+      name: "Gems"
+    basic_money:
+      name: "Money"
+      value: "%{value} money"
+    random_item:
+      name: "Random Item"
+      attributes:
+        value: "Price limit"
+        allow_vip: "Allow items that cost gems"
+    health_point:
+      name: "Health Points"
+    energy_point:
+      name: "Energy Points"
+    stamina_point:
+      name: "Stamina Points"
+    upgrade_point:
+      name: "Upgrade Points"
+    mercenary:
+      name: "Mercenaries"
+    experience:
+      name: "Experience"
+    attack_points_total:
+      name: "Attack points"
+    defence_points_total:
+      name: "Defence points"
+    energy_points_total:
+      name: "Total energy points"
+    health_points_total:
+      name: "Total health points"
+    stamina_points_total:
+      name: "Total stamina points"
+    title:
+      name: "Title"
+      missing: "Deleted or hidden"

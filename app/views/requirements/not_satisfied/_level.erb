@@ -1,0 +1,5 @@
+<% requirement(requirement.name, false) do %>
+  <p>
+    <%= t(".message", :required_value => requirement.value).html_safe %>
+  </p>
+<% end %>

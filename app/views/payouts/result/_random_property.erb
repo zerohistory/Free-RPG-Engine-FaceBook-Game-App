@@ -1,0 +1,5 @@
+<% if payout.property %>
+  <%= payout(:random_item, item_image(payout.property, :icon),
+        :label => payout.property.name
+      ) %>
+<% end %>

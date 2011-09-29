@@ -1,0 +1,119 @@
+<% completed_mark = capture do %>
+  <span class="complete_mark"><%= t(".completed") %></span>
+<% end %>
+
+<div id="tutorial_container">
+  <div id="tutorial" class="block">
+    <%= hide_block_link(:tutorial) %>
+
+    <h2><%= t(".title") %></h2>
+
+    <div class="steps">
+      <% tutorial_step("mission_groups", "index") do |current, reload_tutorial| %>
+        <div class="step clearfix <%= "current" if current %> <%= "completed" if current_character.missions_completed != 0 %>">
+          <% if current %>
+            <strong><%= t(".step_1.title") %> <%= completed_mark %></strong>
+
+            <p><%= t(".step_1.text") %></p>
+
+            <%= link_to(button(:continue), items_path, :class => "button continue") %>
+
+            <% dom_ready do %>
+              $(document).bind('mission.complete', function(){
+                <%= reload_tutorial %>
+              });
+            <% end %>
+          <% else %>
+            <%= link_to(t(".step_1.title"), mission_groups_path) %> <%= completed_mark %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% tutorial_step("items", "index") do |current, reload_tutorial| %>
+        <div class="step clearfix <%= "current" if current %> <%= "completed" if current_character.inventories.count != 0 %>">
+          <% if current %>
+            <strong><%= t(".step_2.title") %> <%= completed_mark %></strong>
+
+            <p><%= t(".step_2.text") %></p>
+
+            <%= link_to(button(:continue), new_fight_path, :class => "button continue") %>
+
+            <% dom_ready do %>
+              $(document).bind('item.purchase', function(){
+                <%= reload_tutorial %>
+              });
+            <% end %>
+          <% else %>
+            <%= link_to(t(".step_2.title"), items_path) %> <%= completed_mark %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% tutorial_step("fights", "new") do |current, reload_tutorial| %>
+        <div class="step clearfix <%= "current" if current %> <%= "completed" if current_character.level != 1 %>">
+          <% if current %>
+            <strong><%= t(".step_3.title") %> <%= completed_mark %></strong>
+
+            <p><%= t(".step_3.text") %></p>
+
+            <%= link_to_remote(button(:continue),
+                  :url    => upgrade_character_path(:current),
+                  :method => :get,
+                  :update => :ajax,
+                  :html   => {:class => "button continue"}
+                ) %>
+
+            <% dom_ready do %>
+              $(document).bind('character.new_level', function(){
+                <%= reload_tutorial %>
+              })
+            <% end %>
+          <% else %>
+            <%= link_to(t(".step_3.title"), new_fight_path) %> <%= completed_mark %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% tutorial_step("characters", "upgrade") do |current, reload_tutorial| %>
+        <div class="step clearfix <%= "current" if current %> <%= "completed" if current_character.level != 1 && current_character.points == 0 %>">
+          <% if current %>
+            <strong><%= t(".step_4.title") %> <%= completed_mark %></strong>
+
+            <p><%= t(".step_4.text") %></p>
+
+            <%= link_to(button(:continue), new_relation_path, :class => "button continue") %>
+          <% else %>
+            <%= link_to_remote(t(".step_4.title"),
+                  :url => upgrade_character_path(:current),
+                  :method => :get,
+                  :update => :ajax
+                ) %> <%= completed_mark %>
+          <% end %>
+        </div>
+
+        <% dom_ready do %>
+          $(document).bind({
+            'character.upgrade_dialog' : function(){
+              $('#upgrade_result').text(<%= t('.step_4.text').to_json.html_safe %>);
+            },
+            'character.upgrade_complete' : function(){
+              <%= reload_tutorial %>
+            }
+          });
+        <% end %>
+      <% end %>
+
+      <% tutorial_step("users", "invite") do |current, reload_tutorial| %>
+        <div class="step clearfix <%= "current" if current %> <%= "completed" if AppRequest::Invitation.from(current_character).count != 0 %>">
+          <% if current %>
+            <strong><%= t(".step_5.title") %> <%= completed_mark %></strong>
+
+            <p><%= t(".step_5.text") %></p>
+          <% else %>
+            <%= link_to(t(".step_5.title"), new_relation_path) %> <%= completed_mark %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<% if @redirect_to %>
+  <% dom_ready do %>
+    redirectTo('<%= escape_javascript(@redirect_to) %>');
+  <% end %>
+<% else %>
+  <% result_for(:premia) do |builder| %>
+    <% if flash[:success] %>
+      <% builder.success do %>
+        <%= flash[:success] %>
+      <% end %>
+    <% else %>
+      <% builder.fail do %>
+        <%= flash[:error] %>
+      <% end %>
+    <% end %>
+
+    <% builder.on_ready do %>
+      $('#current_vip_money .value').html(<%= current_character.vip_money %>);
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,45 @@
+<table class="boss" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="image">
+      <%= image_tag(boss.image.url(:normal)) if boss.image? %>
+    </td>
+    <td class="info">
+      <h2><%= boss.name %></h2>
+      <div class="description"><%= boss.description %></div>
+
+      <table class="details" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="payouts">
+            <h4><%= t(".payout") %></h4>
+
+            <%= payout(:experience, boss.experience) %>
+
+            <%= payout_list(boss, boss.payouts,
+                  :format   => :preview,
+                  :triggers => current_character.boss_fights.next_payout_triggers(boss)
+                ) %>
+          </td>
+
+          <td class="requirements">
+            <h4><%= t(".requirements") %></h4>
+
+            <%= attribute_requirement(:energy, boss.ep_cost, current_character.ep >= boss.ep_cost) %>
+
+            <%= requirement_list(boss.requirements) %>
+          </td>
+        </tr>
+      </table>
+
+      <div class="buttons">
+        <%= link_to_remote(button(:attack),
+              :url    => boss_fights_path(:boss_id => boss),
+              :update => :result,
+              :html   => {
+                :"data-click-once" => true,
+                :class => "button boss_attack"
+              }
+            ) if boss.repeatable || !current_character.boss_fights.won?(boss) %>
+      </div>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,49 @@
+<% dialog :id => :upgrade_dialog do |d| %>
+  <h2><%= t(".title") %></h2>
+
+  <div id="upgrade_result"></div>
+
+  <table id="upgrade_list" cellspacing="0" cellpadding="0" style="display:none">
+    <tr class="points">
+      <td class="name"><%= Character.human_attribute_name("points") %></td>
+      <td class="value" id="upgrade_points"><%= current_character.points %></td>
+      <td class="" colspan="2">
+        <%= t(".buy_more.text",
+              :premium_page => link_to(t(".buy_more.premium_page"), premium_path)
+            ).html_safe %>
+      </td>
+    </tr>
+    <% Character::UPGRADABLE_ATTRIBUTES.each do |attribute| %>
+      <% content_tag :tr, :class => attribute do %>
+        <td class="name"><%= Character.human_attribute_name(attribute.to_s) %></td>
+        <td class="value"><%= current_character.send(attribute) %></td>
+        <td class="controls">
+          <%= link_to_remote(button(Setting.i("character_#{attribute}_upgrade"), :disable_asset => true),
+                :url    => upgrade_character_path(current_character, :attribute => attribute),
+                :update => :ajax,
+                :html   => {:class => "button upgrade"}
+              ) %>
+        </td>
+        <td class="points"><%= t(".points", :count => Setting.i("character_#{attribute}_upgrade_points")) %></td>
+      <% end %>
+    <% end %>
+  </table>
+
+  <div id="upgrade_finished" style="display:none;" class="note">
+    <%= t(".finished.note",
+          :profile  => link_to(t(".finished.profile"), character_path(current_character.key)),
+          :get_more => link_to(t(".finished.get_more"), premium_path)
+        ).html_safe %>
+  </div>
+
+  <% d.on_ready do %>
+    $(document).bind('character.upgrade_complete', function(){
+      $('#upgrade_list').hide();
+      $('#upgrade_finished').show();
+    });
+
+    $('#<%= current_character.points > 0 ? :upgrade_list : :upgrade_finished %>').show();
+
+    $(document).trigger('character.upgrade_dialog');
+  <% end %>
+<% end %>

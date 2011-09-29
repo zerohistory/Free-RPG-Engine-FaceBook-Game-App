@@ -1,0 +1,50 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_monster_type_path) %>
+  <%= link_to(t("admin.layouts.main_menu.bosses"), admin_bosses_path) %>
+</div>
+
+<% collection @types do %>
+  <table id="monster_type_list" class="data">
+    <tr>
+      <th><%= MonsterType.human_attribute_name("image") %></th>
+      <th><%= MonsterType.human_attribute_name("name") %></th>
+      <th><%= MonsterType.human_attribute_name("level") %></th>
+      <th><%= MonsterType.human_attribute_name("health") %></th>
+      <th><%= MonsterType.human_attribute_name("attack") %></th>
+      <th><%= MonsterType.human_attribute_name("defence") %></th>
+      <th><%= MonsterType.human_attribute_name("requirements") %></th>
+      <th><%= MonsterType.human_attribute_name("payouts") %></th>
+      <th><%= MonsterType.human_attribute_name("state") %></th>
+      <th></th>
+    </tr>
+    <% @types.each do |type| %>
+      <tr>
+        <td class="image"><%= image_tag(type.image.url(:icon)) if type.image? %></td>
+        <td class="name"><%= link_to(type.name, edit_admin_monster_type_path(type)) %></td>
+        <td class="level"><%= type.level %></td>
+        <td class="health"><%= type.health %></td>
+        <td class="attack"><%= type.attack %></td>
+        <td class="defence"><%= type.defence %></td>
+        <td class="requirements"><%= admin_requirements_preview(type.requirements) %></td>
+        <td class="payouts"><%= admin_payouts_preview(type.payouts) %></td>
+        <td class="state"><%= admin_state(type) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_monster_type_path(type)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_monster_type_path(type),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if type.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_monster_type_path(type),
+                :method => :put
+              ) if type.can_hide? %>
+          <%= link_to(t(".controls.delete"), admin_monster_type_path(type),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) if type.can_mark_deleted? %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

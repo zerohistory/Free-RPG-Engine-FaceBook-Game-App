@@ -1,0 +1,16 @@
+<% message = capture do %>
+  <p class="success"><%= t('.accepted') %></p>
+<% end %>
+
+<% controls = capture do %>
+  <%= link_to(button(:alliance), relations_path, :class => 'alliance button') %>
+<% end %>
+
+<% dom_ready do %>
+  var $request = $('#<%= dom_id(app_request) %>');
+
+  $request.find('.message').html('<%= escape_javascript(message) %>');
+  $request.find('.controls').html('<%= escape_javascript(controls) %>');
+
+  <%= ga_track_event('Requests', "#{app_request.type_name.titleize} - Accepted") %>
+<% end %>

@@ -1,0 +1,27 @@
+<% content_for :result do %>
+  <% result_for :mission_help, :inline => true do |builder| %>
+    <% builder.buttons do %>
+      <%= link_to(button(:continue), mission_groups_path, :class => 'continue button') %>
+    <% end %>
+
+    <% if !@help_result.new_record? %>      
+      <% builder.success do %>
+        <%= t(".success",
+              :user     => character_name_link(@help_result.requester),
+              :mission  => content_tag(:strong, @help_result.mission.name)
+            ).html_safe %>
+      <% end %>
+
+      <div class="payouts">
+        <h3><%= t(".you_received") %></h3>
+
+        <%= payout(:basic_money, number_to_currency(@help_result.basic_money)) %>
+        <%= payout(:experience, @help_result.experience) %>
+      </div>
+    <% else %>
+      <% builder.fail do %>
+        <%= @help_result.errors.on(:base) %>
+      <% end %>
+    <% end%>
+  <% end %>
+<% end %>

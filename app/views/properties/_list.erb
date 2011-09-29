@@ -1,0 +1,108 @@
+<div id="property_collect_all" class="note clearfix" style="<%= "display:none" if @properties.empty? %>">
+  <div class="controls">
+    <%= link_to_remote(button(:collect_all),
+      :url    => collect_money_properties_path,
+      :method => :put,
+      :update => :result,
+      :html   => {
+        :"data-click-once" => true,
+        :class => "button collect_all"
+      }
+    ) %>
+  </div>
+
+  <%= t(".collect_all",
+    :amount => content_tag(:strong, Property.collectable_total(@properties).size, :class => :value)
+  ).html_safe %>
+</div>
+
+<table cellspacing="3" cellpadding="0">
+  <tr>
+
+    <% property_type_list(PropertyType.available_for(current_character), properties) do |type, property| %>
+      <% content_tag_for(:td, type) do %>
+      <h2><%= property && type.upgradeable? ? t(".name_with_level", :name => type.name, :level => property.level) : type.name %></h2>
+
+      <div class="picture"><%= property_image(type, :medium) %></div>
+
+      <div class="description"><%= type.description.to_s.html_safe %></div>
+
+      <% mar_size =  properties.size == 1 ? 280 : 100 %>
+      <div class="controls" style="margin-right:<%=mar_size%>px;">
+        <% if property %>
+          <%if property.auto_collect
+            property.collect_money!
+          end%>
+          <%= link_to_remote(button(:collect),
+            :url    => collect_money_property_path(property),
+            :method => :put,
+            :update => :result,
+            :html   => {
+              :"data-click-once" => true,
+              :class => "collect button",
+              :style => ("display: none" unless property.collectable?)
+            }
+          ) %>
+
+      <%#= link_to_remote(button(:upgrade),
+      :url    => upgrade_property_path(property),
+      :method => :put,
+      :update => :result,
+      :html   => {
+      :"data-click-once" => true,
+      :class => "upgrade button"
+      }
+      ) if property.upgradeable? %>
+
+          <%= link_to_remote(button(:gift),
+            :url    => gift_property_path(property),
+            :method => :get,
+            :update => :result,
+            :html   => {:class => "gift button"}) if property.can_be_gifted? %>
+        <% else %>
+          <%= link_to_remote(button(:buy),
+            :url    => properties_path(:property_type_id => type.id),
+            :update => :result,
+            :html   => {
+              :"data-click-once" => true,
+              :class => "buy button"
+            }
+          ) %>
+        <% end %>
+      </div>
+
+      <!--<div class="payouts">
+        <h3><#%= PropertyType.human_attribute_name("income") %></h3>
+
+    <%#= payout(:basic_money, "+%s" % number_to_currency(property ? property.total_income : type.income)) %>
+      </div>-->
+
+    <%# if property.nil? or property.upgradeable? %>
+      <!--<div class="requirements">
+    <%#= PropertyType.human_attribute_name(property ? "upgrade_price" : "price") %>
+
+    <%#= attribute_requirement(:basic_money,
+    number_to_currency(property ? property.upgrade_price : type.basic_price)
+    ) if type.basic_price > 0 %>
+
+    <%#= vip_money_requirement(type.vip_price) if type.vip_price > 0 %>
+      </div>-->
+    <%#s end %>
+
+      <% if property %>
+        <div class="timer" style="<%= "display:none" if property.collectable? %>">
+          <%= t(".collect_in",
+            :value => content_tag(:span, "", :id => dom_id(property, :timer), :class => :value)
+          ).html_safe %>
+        </div>
+
+        <% dom_ready do %>
+          Timer.start('#<%= dom_id(property, :timer) %>', <%= property.time_to_next_collection %>, PropertyList.enableCollection);
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%= cycle("", "</tr><tr>").html_safe %>
+  <% end %>
+</tr>
+</table>

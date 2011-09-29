@@ -1,0 +1,104 @@
+// Empty set blocks
+
+.empty_set
+  margin: 10px 0px
+  padding: 8px
+  border = !thin_border
+
+
+
+// Information blocks
+
+.note
+  margin: 10px 0px
+  padding: 8px
+  border = !thin_border
+
+  .value
+    font-weight: bold
+
+
+
+// Buttons
+
+.nobutton .button
+  display: none !important
+
+.button
+  display: block
+  height: 30px
+  float: left
+  background: top right no-repeat !important
+  background-image = "#{!asset_button} !important"
+  padding: 0 20px 0 0px !important
+  position: relative
+  text-decoration: none
+  color: #FFF
+  font-size: 24px
+  line-height: 36px
+  text-transform: uppercase
+  margin-left: 20px
+  top: -2px
+
+  img
+    vertical-align: middle
+    margin: 3px 5px 3px 0px
+
+  .side
+    display: block
+    float: left
+    height: 30px
+    width: 20px
+    position: relative
+    margin-left: -20px
+    background: top left no-repeat
+    background-image = !asset_button
+
+  .icon
+    display: block
+    float: left
+    height: 30px
+    width: 30px
+    background: center center no-repeat
+
+
+// Page switchers
+
+.pagination
+  margin: 10px 0px
+  text-align: right
+
+  .disabled
+    display: none
+
+  a, span
+    border = !pagination_border
+    padding: 3px
+
+  a:hover, .current
+    color = !pagination_current_color
+    background:
+      color = !pagination_current_bg_color
+
+  .current
+    font-weight: bold
+
+
+
+// Progress bars
+
+.progress_bar
+  border = "1px solid #{!progress_border_color}"
+
+  .percentage
+    height: 10px
+    font-size: 0px
+    background:
+      color = !progress_bg_color
+      image = !progress_bg_image
+
+  .complete
+    background:
+      color = !progress_complete_bg_color
+      image = !progress_complete_bg_image
+      repeat: repeat-x

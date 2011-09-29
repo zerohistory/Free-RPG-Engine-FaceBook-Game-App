@@ -1,0 +1,5 @@
+<div class="controls">
+  <%= link_to(t(".statistics"), vip_money_admin_statistics_path) %>
+  <%= link_to(t(".deposits"), admin_vip_money_operations_path(:type => :deposit)) %>
+  <%= link_to(t(".withdrawals"), admin_vip_money_operations_path(:type => :withdrawal)) %>
+</div>

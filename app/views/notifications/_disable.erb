@@ -1,0 +1,7 @@
+<div class="disable_notification">
+  <%= link_to_remote(t(".disable"),
+        :url      => disable_notification_path(notification),
+        :confirm  => t(".confirm", :type => notification.class.human_name),
+        :before   => "$.dialog.close()"
+      ) %>
+</div>

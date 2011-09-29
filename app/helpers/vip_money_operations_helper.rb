@@ -1,0 +1,2 @@
+module VipMoneyOperationsHelper
+end

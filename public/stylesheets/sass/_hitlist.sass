@@ -1,0 +1,38 @@
+#hitlist
+  td, th
+    padding: 10px
+    vertical-align: middle
+
+  .controls .attack
+    +button(!hitlist_attack_icon)
+
+
+#hit_listing_result
+  .message
+    .attribute
+      line-height: 20px
+      padding: 2px 0px 2px 21px
+      background-position: left center
+      background-repeat: no-repeat
+      font-weight: bold
+
+    .basic_money
+      background-image = !hitlist_result_basic_money_icon
+
+  .completed, .incomplete
+    margin-top: 15px
+    font-weight: bold
+    font-size: 16px
+
+  .completed
+    color = !hitlist_result_completed_color
+
+  .incomplete
+    color = !hitlist_result_incomplete_color
+
+#field_for_hit_listing_victim .input
+  padding: 5px 0
+
+  img
+    vertical-align: middle
+    margin-right: 10px

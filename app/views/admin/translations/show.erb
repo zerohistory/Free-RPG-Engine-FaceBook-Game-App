@@ -1,0 +1,9 @@
+<%= link_to_remote(@translation.value.present? ? @translation.value : content_tag(:span, t(".no_value"), :class => :empty),
+      :url    => edit_admin_translation_path(@translation),
+      :method => :get,
+      :update => translation_id(@translation.key)
+    ) %>
+
+<% dom_ready do %>
+  $('#<%= translation_id(@translation.key) %>').parent().addClass('customized');
+<% end %>

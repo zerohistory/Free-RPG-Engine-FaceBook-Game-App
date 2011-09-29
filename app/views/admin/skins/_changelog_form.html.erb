@@ -1,0 +1,8 @@
+<div id="skin_changelog_form">
+  <% form_tag changelog_admin_skin_path(:default) do %>
+    <%= label(:log, :since, t(".title")) %><br />
+    <%= date_select(:log, :since, :default => 7.days.ago) %>
+
+    <%= submit_tag t(".submit") %>
+  <% end %>
+</div>

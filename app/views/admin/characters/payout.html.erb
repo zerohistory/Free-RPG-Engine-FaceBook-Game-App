@@ -1,0 +1,11 @@
+<%= admin_title(t(".title")) %>
+
+<% form_for Character.new, :url => payout_admin_characters_path, :html => {:method => :put} do |form| %>
+  <% @characters.each do |character| %>
+    <%= hidden_field_tag("ids[]", character.id) %>
+  <% end %>
+
+  <%= form.fields "admin/payouts/collection" %>
+
+  <%= form.submit_and_continue %>
+<% end %>

@@ -1,0 +1,714 @@
+en:
+  admin:
+    documentation: "What's this?"
+    layouts:
+      main_menu:
+        title: "Admin Menu"
+        character_types: "Character Types"
+        items: "Items"
+        missions: "Missions"
+        monster_types: "Monsters"
+        bosses: "Bosses (Legacy)"
+        property_types: "Property Types"
+        global_payouts: "Global Payouts"
+        statistics: "Statistics"
+        characters: "Characters"
+        promotions: "Promotions"
+        skins: "Skins"
+        titles: "Titles"
+        item_collections: "Collections"
+        tips: "Tips"
+        stories: "Feed Stories"
+        translations: "Translations"
+        assets: "Assets"
+        help_pages: "Help Pages"
+        settings: "Settings"
+        global_tasks: "Global Tasks"
+        # Add your custom menu items below this mark
+        elements: "Elements"
+        element_interactions: "Element interactions"
+        
+      application:
+        spinner:
+          alt: "Please wait..."
+          text: "Please wait for a few seconds..."
+        footer:
+          text: "This game is powered by %{engine} version %{version}"
+          engine: "Railorz RPG Engine"
+    item_groups:
+      index:
+        title: "Item Groups"
+        empty_set: "No item groups"
+        controls:
+          new: "Add Group"
+          edit: "Edit"
+          move_up: "Move Up"
+          move_down: "Move Down"
+          delete: "Delete"
+          delete_confirm: "Are you sure? All items linked to this group will be also deleted!"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this group visible to players?"
+          hide: "Hide"
+          duplicate: "Duplicate"
+      new:
+        title: "New Item Group"
+        submit: "Create"
+      create:
+        success: "Item group has been created successfully!"
+      edit:
+        title: "%{name} - Edit Item Group"
+        submit: "Update"
+      update:
+        success: "Item group has been updated successfully!"
+        
+    items:
+      controls:
+        new: "Add Item"
+        balance: "Balance Items"
+        groups: "Manage Groups"
+        sets: "Item Sets"
+      index:
+        title: "Items"
+        filter:
+          title: "Filter Items"
+          all_groups: "All Groups"
+          all_availabilities: "All Availabilities"
+        empty_set: "No items"
+        not_usable: "Not usable"
+        controls:
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure? This item will be also removed from all users!"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this item visible to players?"
+          hide: "Hide"
+          duplicate: "Duplicate"
+      new:
+        title: "New Item"
+        submit: "Create"
+      create:
+        success: "Item has been created successfully!"
+      edit:
+        title: "%{name} - Edit Item"
+        submit: "Update"
+      update:
+        success: "Item has been updated successfully!"
+      form_fields:
+        use_button_label: "Samples: 'Open', 'Drink', 'Eat', etc. Default: '%{default_value}'"
+        new_element: "Add new element"
+        delete_element: "Remove"
+        confirm_delete_element: "Are you sure you want to remove this element?"
+        elements:
+          name: "Element"
+          count: "Count"
+      effect:
+        remove: "Remove"
+      balance:
+        title: "Balance Items"
+        filter:
+          title: "Filter Items"
+          all_groups: "All Groups"
+
+    mission_groups:
+      index:
+        title: "Mission Groups"
+        empty_set: "No mission groups"
+        controls:
+          new: "Add Group"
+          move_up: "Move Up"
+          move_down: "Move Down"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure? All missions linked to this group will be unlinked and hidden from a list of available missions!"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this group visible to players?"
+          hide: "Hide"
+      new:
+        title: "New Mission Group"
+        submit: "Create"
+      create:
+        success: "Mission group has been created successfully!"
+      edit:
+        title: "%{name} - Edit Mission Group"
+        submit: "Update"
+      update:
+        success: "Mission group has been updated successfully!"
+    missions:
+      controls:
+        balance: "Balance"
+        new: "Add Mission"
+        groups: "Manage Groups"
+      index:
+        title: "Missions"
+        empty_set: "No missions"
+        controls:
+          edit: "Edit"
+          move_up: "Move Up"
+          move_down: "Move Down"
+          delete: "Delete"
+          delete_confirm: "Are you sure? Mission results will be also removed from all users!"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this mission visible to players?"
+          hide: "Hide"
+          duplicate: "Duplicate"
+      levels:
+        controls:
+          new: "Add Mastery Level"
+          edit: "Edit"
+          move_up: "Move Up"
+          move_down: "Move Down"
+        empty_set: "No mastery levels for this mission. You should add at least 1 level before publishing this mission."
+      new:
+        title: "New Mission"
+        submit: "Create"
+      create:
+        success: "Mission has been created successfully!"
+      edit:
+        title: "%{name} - Edit Mission"
+        submit: "Update"
+      update:
+        success: "Mission has been updated successfully!"
+      balance:
+        title: "Mission Balance"
+        character_type_filter: "Filter By Character Type:"
+
+    mission_levels:
+      new:
+        title: "New Mission Level"
+        submit: "Create"
+      create:
+        success: "Mission level has been created successfully!"
+      edit:
+        title: "Edit Mission Level"
+        submit: "Update"
+      update:
+        success: "Mission level has been updated successfully!"
+    bosses:
+      index:
+        title: "Bosses"
+        empty_set: "No bosses"
+        controls:
+          new: "Add Boss"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure? Boss fight results will be also removed from all users!"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this boss visible to players?"
+          hide: "Hide"
+      new:
+        title: "New Boss"
+        submit: "Create"
+      create:
+        success: "Boss has been created successfully!"
+      edit:
+        title: "%{name} - Edit Boss"
+        submit: "Update"
+      update:
+        success: "Boss has been updated successfully!"
+      form_fields:
+        minutes: "minutes"
+
+    tips:
+      index:
+        title: "Tips"
+        empty_set: "No tips"
+        controls:
+          new: "Add Tip"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure?"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this tip visible to players?"
+          hide: "Hide"
+      new:
+        title: "New Tip"
+        submit: "Create"
+      create:
+        success: "Tip has been created successfully!"
+      edit:
+        title: "Edit Tip"
+        submit: "Update"
+      update:
+        success: "Tip has been updated successfully!"
+    promotions:
+      index:
+        title: "Promotions"
+        note: "<b>Important:</b> promotion links work differently for admins and other players. For testing purposes admins can use links unlimited number of times and receive a bonus <b>each time</b>. Non-admins can use each link and receive a bonus <b>only once</b>."
+        empty_set: "No promotions"
+        link: "Link"
+        controls:
+          new: "Add Promotion"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure?"
+      new:
+        title: "New Promotion"
+        submit: "Create"
+      create:
+        success: "Promotion has been created successfully!"
+      edit:
+        title: "Edit Promotion"
+        submit: "Update"
+      update:
+        success: "Promotion has been updated successfully!"
+    ownerships:
+      form_fields:
+        owner_for: "Owner For"
+        comment: "Don't check any flags if you want this to be owned by all character types"
+    visibilities:
+      form_fields:
+        visible_for: "Visible For"
+        comment: "Don't check any flags if you want to make this visible for all character types"
+    payouts:
+      collection:
+        add_payout: "Add Payout:"
+      payout:
+        remove: "Remove"
+        move_up: "Move Up"
+        move_down: "Move Down"
+    requirements:
+      collection:
+        add_requirement: "Add Requirement:"
+      requirement:
+        remove: "Remove"
+        move_up: "Move Up"
+        move_down: "Move Down"
+    effects:
+      collection:
+        add_effect: "Add Effect:"
+      effect:
+        remove: "Remove"
+    statistics:
+      amount_change: "(+%{amount} in last 24 hours)"
+      controls:
+        dashboard: "Dashboard"
+        users: "Users"
+        vip_money: "VIP Money"
+      index:
+        title: "Statistics"
+        parameter: "Parameter"
+        value: "Value"
+        change: "Last 24 hours"
+        details: "Details »"
+        values:
+          users: "Total Users"
+          deposit: "VIP Money Deposit"
+          withdraw: "VIP Money Withdraw"
+      user:
+        title: "Statistics: New Users"
+        total_users: "Total Users"
+        latest_users: "Latest Users"
+        profile: "FB Profile"
+        references: "References"
+        no_reference: "No reference"
+        no_character: "(No character)"
+      vip_money:
+        title: "Statistics: VIP Money"
+        reference_type: "Reference Type"
+        reference: "Reference"
+        amount:
+          total: "Total Amount"
+          by_period: "24 hours"
+        deposit:
+          overview: "Deposit"
+          operations: "See latest deposits"
+          reference_types: "Deposit Reference Types"
+          popular_references: "Popular Deposit References"
+        withdraw:
+          overview: "Withdraw"
+          operations: "See latest withdrawals"
+          reference_types: "Withdraw Reference Types"
+          popular_references: "Popular Withdraw References"
+        
+    property_types:
+      index:
+        title: "Property Types"
+        empty_set: "No property types"
+        gift:
+          cant_be: "Cannot be gifted"
+          can_be: "Can be gifted"
+          cost: "Gift cost: {{cost}} gems"
+        can_be_lost: "Can be lost"
+        cannot_be_lost: "Cannot be lost"
+        can_be_found: "Can be found"
+        cannot_be_found: "Cannot be found"
+        auto_collect: "auto collected"
+        controls:
+          new: "Add Property Type"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure? Properties of this type will be also removed from all users!"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this property type visible to players?"
+          hide: "Hide"
+          duplicate: "Duplicate"
+          property_sets: "Property Sets"
+      new:
+        title: "New Property Type"
+        submit: "Create"
+      create:
+        success: "Property type has been created successfully!"
+      edit:
+        title: "%{name} - Edit Property Type"
+        submit: "Update"
+      update:
+        success: "Property type has been updated successfully!"
+    translations:
+      index:
+        title: "Translations"
+        no_value: "(No value)"
+        controls:
+          delete: "Reset to Default"
+          delete_confirm: "Are you sure?"
+      show:
+        no_value: "(No value)"
+      new:
+        current_value: "Current Value: "
+        submit: "Create"
+      edit:
+        submit: "Update"
+    assets:
+      index:
+        title: "Assets"
+        controls:
+          new: "Add Asset"
+          view: "View"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "WARNING: Default assets are used by default application skin. If you'll delete one of these assets it may cause corruption of the application design! Are you sure you want to delete this asset?"
+        empty_set: "No assets"
+      new:
+        title: "New Asset"
+        submit: "Create"
+      create:
+        success: "Asset has been created successfully!"
+      edit:
+        title: "%{name} - Edit Asset"
+        submit: "Update"
+      update:
+        success: "Asset has been updated successfully!"
+    character_types:
+      index:
+        title: "Character Types"
+        empty_set: "No types"
+        controls:
+          new: "Add Type"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure? This character type will become unavailable for users!"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this type visible to players?"
+          hide: "Hide"
+      new:
+        title: "New Character Type"
+        submit: "Create"
+      create:
+        success: "Character type has been created successfully!"
+      edit:
+        title: "%{name} - Edit Character Type"
+        submit: "Update"
+      update:
+        success: "Character type has been updated successfully!"
+      form_fields:
+        basic_attributes: "Basic Attributes"
+        bonuses: "Bonuses"
+        other: "Other Attributes"
+    skins:
+      index:
+        title: "Skins"
+        default_skin: "Default Skin"
+        controls:
+          new: "New Skin"
+          edit: "Edit"
+          activate: "Activate"
+          activate_confirm: "Please confirm you want to apply this skin to the game. If you just want to check how it will look - click 'Try' instead"
+          try: "Try"
+          delete: "Delete"
+          delete_confirm: "Are you sure you want to delete this skin? Game skin will return to default."
+      new:
+        title: "New Skin"
+        submit: "Create"
+      create:
+        success: "Skin has been created successfully!"
+      edit:
+        title: "%{name} - Edit Skin"
+        submit: "Update"
+      update:
+        success: "Skin has been updated successfully!"
+      show:
+        title: "Default Stylesheet"
+      changelog_form:
+        title: "View changes made since"
+        submit: "Show"
+      changelog:
+        title: "Default Skin Changelog"
+        no_changes: "No changes"
+    help_pages:
+      index:
+        title: "Help Pages"
+        empty_set: "No pages"
+        page_preview: "Page Preview"
+        controls:
+          new: "Add Page"
+          edit: "Edit"
+          preview:
+            dialog: "Dialog"
+            page: "Page"
+          delete: "Delete"
+          delete_confirm: "Are you sure? This help page will become unavailable for users!"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this page visible to players?"
+          hide: "Hide"
+      new:
+        title: "New Help Page"
+        submit: "Create"
+      create:
+        success: "Help page has been created successfully!"
+      edit:
+        title: "%{name} - Edit Help Page"
+        submit: "Update"
+      update:
+        success: "Help page has been updated successfully!"
+      form_fields:
+        comments:
+          alias: "Only letters, numbers, dashes, and underscores are allowed."
+          content:
+            text: "Please read %{documentation} to know more about formatting options."
+            documentation: "documentation"
+    settings:
+      index:
+        title: "Settings"
+        empty_set: "No settings"
+        empty_value: "(No value)"
+        controls:
+          new: "Add Value"
+          new_payout: "Add Payout"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Removing this setting may cause improper script behaviour! Are you sure you want to delete it?"
+      new:
+        title: "New Value"
+        submit: "Create"
+      new_payout:
+        title: "New Payout Value"
+        submit: "Create"
+      create:
+        success: "Value has been created successfully!"
+      edit:
+        title: "%{name} - Edit Value"
+        submit: "Update"
+      edit_payout:
+        title: "%{name} - Edit Payout Value"
+        submit: "Update"
+      update:
+        success: "Value has been updated successfully!"
+    global_tasks:
+      show:
+        title: "Global Tasks"
+        note: "This page allows you to perform different application-wide tasks. Please be carefull with all the functions at this page - they can cause damage to your application if used without care."
+        delete_users:
+          title: "Delete All Users"
+          note: "This function allows you to delete all game users (including admins) and clear all their game data. Please use it only when testing your game before oficial launch. For security reasons this function stops working when your application gets more than %{limit} users. WARNING: User data cannot be restored after deletion!"
+          perform: "Delete Users"
+          confirm: "Are you sure you want to delete all users? This operation CANNOT BE UNDONE!"
+        restart:
+          title: "Restart Application"
+          note: "This function allows you to restart your application. When restarting application will reload all code, templates, and settings. Please note that the application will be unavailable for all users while restarting. Restart process may take up to a minute or two."
+          perform: "Restart"
+          confirm: "Are you sure you want to restart the application?"
+      delete_users:
+        user_limit_reached: "This task cannot be performed because your application already reached %{limit} user limit."
+      restart:
+        success: "The application was successfully restarted!"
+    characters:
+      index:
+        title: "Characters"
+        search:
+          title: "Search Characters"
+          facebook_ids: "Facebook IDs"
+          profile_ids: "Profile IDs"
+          submit: "Search"
+        profile: "FB Profile"
+        controls:
+          edit: "Edit"
+          payout: "Apply Payout"
+        batch:
+          title: "Batch Operations"
+          note: "These operations can be applied to all selected characters:"
+          payout: "Apply Payout"
+      edit:
+        title: "Edit Character"
+        submit: "Update"
+      update:
+        success: "Character has been updated successfully!"
+      payout:
+        title: "Apply Payouts To Character"
+        submit: "Apply"
+        submit_and_continue: "Apply & Continue editing"
+        success: "Payouts have been applied to the character!"
+    vip_money_operations:
+      controls:
+        statistics: "Back to Statistics"
+        deposits: "Deposits"
+        withdrawals: "Withdrawals"
+      index:
+        title:
+          deposit: "Latest Deposits"
+          withdrawal: "Latest Withdrawals"
+        filter:
+          title: "Filter"
+          reference_type: "Reference:"
+          profile_ids: "Facebook / Profile IDs:"
+          submit: "Apply Filter"
+    titles:
+      index:
+        title: "Titles"
+        empty_set: "No titles"
+        controls:
+          new: "Add Title"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure?"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this title visible to players?"
+          hide: "Hide"
+      new:
+        title: "New Title"
+        submit: "Create"
+      create:
+        success: "Title has been created successfully!"
+      edit:
+        title: "Edit Title"
+        submit: "Update"
+      update:
+        success: "Title has been updated successfully!"
+
+    item_collections:
+      index:
+        title: "Collections"
+        empty_set: "No collections"
+        controls:
+          new: "Add Collection"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure?"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this collection visible to players?"
+          hide: "Hide"
+      new:
+        title: "New Collection"
+        submit: "Create"
+      create:
+        success: "Collection has been created successfully!"
+      edit:
+        title: "Edit Collection"
+        submit: "Update"
+      update:
+        success: "Collection has been updated successfully!"
+      form_fields:
+        items: "Items"
+        add_item: "Add Item..."
+      item_fields:
+        remove: "Remove"
+
+    stories:
+      index:
+        title: "Stories"
+        empty_set: "No stories"
+        controls:
+          new: "Add Story"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Are you sure?"
+          publish: "Publish"
+          publish_confirm: "Are you sure you want to make this story visible to players?"
+          hide: "Hide"
+      form_fields:
+        story: "Story Content"
+      new:
+        title: "New Story"
+        submit: "Create"
+      create:
+        success: "Story has been created successfully!"
+      edit:
+        title: "Edit Story"
+        submit: "Update"
+      update:
+        success: "Story has been updated successfully!"
+
+    # Add your custom translation strings below this mark
+
+    elements:
+      index:
+        title: "Elements"
+        name: "Name"
+        description: "Description"
+        controls:
+          new: "Add element"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Removing this element may cause improper script behaviour! Are you sure you want to delete it?"
+      new:
+        title: "New element"
+      create:
+        success: "Element has been created successfully!"
+      edit:
+        title: "Edit element"
+      update:
+        success: "Element has been updated successfully!"
+
+    element_interactions:
+      index:
+        title: "Element interactions"
+        attack_element: "Attack element"
+        defence_element: "Defence element"
+        controls:
+          new: "Add interaction"
+          edit: "Edit"
+          delete: "Delete"
+          delete_confirm: "Removing this element may cause improper script behaviour! Are you sure you want to delete it?"
+      new:
+        title: "New element interaction"
+      create:
+        success: "Element interaction has been created successfully!"
+      edit:
+        title: "Edit element interaction"
+      update:
+        success: "Element interaction has been updated successfully!"
+
+    item_elements:
+      index:
+        title: "Item and Elements"
+        elements_for_title: "Elements for"
+      item_elements:
+        elements:
+          name: "Element"
+          count: "Count"
+          item: "Item"
+          type: "Effect type"
+        delete_element: "Remove"
+        confirm_delete_element: "Are you sure you want remove this element?"
+
+    property_sets:
+      index:
+        title: "Property Sets"
+        empty_set: "No property sets"
+        controls:
+          new: "Add Set"
+          edit: "Edit"
+          duplicate: "Duplicate"
+      new:
+        title: "New Property Set"
+        submit: "Create"
+      create:
+        success: "Property set has been created successfully!"
+      edit:
+        title: "Edit Property Set"
+        submit: "Update"
+      update:
+        success: "Property set has been updated successfully!"
+      form_fields:
+        properties: "Properties"
+        add_property: "Add Property..."
+      property_fields:
+        remove: "Remove"

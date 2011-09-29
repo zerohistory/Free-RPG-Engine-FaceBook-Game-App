@@ -1,0 +1,9 @@
+<%= admin_title(t(".title")) %>
+
+<%= render "changelog_form" %>
+
+<% if @changelog.present? %>
+  <pre><%= @changelog %></pre>
+<% else %>
+  <div class="empty_set"><%= t(".no_changes") %></div>
+<% end %>

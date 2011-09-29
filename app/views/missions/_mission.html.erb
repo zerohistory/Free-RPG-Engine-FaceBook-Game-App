@@ -1,0 +1,50 @@
+<li class="mission">
+  <div class="name"><%= mission.name %></div>
+  <div class="info">
+    <div class="image">
+      <% if mission.image? %>
+        <%= image_tag mission.image.url, :size => "128x128" %>
+      <% else %>
+        <img src="../images/img_exmpl_mission.jpg" width="128" height="128" border="0">
+      <% end %>
+    </div>
+    <div class="description"><%= mission.description.to_s.html_safe %></div>
+    <div class="controls">
+      <% if mission.levels.size > 1 %>
+        <div class="level"><%= t(".level", :level => level.position) %></div>
+      <% end %>
+        
+      <div class="progress"><%= mission_progress(rank) %></div>
+
+      <% if mission.repeatable? || rank.nil? || !rank.completed? %>
+        <%= link_to_remote(button(:fulfill),
+              :url    => fulfill_mission_path(mission),
+              :update => :result,
+              :html   => {
+                :"data-click-once" => true,
+                :class => "fulfill button"
+              }
+            ) %>
+      <% end %>
+    </div><!-- .controls -->
+  </div><!-- .info -->
+  <div class="details">
+    <div class="payouts">
+      <h3><%= Mission.human_attribute_name("payouts") %></h3>
+
+      <%= payout(:experience, level.experience) %>
+      <%= payout(:basic_money, mission_money(level)) %>
+
+      <%= payout_list(level, level.applicable_payouts,
+            :format   => :preview,
+            :triggers => rank.next_payout_triggers
+          ) %>
+    </div>
+    <div class="requirements">
+      <h3><%= Mission.human_attribute_name("requirements") %></h3>
+
+      <%= attribute_requirement(:energy, level.energy, current_character.ep >= level.energy) %>
+      <%= requirement_list(mission.requirements) %>
+    </div>
+  </div><!-- .details -->
+</li>

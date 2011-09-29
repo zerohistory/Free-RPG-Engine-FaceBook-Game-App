@@ -1,0 +1,47 @@
+en:
+  news:
+    feed:
+      title_my: "News Feed"
+      title: "%{user} News Feed"
+      payouts: "Payouts"
+      empty_set: "No news at the moment"
+
+    mission_complete:
+      text:
+        single_level: "%{actor} completed the %{mission} mission"
+        multi_level: "%{actor} completed level %{level} of the %{mission} mission"
+    fight_result:
+      buttons:
+        respond: "Fight Back!"
+    item_purchase:
+      text: "%{actor} purchased %{amount} %{item}"
+    property_purchase:
+      text: "%{actor} purchased the %{property}"
+    property_upgrade:
+      text: "%{actor} upgraded the %{property} to level %{level}"
+    property_collect:
+      text: "%{actor} collected income from the %{property}"
+    boost_purchase:
+      text: "%{actor} purchased %{amount} %{boost}"
+    gift_action:
+      send:
+        text: "%{actor} gifted %{amount} %{item} to %{receiver}"
+      receive:
+        text: "%{actor} received %{amount} %{item} from %{sender}"
+    item_use:
+      text: "%{actor} used %{item}"
+
+    payouts:
+      text: "and gained %{payouts}"
+      and: "and"
+
+    monster_fight_start:
+      text:
+        summoned: "%{actor} started the fight against %{monster}"
+        joined: "%{actor} joined the fight against %{monster}"
+      buttons:
+        attack: 'Attack'
+    monster_fight_defeat:
+      text: "%{actor} defeated the %{monster}"
+      buttons:
+        reward: "Get Reward"

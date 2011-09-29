@@ -1,0 +1,50 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_item_collection_path) %>
+</div>
+
+<% collection @item_collections do %>
+  <table id="item_collection_list" class="data">
+    <tr>
+      <th><%= ItemCollection.human_attribute_name("name") %></th>
+      <th><%= ItemCollection.human_attribute_name("items") %></th>
+      <th><%= ItemCollection.human_attribute_name("payouts") %></th>
+      <th><%= ItemCollection.human_attribute_name("state") %></th>
+      <th></th>
+    </tr>
+
+    <% @item_collections.each do |item_collection| %>
+      <tr>
+        <td class="name"><%= link_to(item_collection.name, edit_admin_item_collection_path(item_collection)) %></td>
+        <td class="items">
+          <% item_collection.items.each do |item| %>
+            <div class="item">
+              <% unless item.visible? %>
+                <span class="state"><%= admin_state(item) %></span>
+              <% end %>
+
+              <%= item.name %>
+            </div>
+          <% end %>
+        </td>
+        <td class="payouts"><%= admin_payouts_preview(item_collection.payouts) %></td>
+        <td class="state"><%= admin_state(item_collection) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_item_collection_path(item_collection)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_item_collection_path(item_collection),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if item_collection.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_item_collection_path(item_collection),
+                :method => :put
+              ) if item_collection.can_hide? %>
+          <%= link_to(t(".controls.delete"), admin_item_collection_path(item_collection),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

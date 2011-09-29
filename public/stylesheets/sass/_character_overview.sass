@@ -1,0 +1,122 @@
+// Character overview block
+
+#co    
+  a
+    display: block
+    
+  .value_bar
+    position: absolute
+    z-index: 0
+    height: 23px
+    top: 15px
+    width: 120px
+
+    .percentage_bar
+      background: none
+      border: 0px
+      span
+        background-image: none
+      .complete
+        height: 22px
+        left: 0
+        background: left no-repeat
+
+    .value
+      height: 23px
+      width: 50%
+      position: relative
+
+  .experience, .health, .energy, .stamina
+    .label, .value, .timer, a
+      position: absolute
+      display: block
+      width: 100px
+      text-align: center
+      font-weight: bold
+    
+    .value
+      top: 20px
+      line-height: 20px
+	 
+    .timer
+      top: 55px	 
+	  
+  .level
+    .value
+      top: 20px
+      position: absolute
+      right: 25px 
+	  
+    .timer
+      top: 55px
+
+  .experience
+    // background-image = !asset_icons_menu_experience
+    +c_block(20px, 600px)
+    
+    .percentage_bar
+      position: absolute
+      top: 20px
+      z-index: 0
+
+  .level
+    padding-left: 40px
+    height: 40px
+    padding-left: 8px
+    background:
+      position: top left
+      repeat: no-repeat
+    +c_block(80px, 640px)
+
+  .defence
+    +c_block(60px, 515px)
+    
+    .value
+      +c_icon_bg(!asset_icons_menu_defence)
+      margin: 0 auto
+      
+
+  .attack
+    +c_block(60px, 635px)
+    
+    .value
+      +c_icon_bg(!asset_icons_menu_attack)
+      margin: 0 auto
+    
+  .basic_money
+    //+c_icon(!asset_icons_menu_gold)
+    +c_block(40px, 5px)
+    
+    .value
+      display: block
+
+  .properties
+    position: absolute
+    left: 320px
+	  
+    .value_bar
+      background-image: url(/system/assets/000/000/278/original/properties.gif?1292330559)
+      width: 36px
+      height: 36px
+      margin-left: 10px  
+	  
+  .energy
+    // background-image = !asset_icons_menu_energy
+    +c_block(0, 390px)
+
+    .value_bar .percentage_bar
+      +c_percentage_bar(!asset_energy_bar,"107px")
+
+  .health
+    // background-image = !asset_icons_menu_health
+    +c_block(0, 500px)
+    
+    .value_bar .percentage_bar
+      +c_percentage_bar(!asset_health_bar, "89px")
+
+  .stamina
+    // background-image = !asset_icons_menu_stamina
+    +c_block(0, 601px)
+    
+    .value_bar .percentage_bar
+      +c_percentage_bar(!asset_stamina_bar, "105px")

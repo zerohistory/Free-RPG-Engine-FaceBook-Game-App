@@ -1,0 +1,157 @@
+en:
+  activerecord:
+    models:
+      mission: "Mission"
+      mission_group: "Mission Group"
+      character: "Character"
+      title: "Title"
+      item: "Item"
+      notification/level_up: "Level Up"
+    attributes:     
+      character:
+        level: "Level"
+        attack: "Attack"
+        defence: "Defence"
+        health: "Health"
+        hp: "Health Points"
+        energy: "Energy"
+        ep: "Energy Points"
+        experience: "Experience"
+        stamina: "Stamina"
+        sp: "Stamina Points"
+        basic_money: "Money"
+        vip_money: "Gems"
+        fights_won: "Fights Won"
+        fights_lost: "Fights Lost"
+        missions_succeeded: "Missions Succeded"
+        missions_completed: "Missions Completed"
+        missions_mastered: "Missions Mastered"
+        relations: "Alliance"
+        relations_count: "Alliance Size"
+        mercenaries: "Mercenaries"
+        points: "Upgrade Points"
+        rating: "Rating"
+        name: "Character Name"
+        bank: "Bank"
+        total_money: "Total Money"
+      property_type:
+        income: "Income"
+        price: "Price"
+        upgrade_price: "Upgrade Price"
+        upgrade_cost_increase: "Upgrade cost increase per level"
+        collect_period: "Income collection period, hours"
+      user:
+        show_fan_specials: "Show 'Fan Specials' block"
+      character_type:
+        health_restore_bonus: "Decrease of health restore period, %"
+        energy_restore_bonus: "Decrease of energy restore period, %"
+        stamina_restore_bonus: "Decrease of stamina restore period, %"
+        income_period_bonus: "Decrease of income recalculation period, %"
+        equipment_slots: "Additional equipment slots"
+      mission_group:
+        hide_unsatisfied: "Hide if requirements are not satisfied"
+      mission:
+        progress: "Progress"
+        requirements: "Requirements"
+        payouts: "Payouts"
+      item:
+        price: "Price"
+        effects: "Effects"
+        payouts: "On Use"
+        use_button_label: "Custom label for 'Use' button"
+      help_page:
+        alias: "Page URL"
+      hit_listing:
+        victim: "Target"
+        client: "Paid By"
+        reward: "Bounty Amount"
+      boss:
+        health: "Health"
+      market_item:
+        character: "Seller"
+        price: "Price"
+      item_collection:
+        payouts: "Payouts"
+    errors:
+      models:
+        character:
+          hospital_not_enough_money: "You don't have enough money to pay for healing."
+          hospital_recently_used: "You've already visited hospital recently. You cannot do this too often."
+          attributes:
+            character_type:
+              blank: "You must choose character type"
+        bank_deposit:
+          attributes:
+            amount:
+              not_enough: "You don't have enough gold"
+        bank_withdraw:
+          attributes:
+            amount:
+              not_enough: "You don't have enough money in your balance"
+        fight:
+          attributes:
+            character:
+              not_enough_stamina: "You don't have enough stamina to fight. Take a rest!"
+              cannot_attack: "You cannot attack this player!"
+              cannot_attack_friends: "You cannot attack your allies!"
+              cannot_attack_self: "You cannot attack yourself!"
+              too_weak: "You are too weak to fight! Take a rest!"
+            victim:
+              too_weak: "Your opponent is too weak to fight!"
+        inventory:
+          attributes:
+            character:
+              not_enough_basic_money: "You don't have enough gold to buy a %{name}."
+              not_enough_vip_money: "You don't have enough Gems to buy a %{name}."
+        property:
+          attributes:
+            character:
+              not_enough_basic_money: "You don't have enough %{basic_money} to buy a %{name}."
+              not_enough_basic_money_for_upgrade: "You don't have enough %{basic_money} to upgrade your %{name}."
+              not_enough_vip_money: "You don't have enough %{vip_money} to buy a %{name}."
+              not_enough_vip_money_for_upgrade: "You don't have enough %{vip_money} to upgrade your %{name}."
+              too_much_properties: "You cannot buy any more %{plural_name} because you already have too many! Try to purchase other types of properties."
+        property_set:
+          not_enough_properties: "You should add at least one property"
+        help_result:
+          too_late: "You're too late! Next time try to help your friends within 24 hours."
+          already_helped_with_mission: "You already helped your friend with this mission."
+          already_helped_with_fight: "You already helped your friend fight this enemy."
+          cannot_attack_self: "Try to find another oppponent :) We're against suicide"
+          cannot_help_yourself: "You cannot help yourself!"
+        boss_fight:
+          attributes:
+            character:
+              already_won: "You already defeated this boss!"
+              not_enough_energy: "You don't have enough energy to fight. Take a rest!"
+              too_weak: "You are too weak to fight! Take a rest!"
+        hit_listing:
+          attributes:
+            reward:
+              not_enough_basic_money: "You don't have enough %{basic_money}"
+            victim:
+              too_weak: "The target is too weak, you cannot add them to the hitlist"
+              already_listed: "This target is already in the hit list"
+              recently_listed: "This target was destroyed recently"
+          already_completed: "Somebody already took out this target before you got the chance!"
+          client_attack: "You cannot claim a bounty from your own listing!"
+        market_item:
+          not_enough_basic_money: "You don't have enough gold to buy %{name}."
+          not_enough_vip_money: "You don't have enough Gems to buy %{name}."
+        item_collection:
+          attributes:
+            items:
+              not_enough_items: "Collection should contain at least 1 item"
+        item_collection_rank:
+          attributes:
+            character:
+              not_enough_items: "You haven't collected all the required items"
+        item_set:
+          attributes:
+            items:
+              not_enough_items: "Item set should contain at least 1 item"
+        mission_help_result:
+          already_helped: "You already helped your friend with this mission."
+          cannot_help_themself: "You cannot help yourself!"
+        app_request/gift:
+          accepted_recently: "You already accepted a gift from this player recently. You can accept only 1 gift per sender per every %{hours} hours."

@@ -1,0 +1,38 @@
+form.new_character, form.edit_character
+  .field
+    margin-bottom: 10px
+
+  .label
+    font-size: 16px
+    font-weight: bold
+
+  .note
+    font-size: 12px
+
+
+#character_types
+  margin-bottom: 10px
+
+  .character_type
+    display: block
+    text-align: center
+    text-decoration: none
+    float: left
+    margin: 10px 10px 0 0
+    font-weight: bold
+    padding: 2px
+    cursor: pointer
+    border = !character_form_type_border
+    width = !character_form_type_width
+
+    &:hover
+      border = !character_form_type_hover_border
+
+    .name
+      display: block
+      margin-bottom: 5px
+
+  .selected
+    padding: 1px !important
+    border = "#{!character_form_type_selected_border} !important"
+    background-color = !character_form_type_selected_bg_color

@@ -1,0 +1,43 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_promotion_path) %>
+</div>
+
+<% collection @promotions do %>
+  <div class="note"><%= t(".note").html_safe %></div>
+
+  <table id="promotion_list" class="data">
+    <tr>
+      <th><%= Promotion.human_attribute_name("created_at") %></th>
+      <th><%= Promotion.human_attribute_name("valid_till") %></th>
+      <th><%= Promotion.human_attribute_name("text") %></th>
+      <th><%= Promotion.human_attribute_name("payouts") %></th>
+      <th><%= Promotion.human_attribute_name("receipts") %></th>
+      <th></th>
+    </tr>
+    <% @promotions.each do |promotion| %>
+      <tr>
+        <td class="created_at"><%= l(promotion.created_at, :format => :short) %></td>
+        <td class="valid_till"><%= content_tag(:span, l(promotion.valid_till, :format => :short), :class => (Time.now < promotion.valid_till ? :valid : :invalid)) %></td>
+        <td class="text"><%= promotion.text.html_safe %></td>
+        <td class="promotions">
+          <% promotion.payouts.each do |payout| %>
+            <%= render "admin/payouts/preview/#{payout.name}", :payout => payout %>
+          <% end %>
+        </td>
+        <td class="receipts"><%= promotion.promotion_receipts.size %></td>
+        <td class="link"><%= link_to(t(".link"), promotion_url(promotion, :canvas => true), :target => :_blank) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_promotion_path(promotion)) %>
+          <%= link_to(t(".controls.delete"), admin_promotion_path(promotion),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @promotions %>
+<% end %>

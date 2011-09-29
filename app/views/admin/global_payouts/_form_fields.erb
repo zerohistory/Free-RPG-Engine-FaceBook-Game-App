@@ -1,0 +1,7 @@
+<%= form.text_field :alias, :required => true %>
+
+<%= form.text_field :name, :required => true, :size => 80 %>
+
+<% form.field_set GlobalPayout.human_attribute_name('payouts') do %>
+  <%= form.fields "admin/payouts/collection" %>
+<% end %>

@@ -1,0 +1,7 @@
+<%= admin_title(t(".title", :name => @type.name)) %>
+
+<% form_for [:admin, @type], :html => {:multipart => true} do |form| %>
+  <%= form.fields %>
+
+  <%= form.submit_and_continue %>
+<% end %>

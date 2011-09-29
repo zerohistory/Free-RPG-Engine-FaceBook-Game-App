@@ -1,0 +1,129 @@
+#placements
+  position: relative
+  background: 
+    image = !placements_bg_image
+    position: top left
+    repeat: no-repeat
+  padding-top = !placements_height
+  width: 100%
+
+  .inventory
+    position: relative
+
+    .remove
+      position: absolute
+      right: 0
+      display: block
+      width = !placements_remove_width
+      height = !placements_remove_height
+      background: 
+        image = !placements_remove_icon
+        position: center
+        repeat: no-repeat
+
+  .placement
+    position: absolute
+
+  .head
+    top = !placements_head_top
+    left = !placements_head_left
+
+    .inventory
+      width = !placements_head_width
+      height = !placements_head_height
+
+  .right_hand
+    top = !placements_right_hand_top
+    left = !placements_right_hand_left
+
+    .inventory
+      width = !placements_right_hand_width
+      height = !placements_right_hand_height
+
+  .left_hand
+    top = !placements_left_hand_top
+    left = !placements_left_hand_left
+
+    .inventory
+      width = !placements_left_hand_width
+      height = !placements_left_hand_height
+
+  .body
+    top = !placements_body_top
+    left = !placements_body_left
+
+    .inventory
+      width = !placements_body_width
+      height = !placements_body_height
+
+  .legs
+    top = !placements_legs_top
+    left = !placements_legs_left
+
+    .inventory
+      width = !placements_legs_width
+      height = !placements_legs_height
+
+  .additional
+    position: relative
+
+    .inventory
+      margin: 0 10px 10px 0
+      float: left
+      width = !placements_additional_width
+      height = !placements_additional_height
+      border = !placements_additional_border
+
+    .note
+      clear: both
+
+      .zero
+        font-size: 16px
+        color = !placements_additional_zero_color
+
+
+#equippables
+  padding-right: 10px
+  margin-right: 10px
+  border-right = !equippables_border
+  width = !equippables_width
+
+  .inventory
+    padding: 10px 0
+    border-top = !equippables_item_border
+
+    .header
+      margin-bottom: 10px
+
+      .name
+        font-weight: bold
+        font-size: 14px
+
+    .image
+      margin-bottom: 5px
+
+    .controls
+      float: right
+      
+      select
+        display: block
+      
+      .equip
+        margin-top: 5px
+        float: right
+
+        +button(!equippables_equip_icon)
+
+#equipment_buttons
+  margin-bottom: 15px
+
+  .button
+    float: left
+    width: auto
+    margin-right: 15px
+
+  .auto_equip
+    +button(!equipment_buttons_auto_equip_icon)
+
+  .unequip
+    +button(!equipment_buttons_unequip_icon)

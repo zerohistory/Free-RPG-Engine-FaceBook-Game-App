@@ -1,0 +1,27 @@
+<% result_for :property do |builder| %>
+  <% if @property.errors.empty? %>
+    <% builder.success do %>
+      <%= t(".messages.success",
+            :property_name  => content_tag(:b, @property.name),
+            :level          => @property.level
+          ).html_safe %>
+    <% end %>
+
+    <h3><%= t(".you_spent.title") %></h3>
+
+    <div class="payouts">
+      <%= payout(:basic_money,
+            number_to_currency(@property.property_type.upgrade_price(@property.level - 1))
+          ) if @property.basic_price > 0 %>
+      <%= payout(:vip_money, number_to_currency(@property.vip_price)) if @property.vip_price > 0 %>
+    </div>
+  <% else %>
+    <% builder.fail do %>
+      <%= @property.errors.on(:character) %>
+    <% end %>
+  <% end %>
+
+  <% builder.on_ready do %>
+    $('#property_list').html('<%= escape_javascript(render("list", :properties => @properties)) %>');
+  <% end %>
+<% end %>

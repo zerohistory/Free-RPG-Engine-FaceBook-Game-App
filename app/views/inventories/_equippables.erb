@@ -1,0 +1,33 @@
+<div id="equippables">
+  <h2><%= t(".header") %></h2>
+
+  <% collection(current_character.inventories.equippable.all) do |inventories| %>
+    <% inventories.each do |inventory| %>
+      <% div_for inventory do %>        
+        <div class="header">
+          <%= t(".item_header",
+                :name   => content_tag(:span, inventory.name, :class => :name),
+                :amount => content_tag(:span, inventory.amount_available_for_equipment, :class => :amount)
+              ).html_safe %>
+        </div>
+
+        <div class="controls">
+          <% form_tag "", :class => :clearfix do %>
+            <%= select_tag(:placement, options_for_select(inventory.placement_options_for_select)) %>
+
+            <%= link_to_remote(button(:equip),
+                  :url    => equip_inventory_path(inventory),
+                  :update => :result,
+                  :with   => "$(this).parent('form').serialize()",
+                  :html   => {:class => "equip button"}
+                ) %>
+          <% end %>
+        </div>
+
+        <div class="image"><%= item_image(inventory, :small) %></div>
+        
+        <%= item_tooltip(inventory) %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

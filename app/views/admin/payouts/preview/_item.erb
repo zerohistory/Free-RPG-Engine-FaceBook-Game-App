@@ -1,0 +1,13 @@
+<% content_tag :div, :class => payout.name do %>
+  <% if payout.item %>
+    <%= ("%s: %s %s (%d%% %s)" % [
+          payout.apply_on_label,
+          (payout.item.visible? ? '' : content_tag(:span, admin_state(payout.item), :class => :state)),
+          payout.item.name,
+          payout.chance,
+          payout.action
+        ]).html_safe %>
+  <% else %>
+    <span class="missing"><%= t("payouts.item.missing") %></span>
+  <% end %>
+<% end %>

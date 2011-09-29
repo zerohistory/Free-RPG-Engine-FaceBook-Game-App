@@ -1,0 +1,16 @@
+<%= title(t(".title")) %>
+
+<%= render "relations/buttons", :current => :relations %>
+
+<%= render "relations/note" %>
+
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td id="alliance_members">
+      <%= render 'members', :relations => @relations %>
+    </td>
+    <td id="assignments">
+      <%#= render "assignments" %>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,20 @@
+<%= form.text_field :name, :required => true %>
+
+<div id="item_collection" class="items">
+  <h2><%= t(".items") %></h2>
+
+  <%= form.error_message_on :items %>
+
+  <% form.object.items.each do |item| %>
+    <%= render("item_fields", :item => item) %>
+  <% end %>
+</div>
+
+<%= link_to_remote(t(".add_item"),
+      :url  => add_item_new_admin_item_collection_path,
+      :html => {:class => :add_item}
+    ) %>
+
+<h2><%= ItemCollection.human_attribute_name("payouts") %></h2>
+
+<%= form.fields "admin/payouts/collection" %>

@@ -1,0 +1,36 @@
+<% dialog :id => :market_item do %>
+  <h2><%= t(".title") %></h2>
+
+  <div class="item clearfix">
+    <div class="picture"><%= item_image(@item, :small) %></div>
+    <div class="name"><%= @item.name %></div>
+  </div>
+
+  <% remote_form_for(@item, :update => :ajax) do |form| %>
+    <%= form.hidden_field :inventory_id %>
+
+    <%= form.text_field(:amount,
+          :size   => 3,
+          :label  => t(".labels.amount", :maximum => @item.inventory.amount)
+        ) %>
+
+    <h3><%= MarketItem.human_attribute_name("price") %></h3>
+
+    <table>
+      <tr>
+        <td><%= form.text_field(:basic_price, :size => 5, :label => Character.human_attribute_name("basic_money")) %></td>
+        <td class="and"><%= t(".and") %></td>
+        <td><%= form.text_field(:vip_price, :size => 5, :label => Character.human_attribute_name("vip_money")) %></td>
+      </tr>
+    </table>
+
+    <p>
+      <%= t(".note",
+            :basic_price_fee => Setting.i(:market_basic_price_fee),
+            :vip_price_fee => Setting.i(:market_vip_price_fee)
+          ) %>
+    </p>
+
+    <%= form.submit %>
+  <% end %>
+<% end %>

@@ -1,0 +1,34 @@
+en:
+  market_items:
+    index:
+      title: "Market"
+      free: "FREE"
+      buttons:
+        buy: "Buy"
+        delete: "Remove Listing"
+        delete_confirm: "Are you sure?"
+      empty_set: "There are no items listed right now. Try again later."
+    new:
+      title: "Sell on Market"
+      labels:
+        amount: "Amount to Sell (Max: %{maximum})"
+      and: "AND"
+      note: "Leave fields blank if you don't want to charge either Gold or Gems for this item. A small processing fee will be taken for all sales made at market (%{basic_price_fee}% for Gold, %{vip_price_fee}% for Gems)."
+
+    create:
+      title: "Sell on Market"
+      message:
+        text: "Your listing was successfully published on the %{market} for %{expire_in} hours! You'll be notified if someone will decide to purchase from you."
+        market: "Market page"
+
+    buy:
+      buttons:
+        publish: "Brag About It!"
+        inventory: "Go To Inventory"
+      messages:
+        success: "You successfully bought %{amount} of %{item_name}"
+      you_spent:
+        title: "You spent:"
+
+    destroy:
+      message: "Your listing has been removed successfully!"

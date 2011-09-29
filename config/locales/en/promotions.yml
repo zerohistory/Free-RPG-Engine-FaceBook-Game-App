@@ -1,0 +1,11 @@
+en:
+  promotions:
+    show:
+      you_received: "You received:"
+      forward:
+        title: "Send this bonus to your friends!"
+        text: "You can send this bonus to your friends who also play or possibly will be interested in %{app}. By clicking the link your friends will receive the same bonus you just received. Click on friend names to review and send message with the link:"
+      already_used: "You already used this promotion link"
+      expired: "This promotion link already expired"
+      buttons:
+        publish: "Give Bonus to Friends"

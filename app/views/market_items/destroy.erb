@@ -1,0 +1,11 @@
+<% result_for :market do |builder| %>
+  <% builder.success do %>
+    <%= t(".message").html_safe %>
+  <% end %>
+
+  <% builder.on_ready do %>
+    $('#<%= dom_id(@item) %>').remove();
+
+    <%= ga_track_event('Items', 'Market Listing Removed', "#{@item.name} (#{@item.inventory.item.availability})") %>
+  <% end %>
+<% end %>

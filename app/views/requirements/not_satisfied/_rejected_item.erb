@@ -1,0 +1,5 @@
+<% requirement(requirement.name, false) do %>
+  <p>
+    <%= t(".message", :rejected_item_name => requirement.item.name).html_safe %>
+  </p>
+<% end %>

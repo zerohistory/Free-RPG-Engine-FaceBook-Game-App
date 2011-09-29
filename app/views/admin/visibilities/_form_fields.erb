@@ -1,0 +1,20 @@
+<% visibility = capture do %>
+  <%= hidden_field_tag("#{form.object_name}[visible_type_ids][]", 0) %>
+
+  <% CharacterType.without_state(:deleted).each do |type| %>
+    <div>
+      <%= check_box_tag(
+            "#{form.object_name}[visible_type_ids][]", type.id,
+            form.object.visibilities.character_types.include?(type),
+            :id => "visibility_#{type.id}"
+          ) %>
+
+      <%= label_tag("visibility_#{type.id}", type.name) %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form.field(:visibility, visibility,
+      :label    => t(".visible_for"),
+      :comment  => t(".comment")
+    ) %>

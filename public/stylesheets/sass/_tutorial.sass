@@ -1,0 +1,27 @@
+#tutorial
+  border = !tutorial_border
+  padding: 10px
+
+  .step
+    margin-bottom: 5px
+
+  .current
+    font-size: 15px
+
+  .complete_mark
+    color = !tutorial_complete_color
+    vertical-align: super
+    font-size: 10px
+    display: none
+
+  .continue
+    +button(!tutorial_continue_icon)
+    margin: 10px
+    display: none
+
+  .completed
+    .complete_mark
+      display: inline
+
+    .button
+      display: block

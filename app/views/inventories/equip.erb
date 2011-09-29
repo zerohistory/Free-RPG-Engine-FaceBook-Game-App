@@ -1,0 +1,14 @@
+<% dom_ready do %>
+  $('#equipment_inventories').html('<%= escape_javascript(render("equippables")) %>');
+  $('#equipment_placements').html('<%= escape_javascript(render("placements", :character => current_character)) %>');
+  <!--$('#inventory_fight_attributes').html('<%#= escape_javascript(render("characters/fight_attributes")) %>-->');
+
+  Character.initFightAttributes();
+  Equipment.setup();
+  
+  <%= ga_track_event('Items', 
+        controller.action_name == 'equip' ? 'Equiped' : 'Unequipped', 
+        @inventory ? "#{@inventory.name} (#{@inventory.item.availability})" : 'All Items', 
+        current_character.level
+      ) %>
+<% end %>

@@ -1,0 +1,150 @@
+.character_attributes
+  padding: 0
+
+  tr
+    height: 25px
+    line-height: 25px
+
+  th
+    padding-right: 15px
+
+  .value
+    padding-left: 21px
+    background-position: center left
+    background-repeat: no-repeat
+
+//  .attack .value
+//    background-image = !character_attributes_attack_icon
+//
+//  .defence .value
+//    background-image = !character_attributes_defence_icon
+//
+//  .health .value
+//    background-image = !character_attributes_health_icon
+//
+//  .energy .value
+//    background-image = !character_attributes_energy_icon
+//
+//  .stamina .value
+//    background-image = !character_attributes_stamina_icon
+//
+//  .basic_money .value
+//    background-image = !character_attributes_basic_money_icon
+//
+//  .vip_money .value
+//    background-image = !character_attributes_vip_money_icon
+
+#character
+  .controls
+    clear: both
+
+    a
+      float: left
+
+    .links
+      font-weight: bold
+      float: left
+      margin-left: 7px
+      margin-top: 3px
+	
+    .links_img
+      float: left	
+      width: 20px
+
+    .link_block
+      clear: both
+      margin-bottom: 5px
+      float: left  
+	  
+    .attack_btn
+      +button(!character_buttons_attack_icon)
+
+    .upgrade
+      +button(!character_buttons_upgrade_icon)
+
+    .hitlist
+      +button(!character_buttons_hitlist_icon)
+
+  .info
+    width: 100%
+    margin-bottom: 15px
+
+    .character_statistics
+      tr
+        height: 25px
+        line-height: 25px
+
+      th
+        padding-right: 15px
+
+    .rank_list
+      .rank
+        padding: 3px 32px
+        background:
+          image = !character_rank_icon
+          position: 3px center
+          repeat: no-repeat
+
+  .item_group, .properties
+    .item
+      float: left
+      text-align: center
+      font-weight: bold
+
+  .item_group .item
+    width: 85px
+    height: 135px
+
+  .properties .item
+    width: 130px
+    height: 170px
+
+#new_wall_post
+  margin-bottom: 15px
+
+  textarea
+    width: 740px
+    height: 80px
+
+  .publish.button
+    +button(!wall_publish_icon)
+
+#wall_post_list
+  .wall_post
+    padding: 10px 5px
+    border-bottom = !splitter_border
+    position: relative
+
+    .controls
+      position: absolute
+      top: 5px
+      right: 5px
+      visibility: hidden
+
+    &:hover .controls
+      visibility: visible
+
+  .author_post
+    background-color = !wall_author_post_bg_color
+    border: 0
+
+  .author
+    float: left
+    width: 120px
+    text-align: center
+
+    .name
+      font-weight: bold
+      margin-bottom: 5px
+
+    .image
+      margin-bottom: 5px
+
+  .created_at
+    margin-left: 130px
+    font-weight: bold
+    margin-bottom: 5px
+    font-size: 10px
+
+  .text
+    margin-left: 130px

@@ -1,0 +1,46 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_story_path) %>
+</div>
+
+<% collection @stories do %>
+  <table id="title_list" class="data">
+    <tr>
+      <th><%= Story.human_attribute_name("alias") %></th>
+      <th><%= Story.human_attribute_name("image") %></th>
+      <th><%= %w{title description action_link}.map{|a| Story.human_attribute_name(a) }.join(', ') %></th>
+      <th><%= Story.human_attribute_name('payouts') %></th>
+      <th><%= Story.human_attribute_name("state") %></th>
+      <th></th>
+    </tr>
+
+    <% @stories.each do |story| %>
+      <tr>
+        <td class="alias"><%= link_to(story.alias, edit_admin_story_path(story)) %></td>
+        <td class="image"><%= image_tag(story.image.url(:original)) %></td>
+        <td class="story">
+          <p><%= story.title %></p>
+          <p><%= story.description %></p>
+          <p><%= story.action_link %></p>
+        </td>
+        <td class="payouts"><%= admin_payouts_preview(story.payouts) %></td>
+        <td class="state"><%= admin_state(story) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_story_path(story)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_story_path(story),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if story.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_story_path(story),
+                :method => :put
+              ) if story.can_hide? %>
+          <%= link_to(t(".controls.delete"), admin_story_path(story),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

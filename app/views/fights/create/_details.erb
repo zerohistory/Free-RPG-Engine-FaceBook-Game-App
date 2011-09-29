@@ -1,0 +1,80 @@
+<table class="details" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="attacker">
+      <div class="character">
+        <%= character_name_link(fight.attacker, {:class => :name}) %>
+        <%= character_picture_link(fight.attacker, {:class => :picture}) %>
+
+        <div class="level">
+          <span class="label"><%= Character.human_attribute_name("level") %></span>
+          <span class="value"><%= fight.attacker.level %></span>
+        </div>
+
+        <div class="attributes">
+          <div class="attack"><%= fight.attacker.attack_points %></div>
+          <div class="relations"><%= fight.attacker.relations.effective_size %></div>
+        </div>
+      </div>
+
+      <% if offence = fight.attacker.equipment.best_offence and offence.any? %>
+        <div class="best_items">
+          <strong><%= t(".best_offence") %></strong>
+
+          <% offence.each do |inventory| %>
+            <%= item_image(inventory, :icon) %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if fight.attacker_boost %>
+        <div class="best_items">
+          <strong><%= t(".best_attacking_boost") %></strong>
+          
+          <%= item_image(fight.attacker_boost, :icon) %>
+        </div>
+      <% end %>
+    </td>
+    <td class="vs"><%= t(".vs") %></td>
+    <td class="victim">
+      <div class="character">
+        <%= character_name_link(fight.victim, {:class => :name}) %>
+        <%= character_picture_link(fight.victim, {:class => :picture}) %>
+
+        <div class="level">
+          <span class="label"><%= Character.human_attribute_name("level") %></span>
+          <span class="value"><%= fight.victim.level %></span>
+        </div>
+
+        <div class="attributes">
+          <div class="defence"><%= fight.victim.defence_points %></div>
+          <div class="relations"><%= fight.victim.relations.effective_size %></div>
+        </div>
+      </div>
+
+      <% if defence = fight.victim.equipment.best_defence and defence.any? %>
+        <div class="best_items">
+          <strong><%= t(".best_defence") %></strong>
+
+          <% defence.each do |inventory| %>
+            <%= item_image(inventory, :icon) %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if fight.victim_boost %>
+        <div class="best_items">
+          <strong><%= t(".best_defending_boost") %></strong>
+
+          <%= item_image(fight.victim_boost, :icon) %>
+        </div>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<% content_tag(:div, :class => :item_details, :id => dom_id(fight, :items)) do %>
+  <%= link_to_remote(t(".show_items"),
+        :url    => used_items_fight_path(fight),
+        :update => dom_id(fight, :items)
+      ) %>
+<% end %>

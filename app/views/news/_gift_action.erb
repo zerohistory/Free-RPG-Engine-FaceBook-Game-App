@@ -1,0 +1,25 @@
+<div class="actor">
+  <%= character_picture_link(news.character) %>
+</div>
+
+<div class="subject">
+  <%= item_image(news.item, :icon) %>
+</div>
+
+<div class="description">
+  <% if news.action == :send %>
+    <%= t(".send.text",
+          :actor    => character_name_link(news.character, {}, {:useyou => true, :capitalize => true}),
+          :item     => content_tag(:strong, news.item.name),
+          :amount   => content_tag(:strong, news.amount),
+          :receiver => character_name_link(news.receiver, {}, {:useyou => true, :capitalize => true})
+        ).html_safe %>
+  <% else %>
+    <%= t(".receive.text",
+          :actor  => character_name_link(news.character, {}, {:useyou => true, :capitalize => true}),
+          :item   => content_tag(:strong, news.item.name),
+          :amount => content_tag(:strong, news.amount),
+          :sender => character_name_link(news.sender, {}, {:useyou => true, :capitalize => true})
+        ).html_safe %>
+  <% end %>
+</div>

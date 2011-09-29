@@ -1,0 +1,30 @@
+<% dialog do %>
+  <h2><%= t(".title") %></h2>
+
+  <div id="bank_balance">
+    <%= t(".current_balance",
+          :amount => content_tag(:span, number_to_currency(current_character.bank), :class => :value)
+        ).html_safe %>
+  </div>
+
+  <table id="bank" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <% remote_form_for(:bank_operation, @deposit || BankDeposit.new, :url => deposit_bank_operations_path, :update => :ajax) do |f| %>
+          <%= f.text_field :amount, :label => t(".deposit"), :size => 10 %>
+
+          <%= submit_tag(t(".deposit")) %>
+        <% end %>
+      </td>
+      <td>
+        <% remote_form_for(:bank_operation, @withdrawal || BankWithdraw.new, :url => withdraw_bank_operations_path, :update => :ajax) do |f| %>
+          <%= f.text_field :amount, :label => t(".withdraw"), :size => 10 %>
+
+          <%= submit_tag(t(".withdraw")) %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+  <p><%= t(".note", :fee => Setting.i(:bank_deposit_fee)).html_safe %></p>
+<% end %>

@@ -1,0 +1,60 @@
+<% builder.buttons do %>
+  <%= link_to_function(button(:publish), stream_dialog(:mission_completed, mission),
+        :class => "publish button"
+      ) %>
+<% end %>
+
+<% builder.message :complete do %>
+  <%= t(".message") %> <%= mission.complete_text.to_s.html_safe %>
+<% end %>
+
+<% if mission.child_missions.any? %>
+  <div class="child_missions">
+    <p><%= t(".child_missions") %></p>
+
+    <% mission.child_missions.each do |child| %>
+      <div class="child"><%= child.name %></div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= builder.render "missions/fulfill/payouts", :mission => mission, :result => result %>
+
+<% if result.group_rank.try(:just_created?) %>
+  <%= builder.render "mission_groups/complete", :result => @result %>
+<% end %>
+
+<% if Setting.b(:mission_completion_dialog) %>
+  <% dialog :id => :mission_dialog do %>
+    <h2><%= t(".dialog.title") %></h2>
+
+    <div class="clearfix">
+      <% if mission.image? %>
+        <div class="image"><%= image_tag(mission.image.url(:small)) %></div>
+      <% end %>
+
+      <p><%= mission.complete_text.to_s.html_safe %></p>
+    </div>
+
+    <p><%= t(".dialog.message") %></p>
+
+    <div class="buttons">
+      <%= link_to_function(button(:continue),
+            stream_dialog(:mission_completed, mission) + "$.dialog.close()",
+            :class => "continue button"
+          ) %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if missions %>
+  <% builder.on_ready do %>
+    $('#mission_list').html('<%= escape_javascript(render("list", :missions => missions)) %>');
+  <% end %>
+<% end %>
+
+<% builder.on_ready do %>
+  $(document).trigger('mission.complete');
+  
+  <%= ga_track_event('Missions', 'Completed', "#{mission.name} - Level #{result.level.position}") %>
+<% end %>

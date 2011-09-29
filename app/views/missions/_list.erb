@@ -1,0 +1,11 @@
+<% collection(missions) do %>
+  <ul>
+    <% mission_list(missions) do |mission, level, rank| %>
+      <%= render('missions/mission',
+            :mission  => mission,
+            :level    => level,
+            :rank     => rank
+          ) unless current_character.missions.completed?(mission) && !mission.repeatable? %>
+    <% end %>
+  </ul>
+<% end %>

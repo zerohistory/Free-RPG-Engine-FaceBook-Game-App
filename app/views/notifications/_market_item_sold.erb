@@ -1,0 +1,20 @@
+<% dialog :id => :market_item_notification do |d| %>
+  <h2><%= t(".title") %></h2>
+
+  <p class="text">
+    <%= t(".text",
+          :item => content_tag(:strong, notification.item.plural_name)
+        ).html_safe %>
+  </p>
+
+  <% if notification.payouts? %>
+    <div class="payouts">
+      <h3><%= t(".you_received") %></h3>
+
+      <%= payout(:basic_money, number_to_currency(notification.basic_money)) if notification.basic_money > 0 %>
+      <%= payout(:vip_money, number_to_currency(notification.vip_money)) if notification.vip_money > 0 %>
+    </div>
+  <% end %>
+
+  <%= render("notifications/disable", :notification => notification) %>
+<% end %>

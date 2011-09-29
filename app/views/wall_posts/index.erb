@@ -1,0 +1,7 @@
+<% dom_ready do %>
+  $('#wall_post_list').replaceWith('<%=
+    escape_javascript(render('wall_posts/list', :wall_posts => @wall_posts))
+  %>');
+
+  $(document).trigger('remote_content.received');
+<% end %>

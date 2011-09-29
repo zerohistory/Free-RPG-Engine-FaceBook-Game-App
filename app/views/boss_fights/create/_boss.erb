@@ -1,0 +1,7 @@
+<div class="name"><%= fight.boss.name %></div>
+
+<div class="image">
+  <%= image_tag(fight.boss.image.url(:small)) if fight.boss.image? %>
+</div>
+
+<%= boss_fight_health_bar(fight) %>

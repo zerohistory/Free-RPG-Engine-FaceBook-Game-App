@@ -1,0 +1,33 @@
+<% message = capture do %>
+  <p class="success"><%= t('.accepted') %></p>
+<% end%>
+
+<% controls = capture do %>
+  <%= link_to_remote(inventory_use_button(app_request.inventory),
+        :url    => use_inventory_path(app_request.inventory),
+        :update => :result,
+        :html   => {
+          :"data-click-once" => true,
+          :class => "use button"
+        }
+      ) if app_request.inventory.usable? %>
+    
+  <%= link_to(button(:send), new_gift_path, 
+        :class => 'send button',     
+        :'data-item-id' => app_request.item.id, 
+        :'data-message' => t('gifts.new.request.message', :item => app_request.item.name, :app => t('app_name'))
+      ) %>
+<% end %>
+
+<% dom_ready do %>
+  var $request = $('#<%= dom_id(app_request) %>');
+
+  $request.find('.message').html('<%= escape_javascript(message) %>');
+  $request.find('.controls').html('<%= escape_javascript(controls) %>');
+  $request.find('.send').giftButton({
+    request_title: '<%= t('gifts.new.title') %>', 
+    request_callback_url: '<%= app_requests_path(:type => :gift) %>'
+  });
+
+  <%= ga_track_event('Requests', "#{app_request.type_name.titleize} - Accepted", app_request.item.name) %>
+<% end %>

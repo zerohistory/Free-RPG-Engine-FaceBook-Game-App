@@ -1,0 +1,15 @@
+<html>
+  <body>
+    <div style="width: 500px; margin: auto; padding: 20px; border: 2px solid #3B5998; text-align: center">
+      <p>
+        The application is closed for a scheduled server maintenance. We're rolling out important changes now to make the game better.
+      </p>
+
+      <p>
+        Please try again slightly later :)
+      </p>
+
+      <p>The update was started at <%= Time.now.utc.strftime('%H:%M') %> and should end at <%= (Time.now + downtime_length).utc.strftime('%H:%M') %> (UTC).</p>
+    </div>
+  <body>
+</html>

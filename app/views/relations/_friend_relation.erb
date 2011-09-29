@@ -1,0 +1,20 @@
+<tr>
+  <td class="picture"><%= character_picture_link(relation.character) %></td>
+  <td class="name"><%= character_name_link(relation.character) %></td>
+  <td class="level">
+    <span class="label"><%= Character.human_attribute_name("level") %></span>
+    <span class="value"><%= relation.level %></span>
+  </td>
+  <td class="controls">
+    <%= link_to_remote(button(:break),
+          :url      => relation_path(relation.character),
+          :method   => :delete,
+          :update   => :ajax,
+          :confirm  => t(".break.confirmation"),
+          :html     => {
+            :"data-click-once" => true,
+            :class => "delete button"
+          }
+        ) %>
+  </td>
+</tr>

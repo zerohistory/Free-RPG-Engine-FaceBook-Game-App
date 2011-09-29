@@ -1,0 +1,24 @@
+<% result_for :inventory_sell do |builder| %>
+  <% builder.success do %>
+    <%= t(".messages.success",
+          :amount     => @amount,
+          :item_name  => content_tag(:b, @amount > 1 ? @inventory.plural_name : @inventory.name)
+        ).html_safe %>
+  <% end %>
+
+  <h3><%= t(".you_received.title") %></h3>
+
+  <div class="payouts">
+    <%= payout(:basic_money, number_to_currency(@inventory.basic_money)) %>
+  </div>
+
+  <% builder.on_ready do %>
+    $('#inventory_list').html('<%= escape_javascript(render("list", :inventories => current_character.inventories)) %>');
+
+    <!--$('#inventory_fight_attributes').html('<%#= escape_javascript(render("characters/fight_attributes")) %>');-->
+
+    Character.initFightAttributes();
+
+    <%= ga_track_event('Items', 'Sold', "#{@item.name} (#{@item.availability})", @amount) %>
+  <% end %>
+<% end %>

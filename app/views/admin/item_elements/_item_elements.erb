@@ -1,0 +1,28 @@
+<div id="elements_list">
+<% unless item_elements.blank? %>
+  <table class="data" style="width: auto">
+    <tr>
+      <th><%= t(".elements.item") %></th>
+      <th><%= t(".elements.name") %></th>
+      <th><%= t(".elements.type") %></th>
+      <th><%= t(".elements.count") %></th>
+    </tr>
+    <% item_elements.each do |ie| %>
+      <tr id="item_element_#{ie.id}">
+        <td><%= Item.find(ie.item_id).name %></td>
+        <td><%= Element.find(ie.element_id).name %></td>
+        <td><%= ItemElement::TYPE[ie.effect_type] %>
+        <td><%= ie.count %></td>
+        <td>
+          <%= link_to_remote t(".delete_element"), 
+                :update => "elements_list", 
+                :url => admin_item_element_path(ie),
+                :method => :delete,
+                :confirm => t(".confirm_delete_element"),
+                :with => "'item_id=' + #{ie.item_id}" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+</div>

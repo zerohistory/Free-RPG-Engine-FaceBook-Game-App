@@ -1,0 +1,32 @@
+<div id="admin_menu">
+  <h2><%= t(".title") %></h2>
+
+  <%
+    [
+      [:character_types,  admin_character_types_path],
+      [:missions,         admin_missions_path, %w{missions mission_groups mission_levels}],
+      [:monster_types,    admin_monster_types_path],
+      [:items,            admin_items_path, %w{items item_groups}],
+      [:item_collections, admin_item_collections_path],
+      [:property_types,   admin_property_types_path],
+      [:titles,           admin_titles_path],
+      [:elements,         admin_elements_path],
+      [:element_interactions, admin_element_interactions_path],
+      [:tips,             admin_tips_path],
+      [:stories,          admin_stories_path],
+      [:global_payouts,   admin_global_payouts_path],
+      [:help_pages,       admin_help_pages_path],
+      [:translations,     admin_translations_path],
+      [:promotions,       admin_promotions_path],
+      [:statistics,       admin_statistics_path],
+      [:characters,       admin_characters_path],
+      [:skins,            admin_skins_path],
+      [:assets,           admin_assets_path],
+      [:settings,         admin_settings_path],
+      [:global_tasks,     admin_global_task_path],
+    ].each do |title, link, controllers| %>
+    <%= link_to(t(".#{title}"), link,
+          :class => "item %s" % (:current if controller_name == title.to_s || (Array.wrap(controllers).include?(controller_name)))
+        ) %>
+  <% end %>
+</div>

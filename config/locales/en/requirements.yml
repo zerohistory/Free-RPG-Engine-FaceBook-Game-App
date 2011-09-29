@@ -1,0 +1,103 @@
+en:
+  requirements:
+    attribute:
+      text: "%{amount} %{name}"
+    item:
+      name: "Item"
+      text: "%{name} X %{amount}"
+      shop_link_title: "Purchase %{item} from Shop"
+      missing: "Missing Item!"
+    title:
+      name: "Title"
+      text: "'%{name}' Title"
+    health_point:
+      name: "Health Points"
+      text: "%{amount} Health Points"
+    energy_point:
+      name: "Energy Points"
+      text: "%{amount} Energy Points"
+    stamina_point:
+      name: "Stamina Points"
+      text: "%{amount} Stamina Points"
+    upgrade_point:
+      name: "Upgrade Points"
+      text: "%{amount} Upgrade Points"
+    attack:
+      name: "Attack"
+      text: "%{amount} Attack Points"
+    defence:
+      name: "Defence"
+      text: "%{amount} Defence Points"
+    alliance:
+      name: "Alliance"
+      text: "%{amount} Alliance Members"
+    level:
+      name: "Level"
+      text: "Level %{required_value}+"
+    rejected_item:
+      name: "Rejected Item"
+      text: "Rejected item: %{name}"
+      rejects: "Rejects:"
+    rejected_property:
+      name: "Rejected Property"
+      text: "Rejected property: %{name}"
+      rejects: "Rejects:"
+
+    not_satisfied:
+      title:
+        message: "You don't have the '%{name}' title!"
+      level:
+        message: "You're not experienced enough! You should reach level %{required_value} before you can do this!"
+      alliance:
+        message: "You don't have enought members in your alliance. You need at least %{required_value} members. To get more members you can either %{invite} or %{premium}."
+        invite: "invite your friends"
+        premium: "hire mercenaries"
+      attack:
+        message: "Your attack level is lower than required. You need to get addition upgrade points to improve your attack to the required level. You can visit the %{premium_page} to get additional upgrade points."
+        premium_page: "Gem Market"
+      defence:
+        message: "Your defence level is lower than required. You need to get addition upgrade points to improve your defence to the required level. You can visit the %{premium_page} to get additional upgrade points."
+        premium_page: "Gem Market"
+        
+      energy_point:
+        restorable:
+          message: "You don't have enough energy! Take a rest until your energy will grow to %{required_value} points. You need to wait about %{restore_time} minutes."
+          get_more: "You can also visit the %{premium_page} to get a full energy refill."
+        low_base_level:
+          message: "Your energy level is lower than required. You need to get addition upgrade points to improve your energy to the required level. You can visit the %{premium_page} to get additional upgrade points."
+        premium_page: "Gem Market"
+        buttons:
+          refill: "Refill Energy"
+          get_points: "Get Points"
+
+      stamina_point:
+        restorable:
+          message: "You don't have enough stamina! Take a rest until your stamina will grow to %{required_value} points. You need to wait about %{restore_time} minutes."
+          get_more: "You can also visit the %{premium_page} to get a full stamina refill."
+        low_base_level:
+          message: "Your stamina level is lower than required. You need to get addition upgrade points to improve your stamina to the required level. You can visit the %{premium_page} to get additional upgrade points."
+        premium_page: "Gem Market"
+        buttons:
+          refill: "Refill Stamina"
+          get_points: "Get Points"
+
+      health_point:
+        restorable:
+          message: "You don't have enough health! Take a rest until your health will grow to %{required_value} points. You need to wait about %{restore_time} minutes."
+          get_more: "You can also visit the %{premium_page} to get a full health refill."
+        low_base_level:
+          message: "Your health level is lower than required. You need to get addition upgrade points to improve your health to the required level. You can visit the %{premium_page} to get additional upgrade points."
+        premium_page: "Gem Market"
+        buttons:
+          refill: "Refill Health"
+          get_points: "Get Points"
+
+      item:
+        message: "%{name} X %{amount}"
+        shop_link_title: "Purchase %{item} from Shop"
+        buy_missing: "You need %{amount} more. You can buy them from Shop for %{price}."
+        buttons:
+          buy: "Buy"
+
+      rejected_item:
+        message: "You have rejected item: {{rejected_item_name}}"

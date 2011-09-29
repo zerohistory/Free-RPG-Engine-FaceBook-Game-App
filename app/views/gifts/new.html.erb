@@ -1,0 +1,36 @@
+<%= title(t(".title")) %>
+
+<%= render "relations/buttons", :current => :send_gifts %>
+
+<div class="note"><%= t(".note", :hours => Setting.i(:gifting_repeat_accept_delay)) %></div>
+
+<div id="gift_form" class="clearfix">
+  <div class="gifts clearfix">
+    <% @items.each do |item| %>
+      <div class="gift">
+        <div class="image"><%= item_image(item, :medium) %></div>
+
+        <div class="name"><%= item.name %></div>
+
+        <div class="payouts">
+          <%= render "items/effects", :item => item %>
+        </div>
+
+        <div class="controls">
+          <%= link_to_function(button(:send), '', 
+                :'data-item-id' => item.id, 
+                :'data-message' => t('.request.message', :item => item.name, :app => t('app_name')),
+                :class => 'send button'
+              ) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% dom_ready do %>
+  $('#gift_form').giftForm({
+    request_title: '<%= t('.title') %>', 
+    request_callback_url: '<%= app_requests_path(:type => :gift) %>'
+  });
+<% end %>

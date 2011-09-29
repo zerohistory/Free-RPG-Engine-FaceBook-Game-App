@@ -1,0 +1,19 @@
+<div class="limit">
+  <% if item.left %>
+    <span class="amount_limit">
+      <%= t(".amount_limit", :amount => content_tag(:strong, item.left)).html_safe %>
+    </span>
+  <% end %>
+
+  <% if item.available_till %>
+    <span class="time_limit">
+      <%= t(".time_limit",
+            :amount => content_tag(:strong, "", :id => dom_id(item, :timer))
+          ).html_safe %>
+    </span>
+
+    <% dom_ready do %>
+      Timer.start('#<%= dom_id(item, :timer) %>', <%= item.time_left %>)
+    <% end %>
+  <% end %>
+</div>

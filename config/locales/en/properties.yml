@@ -1,0 +1,38 @@
+en:
+  properties:
+    create:
+      buttons:
+        publish: "Brag About It!"
+      messages:
+        success: "You successfully bought %{amount} of %{property_name}"
+      you_spent:
+        title: "You spent:"
+    index:
+      title: "My Properties"
+      note: "Properties bring you income, it's a great way to make additional money. Some properties take less time to pay out than others, so check back as often as possible to collect the take and maximize your income."
+    list:
+      name_with_level: "%{name}"
+      collect_all: "You have %{amount} properties ready for collection"
+      collect_in: "Collect in: %{value}"
+      buttons:
+        buy: "Buy"
+        upgrade: "Upgrade"
+        collect: "Collect"
+        collect_all: "Collect All"
+        gift: "Gift"
+    upgrade:
+      messages:
+        success: "You successfully upgraded %{property_name} to level %{level}"
+      you_spent:
+        title: "You spent:"
+    collect_money:
+      messages:
+        success_single: "You successfully collected %{basic_money} from your %{property_name}"
+        success_collection: "You successfully collected %{basic_money} from your properties"
+        failure: "You haven't collected anything"
+      you_received:
+        title: "You received:"
+
+    errors:
+      rejected_properties: "{{property_type}} rejects {{properties}}"
+      requirements_not_satisfied: "Requirements not satisfied"

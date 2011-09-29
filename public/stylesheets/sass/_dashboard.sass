@@ -1,0 +1,73 @@
+#dashboard
+  width: 100%
+
+  .profile
+    width: 250px
+    padding-right: 10px
+
+#newsfeed
+  .news
+    padding: 10px 0
+    border-bottom = !dashboard_newsfeed_border
+
+  .time
+    font-weight: bold
+    margin-bottom: 5px
+
+  .attribute
+    line-height: 20px
+    padding: 2px 0px 2px 21px
+    background-position: left center
+    background-repeat: no-repeat
+    font-weight: bold
+
+  .basic_money
+    background-image = !dashboard_newsfeed_basic_money_icon
+
+  .health
+    background-image = !dashboard_newsfeed_health_icon
+
+  .experience
+    background-image = !dashboard_newsfeed_experience_icon
+
+  .actor
+    width: 60px
+    text-align: left
+    float: left
+
+    img
+      border: 1px solid #d0d0d0
+
+  .subject
+    width: 60px
+    float: right
+    text-align: right
+
+    img
+      border: 1px solid #d0d0d0
+
+  .fight_result
+    .respond
+      +button(!dashboard_newsfeed_fight_respond_icon)
+
+  .description
+    margin: 0 60px
+
+    h3
+      padding: 0
+      margin: 0
+
+    .value
+      font-weight: bold
+
+    .title
+      font-size: 1em
+      text-align: left
+
+  .monster_fight_start
+    .attack
+      +button(!dashboard_newsfeed_monster_fight_start_icon)
+
+  .monster_fight_defeat
+    .reward
+      +button(!dashboard_newsfeed_monster_fight_defeat_icon)

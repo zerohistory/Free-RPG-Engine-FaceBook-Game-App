@@ -1,0 +1,5 @@
+<% dom_ready do %>
+  $('#assignments').html(<%= render('relations/assignments').to_json.html_safe %>);
+  
+  <%= ga_track_event('Alliance', 'Demoted', @assignment ? @assignment.role.titleize : 'All') %>
+<% end %>

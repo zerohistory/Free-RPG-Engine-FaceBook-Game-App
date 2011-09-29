@@ -1,0 +1,221 @@
+#alliance_buttons
+  margin-bottom: 15px
+
+  .button
+    float: left
+    width: auto
+    margin-right: 15px
+
+  .relations
+    +button(!alliance_buttons_relations_icon)
+
+  .invite
+    +button(!alliance_buttons_invite_icon)
+
+  .send_gifts
+    +button(!alliance_buttons_send_gifts_icon)
+
+  .accept_requests
+    +button(!alliance_buttons_accept_requests_icon)
+
+  .mercenaries
+    +button(!alliance_buttons_mercenaries_icon)
+
+#alliance_members
+  padding-right: 10px
+
+  td
+    padding: 5px
+    vertical-align: middle
+    border-bottom = !alliance_members_member_border
+
+  .picture
+    width: 55px
+
+  .level
+    width: 70px
+
+  .controls
+    width: 45%
+
+  .controls .delete
+    +button(!alliance_members_delete_icon)
+
+#assignments
+  width: 250px
+
+  b
+    font-size: 12px
+    display: block
+    margin-bottom: 10px
+
+  .position
+    padding-bottom: 5px
+    margin-bottom: 10px
+    border-bottom = !assignments_position_border
+
+  .effect
+    font-style: italic
+    font-size: 14px
+    margin-top: 5px
+
+  .description
+    font-style: italic
+
+  .controls
+    float: right
+    margin-top: -25px
+
+    .promote
+      +button(!assignments_promote_icon)
+
+    .demote
+      +button(!assignments_demote_icon)
+
+
+#new_assignment
+  table
+    width: 100%
+
+  .list
+    height: 250px
+    overflow: auto
+
+  .relations
+    margin-top: 10px
+    display: block
+
+    th
+      padding: 5px
+
+    td
+      cursor: pointer
+      vertical-align: middle
+      padding: 5px
+      border-bottom = !new_assignment_relation_border
+
+    .picture
+      width: 60px
+
+    .relations .name
+      padding-right: 10px
+
+    .selected
+      background-color = !new_assignment_selected_bg_color
+      font-weight: bold
+
+      td
+        padding: 4px
+        border:
+          top = !new_assignment_selected_border
+          bottom = !new_assignment_selected_border
+
+      .picture
+        border-left = !new_assignment_selected_border
+
+      .effect
+        border-right = !new_assignment_selected_border
+
+  .tabs
+    padding: 5px 0
+    border-bottom = !new_assignment_tabs_border
+
+    a
+      margin-right: 15px
+
+    .selected
+      font-weight: bold
+      font-size: 14px
+
+  .promote
+    +button(!assignments_promote_icon)
+    
+    
+.invitation_method
+  padding-bottom: 10px
+  margin-bottom: 10px
+  border-bottom = !invitation_form_type_border
+    
+  .invitation_text
+    margin: 15px
+    font-weight: bold
+    font-size: 16px
+    color = !invitation_form_text_color
+
+  &#users_to_invite
+    h2
+      margin: 15px 0
+  
+    .users
+      .user
+        float: left
+        margin: 0 10px 10px 0
+        border = !main_border
+        width: 150px
+        padding: 10px
+
+        .name
+          font-weight: bold
+          text-align: center
+          margin-bottom: 10px
+          height: 25px
+
+        .image
+          height: 105px
+          overflow: hidden
+          margin-bottom: 10px
+          text-align: center
+          
+        .invite
+          //margin: 0 auto
+          //+button(!invitation_form_invite_icon, !invitation_form_invite_width)
+          
+          .icon		  
+            background-image: url("/system/assets/000/000/244/original/publish.gif?1292330559")
+          
+    .controls
+      .invite
+        float: none
+        margin: 20px auto
+        +button(!invitation_form_invite_icon, !invitation_form_invite_other_width)
+        
+
+#invitation
+  td
+    padding: 5px
+    vertical-align: middle
+
+  .picture
+    width: 55px
+
+  .level
+    width: 70px
+
+  .controls
+    .accept
+      +button(!invitation_accept_icon)
+
+    .ignore
+      +button(!invitation_decline_icon)
+
+
+#invitation_result
+  background-image = !invitation_result_icon
+
+#app_request_list
+  td
+    padding-right: 20px
+    vertical-align: middle
+    
+  .controls
+    .accept
+      +button(!app_requests_accept_icon)
+
+    .send
+      +button(!app_requests_send_icon)
+
+    .alliance
+      +button(!app_requests_alliance_icon)
+
+    .fight
+      +button(!app_requests_fight_icon)

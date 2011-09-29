@@ -1,0 +1,6 @@
+<%= admin_title(t(".title", :name => @setting.alias)) %>
+
+<% form_for [:admin, @setting], :html => {:multipart => true} do |form| %>
+  <%= form.fields "payout_fields" %>
+  <%= form.submit_and_continue %>
+<% end %>

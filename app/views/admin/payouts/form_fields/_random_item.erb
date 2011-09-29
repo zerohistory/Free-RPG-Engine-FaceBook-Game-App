@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <td>
+      <%= form.select :item_set_id, ItemSet.all.to_dropdown, :include_blank => true %>
+      <%= form.check_box :shift_item_set %>
+    </td>
+    <td>OR</td>
+    <td>
+      <%= form.text_field :value, :size => 6, :autocomplete => :off %>
+      <%= form.select :availability, Item::AVAILABILITIES, :include_blank => "-- Any --" %>
+      <%= form.check_box :allow_vip %>
+    </td>
+  </tr>
+</table>

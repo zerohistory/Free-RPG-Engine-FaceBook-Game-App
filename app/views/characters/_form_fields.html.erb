@@ -1,0 +1,39 @@
+<% if form.object.new_record? or form.object.character_type.nil? %>
+  <%= form.hidden_field :character_type_id %>
+
+  <% if @character_types.size > 1 %>
+    <% types = capture do %>
+      <div id="character_types" class="clearfix">
+        <% @character_types.each do |type| %>
+          <% div_for(type, :value => type.id) do %>
+            <span class="name"><%= type.name %></span>
+            <%= image_tag(type.image.url(:small)) if type.image? %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% type_descriptions = capture do %>
+      <div id="character_type_descriptions" style="display:none;">
+        <% @character_types.each do |type| %>
+          <% content_tag :div, :class => :description, :id => dom_id(type, :description) do %>
+            <h3><%= type.name %></h3>
+            <p><%= type.description %></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= form.field :character_type, types, :after_field => type_descriptions, :label => t(".labels.character_type") %>
+
+    <% if type = form.object.character_type || @character_types.first %>
+      <% dom_ready do %>
+        CharacterForm.set_character_type('#<%= dom_id(type) %>')
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if form.object.new_record? or @allow_name %>
+  <%= form.text_field :name, :label => t(".labels.name") %>
+<% end %>

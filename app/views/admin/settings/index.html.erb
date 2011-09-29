@@ -1,0 +1,41 @@
+<%= admin_title(t(".title"), :settings) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_setting_path) %>
+  <%= link_to(t(".controls.new_payout"), new_admin_setting_path(:type => :payout)) %>
+</div>
+
+<% collection @settings do %>
+  <table id="setting_list" class="data">
+    <tr>
+      <th><%= Tip.human_attribute_name("alias") %></th>
+      <th><%= Tip.human_attribute_name("value") %></th>
+      <th></th>
+    </tr>
+    <% @settings.each do |setting| %>
+      <% group_header setting.alias.split("_").first do |group| %>
+        <tr>
+          <th colspan="3" class="subheader"><a name="<%= group %>"></a><%= group %></th>
+        </tr>
+      <% end %>
+
+      <tr>
+        <td><%= setting.alias %></td>
+        <td>
+          <% if setting.value.present? %>
+            <%= setting.payout? ? admin_payouts_preview(setting.payouts) : setting.value %>
+          <% else %>
+            <%= content_tag(:span, t(".empty_value"), :class => :empty) %>
+          <% end %>
+        </td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_setting_path(setting)) %>
+          <%= link_to(t(".controls.delete"), admin_setting_path(setting),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

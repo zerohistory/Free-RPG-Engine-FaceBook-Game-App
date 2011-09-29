@@ -1,0 +1,25 @@
+<% content_for :result do %>
+  <% result_for :promotion, :inline => true do |builder| %>
+    <% builder.notice do %>
+      <%= @promotion.text.html_safe %>
+    <% end %>
+
+    <h3><%= t(".you_received") %></h3>
+
+    <div class="payouts">
+      <%= payout_list(@promotion, @result.payouts) %>
+    </div>
+
+    <% if @promotion.forwardable? %>
+      <div class="forward">
+        <h3><%= t(".forward.title") %></h3>
+
+        <p><%= t(".forward.text", :app => t("app_name")).html_safe %></p>
+
+        <%= link_to_function(button(:publish), stream_dialog(:promotion, @promotion),
+              :class => "publish button"
+            ) %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

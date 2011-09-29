@@ -1,0 +1,78 @@
+#dialog
+  .disable_notification
+    clear: both
+    padding-top: 10px
+    text-align: right
+    font-size: 10px
+
+
+#level_up_notification
+  .text
+    margin-bottom: 15px
+
+  .button
+    float: left
+    margin-right: 15px
+
+  .continue
+    +button(!level_up_continue_icon)
+
+#friends_to_invite_notification
+  .users
+    .user
+      display: inline-block
+      height: 140px
+      width: 160px
+      text-align: center
+      
+      .name
+        font-weight: bold
+        margin-bottom: 5px
+      
+      .picture
+        height: 105px
+        overflow: hidden
+        
+        img
+          height: 100px
+          line-height: 100px
+          vertical-align: middle
+      
+  .invite
+    margin-right: 20px
+    +button(!friends_to_invite_invite_icon)
+        
+  .invite_other
+    +button(!friends_to_invite_invite_other_icon)
+    
+#send_gift_notification
+  .text
+    margin-bottom: 15px
+
+  .gifts
+    .gift
+      padding: 5px
+      float: left
+      margin: 0 10px 10px 0
+      width = !send_gift_item_width
+      height = !send_gift_item_height
+      border = !send_gift_item_border
+      
+      .name
+        font-weight: bold
+        font-size: 16px
+        margin-bottom: 10px
+        text-align: center
+
+      .image
+        margin: 0 auto 10px auto
+        width = !gifts_item_image_size
+        height = !gifts_item_image_size
+        
+      .send
+        margin: 0 auto
+        +button(!send_gift_send_icon, !send_gift_send_width)
+
+  .send_other
+    +button(!send_gift_send_icon)
+        

@@ -1,0 +1,3 @@
+<%= form.text_field :alias, :required => true %>
+
+<%= form.file_field :image, :after_field => form.attachment_preview(:image, :original) %>

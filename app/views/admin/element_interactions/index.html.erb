@@ -1,0 +1,24 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to t(".controls.new"), new_admin_element_interaction_path %>
+</div>
+
+<table id="element_interactions_list" class="data">
+  <tr>
+    <th><%= t(".attack_element") %></td>
+    <th><%= t(".defence_element") %></td>
+  </tr>
+  <% @interactions.each do |interaction| %>
+    <tr>
+      <td><%= Element.find_by_id(interaction.attack_element).name %></td>
+      <td><%= Element.find_by_id(interaction.defence_element).name %></td>
+      <td class="controls">
+        <%= link_to t(".controls.edit"), edit_admin_element_interaction_path(interaction) %>
+        <%= link_to t(".controls.delete"), admin_element_interaction_path(interaction),
+              :method => :delete,
+              :confirm => t(".controls.delete_confirm") %>
+      </td>
+    </tr>
+  <% end %>
+</table>

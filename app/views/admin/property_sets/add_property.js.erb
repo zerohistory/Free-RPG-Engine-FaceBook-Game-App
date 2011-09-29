@@ -1,0 +1,5 @@
+<% content = capture do %>
+  <%= render("property_fields", :property => @property, :frequency => 10) %>
+<% end %>
+
+$('#property_set').append('<%= escape_javascript(content) %>')

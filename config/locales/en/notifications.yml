@@ -1,0 +1,33 @@
+en:
+  notifications:
+    disable:
+      disable: "Don't show this message in the future"
+      confirm: "Are you sure you want to disable all %{type} notifications in the future?"
+
+    level_up:
+      title: "New Level!"
+      text: "You've gained enough experience to upgrade to the new level! You received %{point_amount} upgrade points that you can spend to increase your attributes. Go to %{upgrade} page and use your points as you wish. Additionally, your energy and health have been refilled."
+      upgrade_link: "upgrade"
+      buttons:
+        continue: "Continue"
+        upgrade: "Upgrade"
+
+    market_item_sold:
+      title: "Sold on Market!"
+      text: "You've successfully sold %{item} on the Market!"
+      you_received: "You received:"
+      
+    friends_to_invite:
+      title: "Recruit Friends To Your Alliance"
+      text: "These friends are not in your Alliance yet! Recruit them to make your Alliance stronger!"
+      suggested_users: "Suggested Users"
+      buttons:
+        invite: "Invite Them"
+        invite_other: "Invite Other Friends"
+        
+    send_gift:
+      title: "Send Free Gifts To Your Friends"
+      text: "You can send these items to your friends for free and they'll be able to send them back to you! Click 'Send' and choose whom to send the item:"
+      buttons:
+        send: "Send"
+        send_other: "Send Other Items"

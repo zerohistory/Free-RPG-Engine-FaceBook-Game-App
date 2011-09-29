@@ -1,0 +1,61 @@
+<%= title(t(".title")) %>
+
+<%= render "missions/buttons", :current => :monsters %>
+
+<% if @monsters.any? %>
+  <div id="current_monsters" class="monster_list clearfix">
+    <h2><%= t(".current.title") %></h2>
+
+    <% monster_list(@monsters) do |monster, fight| %>
+      <% content_tag_for :div, monster do %>
+        <div class="name"><%= monster.name %></div>
+
+        <div class="image"><%= link_to(monster_image(monster, :normal), monster) %></div>
+
+        <div class="status">
+          <% if monster.progress? %>
+            <%= t('.current.time_remaining') %>
+
+            <span class="timer"></span>
+
+            <% dom_ready do %>
+              Timer.start('#<%= dom_id(monster) %> .status .timer', <%= monster.time_remaining %>)
+            <% end %>
+          <% elsif monster.won? %>
+            <%= t('.current.won') %>
+          <% else %>
+            <%= t('.current.expired') %>
+          <% end %>
+        </div>
+
+        <div class="controls">
+          <% if monster.progress? %>
+            <%= link_to(button(:engage), monster, :class => "engage button") %>
+          <% elsif monster.expired? || !fight.reward_collectable? %>
+            <%= link_to(button(:view), monster, :class => "view button") %>
+          <% else %>
+            <%= link_to(button(:reward), monster, :class => "reward button") %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @monster_types.any? %>
+  <div id="available_monsters" class="monster_list clearfix">
+    <h2><%= t(".available.title") %></h2>
+
+    <% @monster_types.each do |type| %>
+      <div class="monster">
+        <div class="name"><%= type.name %></div>
+
+        <div class="image"><%= monster_image(type, :normal) %></div>
+
+        <div class="controls">
+          <%= link_to(button(:attack), new_monster_path(:monster_type_id => type), :class => "attack button") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

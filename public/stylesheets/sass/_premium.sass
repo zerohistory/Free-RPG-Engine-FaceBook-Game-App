@@ -1,0 +1,56 @@
+#current_vip_money
+  font-size: 18px
+  margin-bottom: 15px
+  text-align: center
+
+  .value
+    font-weight: bold
+    line-height: 22px
+    height: 22px
+    padding: 5px 0 5px 21px
+    background: 
+      image = !premium_current_vip_money_icon
+      position: center left
+      repeat: no-repeat
+
+
+#premia
+  margin:
+    left: auto
+    bottom: 15px
+    right: auto
+
+  td
+    vertical-align: middle
+    border-bottom = !premium_service_border
+    padding: 5px 10px
+
+  .name
+    width: 300px
+
+  .basic_money, .points
+    line-height: 22px
+    height: 22px
+    padding: 5px 0 5px 21px
+    font-weight: bold
+    background:
+      position: center left
+      repeat: no-repeat
+
+  .basic_money
+    background-image = !premium_basic_money_icon
+
+  .points
+    background-image = !premium_points_icon
+
+  .controls
+    text-align: center
+
+    .button
+      text-align: left
+      float: none
+      margin: auto
+      +button(!premium_accept_icon, !premium_accept_width)
+
+#premia_result
+  background-image = !premium_result_icon

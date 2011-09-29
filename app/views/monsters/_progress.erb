@@ -1,0 +1,63 @@
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="image">
+      <%= monster_image(monster, :large) %>
+    </td>
+
+    <td class="info">
+      <div class="timer">
+        <%= t(".timer") %>
+
+        <span class="value"></span>
+      </div>
+
+      <div class="health">
+        <%= monster_health_bar(monster) %>
+      </div>
+
+      <div class="controls clearfix">
+        <%= link_to_remote(button(:attack),
+              :url    => monster_path(monster),
+              :method => :put,
+              :update => :result,
+              :html   => {
+                :"data-click-once" => true,
+                :class => "attack button"
+              }
+            ) %>
+        
+        <%= link_to_function(button(:invite_request),
+              fb_request_dialog(:monster_invite,
+                :title    => t('.invitation.title'),
+                :message  => t('.invitation.message', :name => monster.name, :app => t('app_name')),
+                :data     => {
+                  :monster_id => monster.id
+                },
+                :params => {
+                  :monster_id => monster.id
+                }
+              ),
+              :class => "invite button"
+            ) %>
+
+        <%= link_to_function(button(:invite), stream_dialog(:monster_invite, monster),
+              :class => "invite button"
+            ) %>
+      </div>
+
+      <% payout_list(monster, monster.monster_type.payouts, :format => :preview, :triggers => fight.payout_triggers) do |p| %>
+        <div class="payouts clearfix">
+          <h3><%= MonsterType.human_attribute_name('payouts') %></h3>
+
+          <%= p.payout_list %>
+        </div>
+      <% end %>
+
+      <%= render('fighters', :monster => monster) %>
+    </td>
+  </tr>
+</table>
+
+<% dom_ready do %>
+  Timer.start('#monster .timer .value', <%= monster.time_remaining %>)
+<% end %>

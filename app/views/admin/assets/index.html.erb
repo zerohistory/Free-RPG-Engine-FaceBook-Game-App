@@ -1,0 +1,37 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_asset_path) %>
+</div>
+
+<% collection @assets do %>
+  <%= will_paginate @assets %>
+
+  <table id="asset_list" class="data">
+    <tr>
+      <th><%= Asset.human_attribute_name("alias") %></th>
+      <th><%= Asset.human_attribute_name("preview") %></th>
+      <th></th>
+    </tr>
+
+    <% @assets.each do |asset| %>
+      <tr>
+        <td class="alias"><%= link_to(asset.alias, edit_admin_asset_path(asset)) %></td>
+        <td class="preview"><%= image_tag(asset.image.url(:small)) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.view"), image_path(asset.image.url), :target => :_blank) %>
+          <%= link_to(t(".controls.edit"), edit_admin_asset_path(asset),
+                :class => :edit
+              ) %>
+          <%= link_to(t(".controls.delete"), admin_asset_path(asset),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm"),
+                :class    => :edit
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @assets %>
+<% end %>

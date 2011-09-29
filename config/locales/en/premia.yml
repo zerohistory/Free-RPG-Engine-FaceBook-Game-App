@@ -1,0 +1,56 @@
+en:
+  premia:
+    get_vip: "Earn"
+    show:
+      title: "Gem Market"
+      current:
+        label: "You have %{amount} gems"
+      hire_mercenary:
+        text: "Hire a mercenary to your Alliance"
+        button: "Hire"
+        maximum: "You have maximum Alliance"
+      exchange_money:
+        text: "Add %{amount} gold to your character"
+        button: "Add Gold"
+      refill_energy:
+        text: "Refill your energy"
+        button: "Refill"
+        full: "You have full energy"
+      refill_health:
+        text: "Refill your health"
+        button: "Refill"
+        full: "You have full health"
+      refill_stamina:
+        text: "Refill your stamina"
+        button: "Refill"
+        full: "You have full stamina"
+      reset_attributes:
+        text: "Reset character attributes"
+        button: "Reset"
+        confirm: "Are you sure you want to reset your character attributes? You'll need to re-assign all attributes when you'll get all your upgrade points back."
+      change_name:
+        text: "Change character name"
+        confirm: "Are you sure you want to change your name?"
+        button: "Change"
+      buy_points:
+        text: "Add %{amount} upgrade points to your character"
+        button: "Add Points"
+      reset_character:
+        text: "Reset character"
+        button: "Reset"
+        confirm: "Are you sure you want to reset your character?"
+    get_more_vip:
+      title: "How to Get More Gems"
+      text: "You can earn gems by completing offers. Check the offer list daily to complete new offers and receive gems every day. You can also buy as many gems as you need using a credit card, PayPal, etc."
+    update:
+      messages:
+        success:
+          exchange_money: "Gold have been added to your character!"
+          refill_energy: "Now you have maximum energy!"
+          refill_health: "Now you have maximum health!"
+          refill_stamina: "Now you have maximum stamina!"
+          buy_points: "Upgrade points have been added to your character!"
+          hire_mercenary: "You successfully hired new mercenary!"
+          reset_attributes: "You successfully reseted all attributes!"
+          change_name: "You were charged for changing the name! Please choose your new name."
+        failure: "You don't have enough Gems"

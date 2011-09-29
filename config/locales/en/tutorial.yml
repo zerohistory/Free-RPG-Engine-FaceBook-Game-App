@@ -1,0 +1,22 @@
+en:
+  tutorials:
+    block:
+      title: "Game Tutorial"
+      completed: "Completed!"
+      buttons:
+        continue: "Continue »"
+      step_1:
+        title: "Step 1: Your First Mission"
+        text: "The best way to become strong and famous is to fulfill missions. Take a look at the mission below. It's very simple and you'll be able to complete it easily. Do it!"
+      step_2:
+        title: "Step 2: Purchase a Weapon"
+        text: "You should be ready to fight with other players. But before you'll decide to attack someone, you need a weapon. This one is enough to start. Buy it and we'll proceed."
+      step_3:
+        title: "Step 3: Fight!"
+        text: "Attack other players to earn experience and gold. You can only attack people whose level is the same as yours or higher. Try to kill opponents with a higher level - you'll receive more experience. Attack opponents until you reach a new level."
+      step_4:
+        title: "Step 4: Upgrade Your Character"
+        text: "Every time you reach a new level or complete a mission you receive Upgrade Points. You can use these points to improve your attack and defence skills, health, or energy. Upgrade all these attributes to build a balanced character."
+      step_5:
+        title: "Step 5: Strengthen Your Alliance"
+        text: "The more people you have in your Alliance the more chances you have in every battle. You can promote your friends to certain positions and get additional bonuses. Invite some of your friends to make your Alliance stronger!"

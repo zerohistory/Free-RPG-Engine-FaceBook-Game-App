@@ -1,0 +1,30 @@
+<% result_for :property do |builder| %>
+  <% if @result %>
+    <% builder.success do %>
+      <% if @property %>
+        <%= t(".messages.success_single",
+              :basic_money    => Character.human_attribute_name("basic_money"),
+              :property_name  => content_tag(:b, @property.name)
+            ).html_safe %>
+      <% else %>
+        <%= t(".messages.success_collection",
+              :basic_money => Character.human_attribute_name("basic_money")
+            ).html_safe %>
+      <% end %>
+    <% end %>
+
+    <h3><%= t(".you_received.title") %></h3>
+
+    <div class="payouts">
+      <%= payout_list(@property, @result) %>
+    </div>
+
+    <% builder.on_ready do %>
+      $('#property_list').html(<%= render("list", :properties => @properties).to_json.html_safe %>);
+    <% end %>
+  <% else %>
+    <% builder.fail do %>
+      <%= t(".messages.failure") %>
+    <% end %>
+  <% end %>
+<% end %>

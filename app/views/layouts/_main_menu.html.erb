@@ -1,0 +1,98 @@
+<div id="menu_items">
+<ul id="<%= opts[:id] || "" %>" class="<%= opts[:class] || "" %>">
+
+
+
+<div id="co">
+
+
+<li class="missions"><%= link_to t(".missions"), 'mission_groups/show' %>
+<span class="img_val"><%= image_tag("/system/assets/000/000/276/original/missions.gif") %></span>
+</li>
+
+
+<li class="inventory"><%= link_to t(".inventories"), inventories_path %>
+<span class="img_val"><%= image_tag("/system/assets/000/000/281/original/inventory.gif") %></span>
+</li>
+
+
+ <li class="profile"><%= link_to t(".character"), character_path(current_character.key) %>
+ <span class="img_val"><%= image_tag("/system/assets/000/000/279/original/profile.gif") %></span>
+    <% if current_character.points > 0 %>
+      <%= link_to_remote t(".upgrade"),
+            :url => upgrade_character_path(:current),
+            :method => :get,
+            :update => :ajax,
+            :html => {
+              :class => :upgrade,
+              :style => "display: block;"
+      } %>
+    <% end %>
+	
+	
+ </li>
+ 
+
+   <li class="premium first"><%= link_to (t(".vip") + content_tag(:span,"", :class => :value)).html_safe, premium_path %></li>
+
+
+<li class="properties">
+    <div class="value_bar">
+    
+    </div>
+	  <span href="#" class="label"><%= link_to t(".properties"), properties_path  %></span>
+    <span href="#" class="label"></span>
+    <div class="timer"></div>
+  </li>
+
+
+
+
+<li class="energy">
+    <div class="value_bar">
+      <%= percentage_bar((current_character.ep.to_f/current_character.energy_points)*100, :show_percentage => false) %>
+    </div>
+    <span href="#" class="label"><%= Character.human_attribute_name("energy") %></span>
+    <span class="value"></span>
+    <div class="timer"></div>
+  </li>
+  
+  
+  
+  
+  <li class="health">
+    <div class="value_bar">
+      <%= percentage_bar((current_character.hp.to_f/current_character.health_points)*100, :show_percentage => false) %>
+    </div>
+    <span href="#" class="label"><%= Character.human_attribute_name("health") %></span>
+    <span class="value"></span>
+    <div class="timer"></div>
+  </li>
+  
+  
+
+  
+  <li class="stamina">
+    <div class="value_bar">
+      <%= percentage_bar((current_character.sp.to_f/current_character.stamina_points)*100, :show_percentage => false) %>
+    </div>
+    <span href="#" class="label"><%= Character.human_attribute_name("stamina") %></span>
+    <span class="value"></span>
+    <div class="timer"></div>
+  </li>
+  </div>
+
+
+
+  
+  
+  
+ <!-- <li class="premium first"><%#= link_to (t(".vip") + content_tag(:span,"", :class => :value)).html_safe, premium_path %></li>
+  	<li class="alliance">
+		<%#= link_to (t(".relations")  + content_tag(:span, current_character.relations.effective_size, :class => :value)).html_safe, relations_path %>
+	</li>-->
+ 
+  
+  
+</ul>
+</div>

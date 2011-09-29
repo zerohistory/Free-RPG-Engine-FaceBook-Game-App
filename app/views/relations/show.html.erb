@@ -1,0 +1,28 @@
+<%= title(t(".title")) %>
+
+<div class="note"><%= t(".note") %></div>
+
+<table id="invitation" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="picture"><%= character_picture_link(@character) %></td>
+    <td class="name"><%= character_name_link(@character) %></td>
+    <td class="level">
+      <%= Character.human_attribute_name("level") %>
+      <%= @character.level %>
+    </td>
+    <td class="controls">
+      <%= link_to(button(:ignore), root_path,
+            :class => "ignore button"
+          ) %>
+          
+      <%= link_to_remote(button(:accept),
+            :url    => relations_path(:character_id => @character.id),
+            :update => :result,
+            :html => {
+              :"data-click-once" => true,
+              :class  => "accept button"
+            }
+          ) %>
+    </td>
+  </tr>
+</table>

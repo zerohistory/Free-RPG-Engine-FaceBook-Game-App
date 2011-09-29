@@ -1,0 +1,146 @@
+<%= admin_title(t(".title")) %>
+
+<%= render "controls" %>
+
+<div class="data_filter clearfix">
+  <h2><%= t(".filter.title") %></h2>
+
+  <ul>
+    <li>
+      <% if @item_group.nil? %>
+        <strong><%= t(".filter.all_groups") %></strong>
+      <% else %>
+        <%= link_to(t(".filter.all_groups"), admin_items_path) %>
+      <% end %>
+    </li>
+
+    <% ItemGroup.without_state(:deleted).each do |group| %>
+      <li>
+        <% if group == @item_group %>
+          <strong><%= group.name %></strong>
+        <% else %>
+          <%= link_to(group.name, admin_item_group_items_path(group)) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <ul>
+    <li>
+      <% if @availability.nil? %>
+        <strong><%= t(".filter.all_availabilities") %></strong>
+      <% else %>
+        <%= link_to(t(".filter.all_availabilities"), :availability => nil) %>
+      <% end %>
+    </li>
+
+    <% Item::AVAILABILITIES.each do |availability| %>
+      <li>
+        <% if availability == @availability %>
+          <strong><%= availability.to_s.humanize %></strong>
+        <% else %>
+          <%= link_to(availability.to_s.humanize, :availability => availability) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<% collection @items do %>
+  <%= will_paginate @items %>
+
+  <table id="item_list" class="data">
+    <% @items.each do |item| %>
+      <% group_header item.item_group do |group| %>
+        <tr>
+          <th colspan="15" class="subheader"><%= group.name %></th>
+        </tr>
+        <tr>
+          <th><%= Item.human_attribute_name("image") %></th>
+          <th><%= Item.human_attribute_name("name") %></th>
+          <th><%= Item.human_attribute_name("availability") %></th>
+          <th><%= Item.human_attribute_name("level") %></th>
+          <th><%= Item.human_attribute_name("basic_price") %></th>
+          <th><%= Item.human_attribute_name("vip_price") %></th>
+          <th><%= Item.human_attribute_name("attributes") %></th>
+          <th><%= Item.human_attribute_name("elements") %></th>
+          <th><%= Item.human_attribute_name("usage_effects") %></th>
+          <th><%= Item.human_attribute_name("usage_type") %></th>
+          <th><%= Item.human_attribute_name("gift_props") %></th>
+          <th><%= Item.human_attribute_name("loss_props") %></th>
+          <th><%= Item.human_attribute_name("requirements") %></th>
+          <th><%= Item.human_attribute_name("owned") %></th>
+          <th><%= Item.human_attribute_name("state") %></th>
+          <th></th>
+        </tr>
+      <% end %>
+      <tr>
+        <td class="image"><%= item_image(item, :icon) if item.image? %></td>
+        <td class="name"><%= link_to(item.name, edit_admin_item_path(item)) %></td>
+        <td class="availability"><%= item.availability %></td>
+        <td class="level"><%= item.level %></td>
+        <td class="basic_price"><%= number_to_currency(item.basic_price) %></td>
+        <td class="vip_price"><%= number_to_currency(item.vip_price) %></td>
+        <td class="attributes">
+          <% item.effects.each do |effect, value| %>
+            <%= content_tag(:div, "%s: %d" % [Item.human_attribute_name(effect), value],
+                  :class => effect
+                ) %>
+          <% end %>
+        </td>
+        <td class="attributes">
+          <%= link_to "Edit", :controller => "item_elements", :item_id => item.id %>
+          <% unless item.item_elements.blank? %>
+            <% item.item_elements.each do |el| %>
+              <div><%= Element.find(el.element_id).name + "(" + ItemElement::TYPE[el.effect_type] + ")" + ": " + el.count.to_s %></div>
+            <% end %>
+          <% end %>
+        </td>
+        <td class="payouts">
+          <% if item.usable %>
+            <%= admin_payouts_preview(item.payouts) %>
+          <% else %>
+            <%= t(".not_usable") %>
+          <% end %>
+        </td>
+        <td class="usage_type"><%= item.usage_type %></td>
+        <td class="gift_props">
+          <% if item.can_be_gifted? %>
+            <%= Item.human_attribute_name("can_be_gifted") %><br/>
+            <%= "Gift cost: #{item.gift_cost} gems" %>
+          <% else %>
+            <%= Item.human_attribute_name("can_not_be_gifted") %>
+          <% end %>
+        </td>
+        <td class="loss_props">
+          <%= Item.human_attribute_name(item.can_be_lost? ? "can_be_lost" : "cannot_be_lost") %><br/>
+          <%= Item.human_attribute_name(item.can_be_found? ? "can_be_found" : "cannot_be_found") %>
+        </td>
+        <td class="requirements">
+          <%= admin_requirements_preview(item.requirements) %>
+        </td>
+        <td class="owned"><%= item.owned %></td>
+        <td class="state"><%= admin_state(item) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_item_path(item)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_item_path(item),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if item.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_item_path(item),
+                :method => :put
+              ) if item.can_hide? %>
+          <%= link_to(t(".controls.duplicate"), duplicate_admin_item_path(item),
+                :method => :put
+              ) %>
+          <%= link_to(t(".controls.delete"), admin_item_path(item),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) if item.can_mark_deleted? %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @items %>
+<% end %>

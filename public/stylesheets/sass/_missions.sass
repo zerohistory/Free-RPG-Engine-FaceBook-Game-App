@@ -1,0 +1,226 @@
+#mission_buttons
+  margin-bottom: 15px
+
+  .button
+    float: left
+    width: auto
+    margin-right: 15px
+
+  .missions
+    +button(!mission_buttons_missions_icon)
+
+  .monsters
+    +button(!mission_buttons_monsters_icon)
+
+// Mission group switcher
+
+#mission_group_list
+  .container
+    margin-left: 70px
+
+  .mission_group
+    text-align: center
+    width: 144px
+    height: 42px
+    white-space: nowrap
+    margin-right: 2px
+    line-height: 15px
+    background:
+      position: center -5px
+      repeat: no-repeat
+      image = !asset_mission_group
+    cursor: pointer
+
+    .name
+      margin-top: 10px
+      display: block
+      font-size: 24px
+      line-height: 15px
+      font-weight: bold
+
+    .level
+      padding-top: 3px
+
+    .icon
+      position: absolute
+      top: 6px
+
+    &.current
+      background-position: bottom center
+
+      a
+        color: #FFF
+
+    &.locked
+      color: #3A3A3A
+
+      a
+        color: #3A3A3A
+        text-decoration: none
+
+  .previous, .next
+    width: 66px
+    height: 42px
+    cursor: pointer
+    display: block
+    line-height: 40px
+
+    img
+      vertical-align: middle
+
+  .previous
+    float: left
+
+  .next
+    float: right
+
+
+#mission_list
+  .mission
+    margin-bottom: 24px
+
+  .mission, .mission .description, .mission .controls
+    overflow: hidden
+    zoom: 1
+
+  .mission
+    .name
+      height: 30px
+      color: #FFF
+      line-height: 33px
+      background: 0 0 no-repeat
+      background-image = !asset_wood_header
+      padding-left: 15px
+      margin-bottom: 10px
+    a
+      &:hover
+      text-decoration: none: 33px
+      padding: 0 17px
+      margin-bottom: 13px
+
+    .info
+      float: left
+      width: 500px
+
+    .image
+      float: left
+      width: 160px
+      text-align: center
+
+    .progress
+      float: left
+      padding-top: 5px
+
+    .level
+      font-weight: bold
+
+    .percentage_bar
+      display: inline-block
+      overflow: show
+      vertical-align: middle
+      margin: 0 10px
+
+      div
+        display: inline-block
+
+      .lc, .rc
+        background-position: 0 -5px
+        height: 23px
+        top: -3px
+
+    .fulfill
+      float: right
+
+    .button
+      .icon
+        background: center center no-repeat
+        background-image = !asset_icons_stamina
+
+    .details
+      float: right
+      width: 210px
+
+      .value
+        margin-right: 10px
+        font-weight: bold
+
+      .payouts
+        border-bottom: 1px solid #A68145
+        padding-bottom: 10px
+
+      .requirements
+        border-top: 1px solid #E4BF88
+        padding-top: 10px
+
+#mission_result
+  background-image = !mission_result_icon
+
+  .spent
+    b
+      width: 55px
+
+    .zero
+      .value !asset_bg_cont
+        font-weight: bold
+        color = !mission_result_zero_spending_color
+        font-size: 14px
+
+      .relation
+        padding-left: 10px
+
+  .button
+    clear: right
+    float: right
+
+  .fulfill_again
+    +button(!mission_result_fulfill_again_icon)
+
+  .request_help
+    +button(!mission_result_request_help_icon)
+
+  .progress
+    .progress_bar
+      width: 150px
+
+  .child_missions
+    margin: 15px 0
+
+    .child
+      line-height: 22px
+      padding-left: 23px
+      background:
+        image = !mission_result_child_mission_icon
+        position: center left
+        repeat: no-repeat
+      margin-bottom: 15px
+
+#mission_dialog
+  .image
+    float: right
+    margin-left: 15px
+
+  .continue
+    +button(!mission_dialog_continue_icon)
+    
+#mission_help_result
+  background-image = !mission_help_result_icon
+
+  .continue
+    +button(!mission_help_result_continue_icon)
+    
+#mission_help_list
+  border = !mission_help_list_border
+  margin: 15px 0
+  padding: 10px
+  
+  table 
+    width: 600px
+    
+  .helpers
+    width: 50%
+
+  .collect
+    +button(!mission_help_list_collect_icon)
+    
+#mission_help_reward_result
+  background-image = !mission_help_reward_result_icon

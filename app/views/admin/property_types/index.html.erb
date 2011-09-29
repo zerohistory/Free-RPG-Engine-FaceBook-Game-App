@@ -1,0 +1,86 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_property_type_path) %>
+  <%= link_to(t(".controls.property_sets"), admin_property_sets_path) %>
+</div>
+
+<% collection @types do %>
+  <%= will_paginate @types %>
+
+  <table id="property_type_list" class="data">
+    <tr>
+      <th><%= PropertyType.human_attribute_name("image") %></th>
+      <th><%= PropertyType.human_attribute_name("name") %></th>
+      <th><%= PropertyType.human_attribute_name("availability") %></th>
+      <th><%= PropertyType.human_attribute_name("level") %></th>
+      <th><%= PropertyType.human_attribute_name("basic_price") %></th>
+      <th><%= PropertyType.human_attribute_name("vip_price") %></th>
+      <th><%= PropertyType.human_attribute_name("income") %></th>
+      <th><%= PropertyType.human_attribute_name("upgrade_limit") %></th>
+      <th><%= PropertyType.human_attribute_name("gift_props") %></th>
+      <th><%= PropertyType.human_attribute_name("loss_props") %></th>
+      <th><%= PropertyType.human_attribute_name("requirements") %></th>
+      <th><%= PropertyType.human_attribute_name("owned") %></th>
+      <th><%= PropertyType.human_attribute_name("state") %></th>
+      <th></th>
+    </tr>
+    <% @types.each do |type| %>
+      <tr>
+        <td class="image"><%= image_tag(type.image.url(:icon)) if type.image? %></td>
+        <td class="name"><%= link_to(type.name, edit_admin_property_type_path(type)) %></td>
+        <td class="availability"><%= type.availability %></td>
+        <td class="level"><%= type.level %></td>
+        <td class="basic_price"><%= number_to_currency(type.basic_price) %></td>
+        <td class="vip_price"><%= number_to_currency(type.vip_price) %></td>
+        <td class="income">
+          <%= number_to_currency(type.income) %>
+          <%= "(#{t(".auto_collect")})" if type.auto_collect %>
+        </td>
+        <td class="limit">
+          <% if type.upgrade_limit %>
+            <%= type.upgrade_limit %>
+          <% else %>
+            <span class="default"><%= Setting.i(:property_upgrade_limit) %></span>
+          <% end %>
+        </td>
+        <td>
+          <% if type.can_be_gifted %>
+            <%= t(".gift.can_be") %><br/>
+            <%= t(".gift.cost", :cost => type.gift_cost) %>
+          <% else %>
+            <%= t(".gift.cant_be") %>
+          <% end %>
+        </td>
+        <td>
+          <%= type.can_be_lost ? t(".can_be_lost") : t(".cannot_be_lost") %><br/>
+          <%= type.can_be_found ? t(".can_be_found") : t(".cannot_be_found") %>
+        </td>
+        <td class="requirements">
+          <%= admin_requirements_preview(type.requirements) %>
+        </td>
+        <td><%= type.properties.size %></td>
+        <td class="state"><%= admin_state(type) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_property_type_path(type)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_property_type_path(type),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if type.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_property_type_path(type),
+                :method => :put
+              ) if type.can_hide? %>
+          <%= link_to(t(".controls.duplicate"), duplicate_admin_property_type_path(type),
+                :method => :put
+              ) %>
+          <%= link_to(t(".controls.delete"), admin_property_type_path(type),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) if type.can_mark_deleted? %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @types %>
+<% end %>

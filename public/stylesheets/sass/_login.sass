@@ -1,0 +1,96 @@
+
+#char_select
+  width: 547px
+  position: absolute
+  left: 120px
+  top: 200px
+  
+  h2
+    font-family: "ParchmentMFRegular"
+    text-align: center
+    color: #3C2400
+    font-size: 30px
+    margin-top: 0
+    margin-bottom: 0
+
+#selector
+  width: 547px
+  text-align: center
+
+  .next
+    float: right
+    width: 33px
+    height: 33px
+    background-image = !asset_next
+    cursor: pointer
+    margin-top: 95px
+
+  .prev
+    float: left
+    width: 33px
+    height: 33px
+    background-image = !asset_prev
+    cursor: pointer
+    margin-top: 95px
+  
+  .char
+    display: none
+    margin: 0 auto
+
+  .current
+    display: block
+
+  .name
+    font-weight: bold
+    margin-top: 5px
+    font-size: 30px
+
+#fields
+  font-family: "ParchmentMFRegular"
+  #name
+    margin-left: 40px
+    margin-top: 10px
+
+    label
+      display: block
+      font-size: 30px
+      color: black
+
+    input
+      width: 200px
+
+  #submit
+    margin-right: 209px
+    margin-top: 27px
+    padding: 0
+
+#fields
+  #submit
+    .tribe_button
+      img
+        vertical-align: middle
+        margin: 3px 5px 3px 0
+
+      display: block
+      height: 30px
+      background: top right no-repeat
+      background-image = !asset_button
+      padding: 0 20px 0 0
+      position: relative
+      text-decoration: none
+      color: #FFF
+      font-size: 24px
+      line-height: 36px
+      text-transform: uppercase
+      margin-left: 20px
+      top: -2px
+
+      .side
+        display: block
+        float: left
+        height: 30px
+        width: 20px
+        position: relative
+        margin-left: -20px
+        background: top left no-repeat
+        background-image = !asset_button

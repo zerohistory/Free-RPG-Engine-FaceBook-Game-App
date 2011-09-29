@@ -1,0 +1,48 @@
+<table class="payouts" cellspacing="0" cellpadding="0">
+  <tr>
+    <% if result.received_something? %>
+      <td class="received">
+        <h3><%= t(".you_received.title") %></h3>
+
+        <%= payout(:experience, result.experience) if result.experience %>
+
+        <%= payout(:basic_money, number_to_currency(result.money)) if result.money %>
+
+        <%= payout_list(result, result.payouts) %>
+      </td>
+    <% end %>
+
+    <td class="spent">
+      <h3><%= t(".you_spent.title") %></h3>
+
+      <% if result.free_fulfillment? and relation = current_character.assignments.by_role(:mission_energy).relation %>
+        <% payout("energy zero", 0, :label => Character.human_attribute_name("energy")) do %>
+          <span class="relation">
+            <%= t(".you_spent.zero_energy",
+                  :user => relation.is_a?(FriendRelation) ? character_name_link(relation.character) : relation.name
+                ).html_safe %>
+          </span>
+        <% end %>
+      <% else %>
+        <%= payout(:energy, result.energy) %>
+      <% end %>
+
+      <% if result.boost %>
+        <div class="boost">
+          <h3><%= t(".you_spent.boost") %></h3>
+
+          <%= builder.render("payouts/result/item",
+            :payout => result.boost
+          ) %>
+        </div>
+      <% end %>
+
+      <%= payout_list(result, result.payouts, :action => :remove) %>
+    </td>
+    <td class="progress">
+      <h3><%= t(".progress.title") %></h3>
+
+      <%= mission_progress(result.level_rank) %>
+    </td>
+  </tr>
+</table>

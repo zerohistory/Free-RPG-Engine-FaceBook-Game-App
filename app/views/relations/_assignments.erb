@@ -1,0 +1,55 @@
+<h2><%= t(".title") %></h2>
+
+<% Assignment::ROLES.each do |role| %>
+  <div class="position">
+    <b><%= t("assignments.roles.#{role}.title") %></b>
+
+    <% if assignment = current_character.assignments.by_role(role) %>
+      <div class="controls">
+        <%= link_to_remote(button(:demote),
+              :url    => assignment_path(assignment),
+              :method => :delete,
+              :update => :ajax,
+              :confirm  => t(".buttons.demote_confirm"),
+              :html   => {
+                :"data-click-once" => true,
+                :class => "demote button"
+              }
+            ) %>
+      </div>
+
+      <%= render assignment %>
+    <% else %>
+      <div class="controls">
+        <%= link_to_remote(button(:promote),
+              :url    => new_character_assignment_path(current_character, :role => role),
+              :method => :get,
+              :update => :ajax,
+              :html   => {:class => "promote button"}
+            ) %>
+      </div>
+
+      <div class="description">
+        <%= t("assignments.roles.#{role}.description") %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% if current_character.assignments.any? %>
+  <div class='position'>
+    <b>&nbsp;</b>
+    <div class='controls'>
+      <%= link_to_remote(button(:demote_all),
+            :url    => assignment_path(:all),
+            :method => :delete,
+            :update => :ajax,
+            :confirm => t('.buttons.demote_all_confirm'),
+            :html => {
+              :class => 'demote button',
+            }
+          ) %>
+    </div>
+    <div class='clearfix'></div>
+  </div>
+<% end %>

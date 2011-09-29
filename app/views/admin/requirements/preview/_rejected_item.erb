@@ -1,0 +1,6 @@
+<% content_tag :div, :class => requirement.name do %>
+  <%= ("#{t("requirements.rejected_item.rejects")} %s %s" % [
+      (requirement.item.visible? ? '' : content_tag(:span, admin_state(requirement.item), :class => :state)),
+      requirement.item.name,
+    ]).html_safe %>
+<% end %>

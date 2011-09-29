@@ -1,0 +1,32 @@
+<% result_for :property do |builder| %>
+  <% if @property.errors.empty? %>
+    <% builder.buttons do %>
+      <%= link_to_function(button(:publish), stream_dialog(:property, @property),
+            :class => "publish button"
+          ) %>
+    <% end %>
+
+    <% builder.success do %>
+      <%= t(".messages.success",
+            :amount         => @amount,
+            :property_name  => content_tag(:b, @property.name)
+          ).html_safe %>
+    <% end %>
+
+    <h3><%= t(".you_spent.title") %></h3>
+
+    <div class="payouts">
+      <%= payout(:basic_money, number_to_currency(@property.basic_price)) if @property.basic_price > 0 %>
+      <%= payout(:vip_money, number_to_currency(@property.vip_price)) if @property.vip_price > 0 %>
+    </div>
+
+    <% builder.on_ready do %>
+      $('#property_list').html('<%= escape_javascript(render("list", :properties => @properties)) %>');
+    <% end %>
+  <% else %>
+    <% builder.fail do %>
+      <%= @property.errors.on(:character) %>
+      <%= @property.errors.on(:property_type) %>
+    <% end %>
+  <% end %>
+<% end %>

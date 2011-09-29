@@ -1,0 +1,61 @@
+<%= title(t(".title")) %>
+
+<%= render "inventories/buttons", :current => :market %>
+
+<% collection(@items) do %>
+  <table id="market_item_list">
+    <% @items.each do |item| %>
+      <% content_tag_for(:tr, item) do %>
+        <td class="picture"><%= item_image(item, :small) %></td>
+        <td class="info">
+          <div class="name"><%= item.name %> X <%= item.amount %></div>
+          <div class="description"><%= item.description %></div>
+        </td>
+        <td class="payouts">
+          <%= render "items/effects", :item => item %>
+        </td>
+        <td class="requirements">
+          <h3><%= MarketItem.human_attribute_name("price") %></h3>
+
+          <% if item.price? %>
+            <%= attribute_requirement(:basic_money, number_to_currency(item.basic_price)) if item.basic_price > 0 %>
+            <%= vip_money_requirement(item.vip_price) if item.vip_price > 0 %>
+          <% else %>
+            <strong><%= t(".free") %></strong>
+          <% end %>
+        </td>
+        <td class="seller">
+          <h3><%= MarketItem.human_attribute_name("character") %></h3>
+
+          <%= character_picture_link(item.character) %>
+          <%= character_name_link(item.character) %>
+        </td>
+        <td class="controls">
+          <% if item.character == current_character %>
+            <%= link_to_remote(button(:delete),
+                  :url    => market_item_path(item),
+                  :method => :delete,
+                  :update => :result,
+                  :confirm => t(".buttons.delete_confirm"),
+                  :html   => {
+                    :"data-click-once" => true,
+                    :class => "delete button"
+                  }
+                ) %>
+          <% else %>
+            <%= link_to_remote(button(:buy),
+                  :url    => buy_market_item_path(item),
+                  :update => :result,
+                  :html   => {
+                    :"data-click-once" => true,
+                    :class => "buy button"
+                  }
+                ) %>
+          <% end %>
+        </td>
+      <% end %>
+    <% end %>
+  </table>
+
+  <%= will_paginate @items %>
+<% end %>

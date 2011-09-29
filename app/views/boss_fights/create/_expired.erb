@@ -1,0 +1,27 @@
+<table class="details expired" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="character">
+      <%= render("boss_fights/create/character",
+            :fight    => fight,
+            :picture  => :small
+          ) %>
+    </td>
+    <td class="middle">
+      <div class="result">
+        <%= t(".messages.result",
+              :boss => content_tag(:span, fight.boss.name, :class => :boss)
+            ).html_safe %>
+      </div>
+    </td>
+    <td class="boss">
+      <%= render("boss_fights/create/boss",
+            :fight    => fight,
+            :picture  => :normal
+          ) %>
+    </td>
+  </tr>
+</table>
+
+<% dom_ready do %>
+  $(document).trigger('boss.expired', <%= fight.id %>);
+<% end %>

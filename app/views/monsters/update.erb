@@ -1,0 +1,109 @@
+<% result_for(:monster) do |builder| %>
+  <% if @attack_result %>
+    <% if @fight.monster.progress? %>
+      <% builder.buttons do %>
+        <%= link_to_remote(button(:attack),
+              :url    => monster_path(@fight.monster),
+              :method => :put,
+              :update => :result,
+              :html   => {
+                :"data-click-once" => true,
+                :class => "attack button"
+              }
+            ) %>
+      <% end %>
+
+      <% builder.success do %>
+        <%= t(".message.progress", :monster => content_tag(:strong, @fight.monster.name)).html_safe %>
+      <% end %>
+      
+      <% builder.on_ready do %>
+        <%= ga_track_event('Monsters', 'Attack', @fight.monster.name, @fight.monster_damage) %>
+      <% end %>
+    <% elsif @fight.monster.won? %>
+      <% dialog :id => :monster_dialog do %>
+        <h2><%= t('.dialog.title', :monster => @fight.monster.name) %></h2>
+
+        <div class="image"><%= monster_image(@fight.monster, :small) %></div>
+
+        <p><%= t('.dialog.message', :monster => content_tag(:strong, @fight.monster.name)).html_safe %></p>
+
+        <div class="buttons">
+          <%= link_to_function(button(:continue),
+                stream_dialog(:monster_defeated, @fight.monster) + "$.dialog.close()",
+                :class => "continue button"
+              ) %>
+        </div>
+      <% end %>
+
+      <% builder.buttons do %>
+        <%= link_to_function(button(:publish),
+              stream_dialog(:monster_defeated, @fight.monster) + "$.dialog.close()",
+              :class => "publish button"
+            ) %>
+      <% end %>
+
+      <% builder.success do %>
+        <%= t(".message.won", :monster => content_tag(:strong, @fight.monster.name)).html_safe %>
+      <% end %>
+
+      <% builder.on_ready do %>
+        <%= ga_track_event('Monsters', 'Won', @fight.monster.name) %>
+      <% end %>
+    <% end %>
+
+    <table class="payouts">
+      <tr>
+        <td class="received">
+          <h3><%= t(".you_received") %></h3>
+
+          <%= payout(:experience, @fight.experience) %>
+
+          <%= payout(:basic_money, number_to_currency(@fight.money)) %>
+        </td>
+
+        <td class="spent">
+          <h3><%= t(".you_spent") %></h3>
+
+          <%= payout(:hp, @fight.character_damage) %>
+
+          <%= payout(:sp, @fight.stamina) %>
+        </td>
+
+        <td class="monster_spent">
+          <h3><%= t(".monster_spent") %></h3>
+
+          <%= payout(:hp, @fight.monster_damage) %>
+        </td>
+      </tr>
+    </table>
+  <% elsif @fight.monster.expired? %>
+    <% builder.fail do %>
+      <%= t(".message.expired", :monster => @fight.monster.name).html_safe %>
+    <% end %>
+
+    <% builder.on_ready do %>
+      <%= ga_track_event('Monsters', 'Expired', @fight.monster.name) %>
+    <% end %>
+  <% elsif @fight.character.weak? %>
+    <%= builder.render("requirements/not_satisfied/health_point",
+          :requirement => current_character.weakness_requirement
+        ) %>
+
+    <% builder.on_ready do %>
+      <%= ga_track_event('Monsters', 'Not Enough Health') %>
+    <% end %>
+  <% elsif @fight.character.sp == 0 %>
+    <%= builder.render("requirements/not_satisfied/stamina_point",
+          :requirement => @fight.stamina_requirement
+        ) %>
+
+    <% builder.on_ready do %>
+      <%= ga_track_event('Monsters', 'Not Enough Stamina') %>
+    <% end %>
+  <% end %>
+
+  <% builder.on_ready do %>
+    $('#monster').html(<%= render(@fight.monster.state, :monster => @fight.monster, :fight => @fight).to_json.html_safe %>);
+  <% end %>
+<% end %>

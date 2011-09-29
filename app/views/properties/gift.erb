@@ -1,0 +1,5 @@
+<%= render :partial => "shared/gift",
+           :locals => {:gift => {:name => @property.name, :url => gift_property_url(@property), :item => @property.property_type},
+                       :amount => @amount,
+                       :cost => @cost,
+                       :can_make_gift => @can_make_gift }%>

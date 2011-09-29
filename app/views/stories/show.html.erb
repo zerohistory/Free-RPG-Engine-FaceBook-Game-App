@@ -1,0 +1,20 @@
+<% content_for :result do %>
+  <% result_for :story, :inline => true do |builder| %>
+    <% builder.success do %>
+      <%= (
+            @story.interpolate(:payout_message, :app => content_tag(:strong, t('app_name'))) ||
+            t('stories.default.payout_message', :app => content_tag(:strong, t('app_name')))
+          ).html_safe %>
+    <% end %>
+    
+    <% builder.buttons do %>
+      <%= link_to(button(:continue), @next_page, :target => :_top, :class => 'continue button') %>
+    <% end %>
+
+    <div class="payouts">
+      <h3><%= t(".you_received") %></h3>
+
+      <%= payout_list(@story, @payouts) %>
+    </div>
+  <% end %>
+<% end %>

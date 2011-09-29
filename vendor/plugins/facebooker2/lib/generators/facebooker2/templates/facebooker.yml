@@ -1,0 +1,17 @@
+development:
+  app_id: <your application id>
+  secret: <your application secret>
+  api_key: <your application key>
+  callback_url: <your callback url>
+<% if application_type == 'canvas' -%>
+  canvas_page_name: <your canvas page name>
+<% end -%>
+
+production:
+  app_id: <your application id>
+  secret: <your application secret>
+  api_key: <your application key>
+  callback_url: <your callback url>
+<% if application_type == 'canvas' -%>
+  canvas_page_name: <your canvas page name>
+<% end -%>

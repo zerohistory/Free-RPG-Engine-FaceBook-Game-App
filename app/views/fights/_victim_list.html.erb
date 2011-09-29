@@ -1,0 +1,31 @@
+<table id="victim_list" cellspacing="0" cellpadding="0">
+  <tr>
+    <th colspan="2"><%= Character.human_name %></th>
+    <th><%= Character.human_attribute_name("level") %></th>
+    <th><%= Character.human_attribute_name("relations_count") %></th>
+  </tr>
+  <% victims.each do |victim| %>
+    <tr class="character" id="<%= dom_id(victim) %>">
+      <td class="picture"><%= character_picture_link(victim) %></td>
+      <td class="name"><%= character_name_link(victim) %></td>
+      <td class="level"><%= victim.level %></td>
+      <td class="relations">
+        <% if victim.relations.effective_size > current_character.relations.effective_size %>
+          <span class="larger"><%= victim.relations.effective_size %></span>
+        <% else %>
+          <%= victim.relations.effective_size %>
+        <% end %>
+      </td>
+      <td class="controls">
+        <%= link_to_remote(button(:attack),
+              :url    => fights_path(:victim_id => victim.id),
+              :update => :result,
+              :html   => {
+                :"data-click-once" => true,
+                :class => "button attack_victim"
+              }
+            ) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

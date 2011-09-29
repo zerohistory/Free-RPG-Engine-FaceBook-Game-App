@@ -1,0 +1,8 @@
+Description:
+    Generate config file, initializer and add required code into ApplicationController and routes.rb
+    Use 'canvas' parameter if you plan to create canvas application.
+
+Example:
+    rails generate facebooker2
+    rails generate facebooker2 regular
+    rails generate facebooker2 canvas

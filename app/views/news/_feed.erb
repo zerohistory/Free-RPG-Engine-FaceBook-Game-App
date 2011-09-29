@@ -1,0 +1,17 @@
+<div class="newsfeed" id="newsfeed">
+  <h3>
+    <%= character == current_character ?
+            t(".title_my") :
+            t(".title", :user => character_name(character, :possessive => true)) %>
+  </h3>
+
+  <% collection(character.news.latest(10)) do |newsfeed| %>
+    <% newsfeed.each do |news| %>
+      <% content_tag(:div, :class => [news.type_name, :news, :clearfix].join(' ')) do %>
+        <div class="time"><%= l(news.created_at, :format => :short) %>:</div>
+
+        <%= render "news/#{news.type_name}", :news => news %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

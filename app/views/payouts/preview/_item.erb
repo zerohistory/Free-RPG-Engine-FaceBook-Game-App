@@ -1,0 +1,6 @@
+<%= payout(:item, item_image(payout.item, :icon),
+      :label => t("payouts.item.label",
+        :name   => content_tag(:span, payout.item.name, :class => :name),
+        :amount => payout.amount
+      ).html_safe
+    ) %>

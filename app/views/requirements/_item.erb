@@ -1,0 +1,46 @@
+<% requirement(requirement.name, satisfied) do %>
+  <% if [:shop, :special].include?(requirement.item.availability) && !satisfied %>
+    <% link = capture do %>
+      <span class="image">
+        <%= item_image(requirement.item, :icon,
+              :alt    => t(".shop_link_title", :item => requirement.item.plural_name),
+              :title  => t(".shop_link_title", :item => requirement.item.plural_name)
+            ) %>
+      </span>
+
+      <span class="label">
+        <%= t(".text",
+              :name   => content_tag(:span, requirement.item.name, :class => :value),
+              :amount => requirement.amount
+            ).html_safe %>
+      </span>
+    <% end %>
+
+    <p>
+      <%= link_to_remote(link,
+            :url    => new_inventory_path(
+              :item_id  => requirement.item,
+              :amount   => requirement.missing_amount(current_character)
+            ),
+            :method => :get,
+            :update => :ajax,
+            :html => {
+              :title => t(".shop_link_title", :item => requirement.item.plural_name)
+            }
+          ) %>
+    </p>
+  <% else %>
+    <p>
+      <span class="image">
+        <%= item_image(requirement.item, :icon) %>
+      </span>
+
+      <span class="label">
+        <%= t(".text",
+              :name   => content_tag(:span, requirement.item.name, :class => :value),
+              :amount => requirement.amount
+            ).html_safe %>
+      </span>
+    </p>
+  <% end %>
+<% end %>

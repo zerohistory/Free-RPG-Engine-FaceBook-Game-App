@@ -1,0 +1,10 @@
+en:
+  wall_posts:
+    form:
+      title: "Add your comment:"
+      buttons:
+        submit: "Publish"
+    list:
+      controls:
+        remove: "Remove"
+        remove_confirm: "Are you sure you want to remove this comment?"

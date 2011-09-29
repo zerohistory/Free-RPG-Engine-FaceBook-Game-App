@@ -1,0 +1,10 @@
+<% if Setting.i(:character_relations_per_equipment_slot) != 0 %>
+<div class="note">
+  <p><%= t(".text") %></p>
+  <p>
+    <%= t(".placements",
+          :amount => content_tag(:span, Setting.i(:character_relations_per_equipment_slot), :class => :value)
+        ).html_safe %>
+  </p>
+</div>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="fighters">
+  <h3><%= t(".title") %></h3>
+
+  <% monster.monster_fights.top_damage.each do |fight| %>
+    <div class="fighter clearfix">
+      <div class="damage"><%= fight.damage %></div>
+      <div class="name"><%= character_name_link(fight.character) %></div>
+    </div>
+  <% end %>
+</div>

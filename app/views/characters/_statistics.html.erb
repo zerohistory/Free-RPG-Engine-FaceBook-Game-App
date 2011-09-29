@@ -1,0 +1,38 @@
+<table class="character_statistics" cellspacing="0" cellpadding="0">
+  <tr class="fights_won">
+    <th><%= Character.human_attribute_name("fights_won") %></th>
+    <td class="value">
+      <%= character.fights_won %>
+    </td>
+  </tr>
+  <tr class="fights_lost">
+    <th><%= Character.human_attribute_name("fights_lost") %></th>
+    <td class="value">
+      <%= character.fights_lost %>
+    </td>
+  </tr>
+  <tr class="missions_succeeded">
+    <th><%= Character.human_attribute_name("missions_succeeded") %></th>
+    <td class="value">
+      <%= character.missions_succeeded %>
+    </td>
+  </tr>
+  <tr class="missions_completed">
+    <th><%= Character.human_attribute_name("missions_completed") %></th>
+    <td class="value">
+      <%= character.missions_completed %>
+    </td>
+  </tr>
+  <tr class="missions_mastered">
+    <th><%= Character.human_attribute_name("missions_mastered") %></th>
+    <td class="value">
+      <%= character.missions_mastered %>
+    </td>
+  </tr>
+  <tr class="alliance_size">
+    <th><%= Character.human_attribute_name("relations_count") %></th>
+    <td class="value">
+      <%= character.relations_count %>
+    </td>
+  </tr>
+</table>

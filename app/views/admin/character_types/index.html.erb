@@ -1,0 +1,61 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_character_type_path) %>
+</div>
+
+<% collection @character_types do %>
+  <table id="character_type_list" class="data">
+    <tr>
+      <th><%= CharacterType.human_attribute_name("image") %></th>
+      <th><%= CharacterType.human_attribute_name("name") %></th>
+      <th><%= CharacterType.human_attribute_name("attributes") %></th>
+      <th><%= CharacterType.human_attribute_name("bonuses") %></th>
+      <th><%= CharacterType.human_attribute_name("characters") %></th>
+      <th><%= CharacterType.human_attribute_name("state") %></th>
+      <th></th>
+    </tr>
+    <% @character_types.each do |type| %>
+      <tr>
+        <td class="image"><%= image_tag(type.image.url(:icon)) if type.image? %></td>
+        <td class="name"><%= link_to(type.name, edit_admin_character_type_path(type)) %></td>
+        <td class="attributes">
+          <table>
+            <% (CharacterType::APPLICABLE_ATTRIBUTES + [:equipment_slots]).each do |attribute| %>
+              <tr>
+                <td><%= CharacterType.human_attribute_name(attribute) %>:</td>
+                <td><%= type.send(attribute) %></td>
+              </tr>
+            <% end %>
+          </table>
+        </td>
+        <td>
+          <table>
+            <% CharacterType::BONUSES.each do |attribute| %>
+              <tr>
+                <td><%= CharacterType.human_attribute_name(attribute) %>:</td>
+                <td><%= type.send(attribute) %></td>
+              </tr>
+            <% end %>
+          </table>
+        </td>
+        <td class="state"><%= type.characters.count %></td>
+        <td class="state"><%= admin_state(type) %></td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_character_type_path(type)) %>
+          <%= link_to(t(".controls.publish"), publish_admin_character_type_path(type),
+                :method => :put,
+                :confirm => t(".controls.publish_confirm")
+              ) if type.can_publish? %>
+          <%= link_to(t(".controls.hide"), hide_admin_character_type_path(type),
+                :method => :put
+              ) if type.can_hide? %>
+          <%= link_to(t(".controls.delete"), admin_character_type_path(type),
+                :method   => :delete,
+                :confirm  => t(".controls.delete_confirm")
+              ) if type.can_mark_deleted? %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

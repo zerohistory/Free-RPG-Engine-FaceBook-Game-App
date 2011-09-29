@@ -1,0 +1,16 @@
+<% result_for :mission_help_reward do |builder| %>
+  <% builder.success do %>
+    <%= t(".message") %>
+  <% end %>
+
+  <div class="payouts">
+    <h3><%= t(".you_received") %></h3>
+
+    <%= payout(:basic_money, number_to_currency(@basic_money)) %>
+    <%= payout(:experience, @experience) %>
+  </div>
+  
+  <% builder.on_ready do %>
+    $('#mission_help_list').hide();
+  <% end %>
+<% end %>

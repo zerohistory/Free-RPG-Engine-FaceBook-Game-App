@@ -1,0 +1,17 @@
+<table id="dashboard" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="profile">
+      <h3><%= link_to(t(".overview.title"), character_path(current_character.key)) %></h3>
+
+      <%= render "characters/attributes", :character => current_character %>
+
+      <%= render "layouts/fan_specials" if current_user.show_fan_specials? %>
+          </td>
+
+    <td class="wall">
+      <%= render("items/specials", :items => @special_items) if @special_items && @special_items.any? %>
+
+      <%= render "news/feed", :character => current_character %>
+    </td>
+  </tr>
+</table>

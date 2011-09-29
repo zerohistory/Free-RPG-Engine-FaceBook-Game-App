@@ -1,0 +1,28 @@
+<div id="co">
+  
+  <div class="experience">
+    <%= percentage_bar(0, :show_percentage => false) %>
+    <span class="label" style="width:150px;"><%= Character.human_attribute_name("experience") %>:</span>
+    <span class="value"></span>
+  </div>
+  <div class="level">
+    <span href="#" class="label"><%= Character.human_attribute_name("level") %>:</span>
+    <span class="value"></span>
+  </div>
+  
+  
+  
+  <div class="basic_money">
+    <span class="label"><%= Character.human_attribute_name("basic_money") %>:</span>
+    <span class="value" style="padding-left: 18px;"></span>
+    <%#= link_to_remote(t(".bank"),
+                       :url => new_bank_operation_path,
+                       :update => :ajax,
+                       :html => {:class => :bank}) %>
+  </div>
+  
+</div>
+
+<% dom_ready do %>
+  Character.update(<%= current_character.to_json_for_overview.html_safe %>);
+<% end %>

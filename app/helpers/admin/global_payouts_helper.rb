@@ -1,0 +1,2 @@
+module Admin::GlobalPayoutsHelper
+end

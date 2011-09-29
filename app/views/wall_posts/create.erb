@@ -1,0 +1,17 @@
+<% dom_ready do %>
+  <% if @wall_post.new_record? %>
+    $('#new_wall_post').replaceWith('<%=
+      escape_javascript(render('wall_posts/form', :character => @character, :wall_post => @wall_post))
+    %>');
+  <% else %>
+    $('#new_wall_post').replaceWith('<%=
+      escape_javascript(render('wall_posts/form', :character => @character, :wall_post => WallPost.new))
+    %>');
+
+    $('#wall_post_list').replaceWith('<%=
+      escape_javascript(render('wall_posts/list', :wall_posts => @wall_posts))
+    %>');
+  <% end %>
+
+  $(document).trigger('remote_content.received');
+<% end %>

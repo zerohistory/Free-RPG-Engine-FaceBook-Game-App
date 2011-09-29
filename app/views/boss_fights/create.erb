@@ -1,0 +1,29 @@
+<% result_for :boss_fight do |builder| %>
+  <% if !@fight.new_record? %>
+    <%= builder.render "boss_fights/create/#{@fight.state}", :fight => @fight %>
+
+    <%= builder.render("boss_fights/create/payouts", :fight => @fight) if @fight.lost_something? || @fight.received_something? %>
+
+    <%= builder.render("mission_groups/complete", :result => @fight) if @fight.group_rank.try(:just_created?) %>
+  <% elsif !@fight.requirements_satisfied? %>
+    <% builder.fail do %>
+      <%= t(".requirements_not_satisfied.message").html_safe %>
+    <% end %>
+
+    <div class="requirements clearfix">
+      <%= unsatisfied_requirement_list(@fight.boss.requirements) %>
+    </div>
+  <% elsif !@fight.enough_energy? %>
+    <%= builder.render("requirements/not_satisfied/energy_point",
+          :requirement => @fight.energy_requirement
+        ) %>
+  <% elsif current_character.weak? %>
+    <%= builder.render("requirements/not_satisfied/health_point",
+          :requirement => current_character.weakness_requirement
+        ) %>
+  <% else %>
+    <% builder.fail do %>
+      <%= @fight.errors.on(:character) %>
+    <% end %>
+  <% end %>
+<% end %>

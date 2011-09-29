@@ -1,0 +1,23 @@
+<% if action_name == "global" %>
+  <%= title(t(".title.global")) %>
+
+  <%= render "buttons", :current => :global %>
+<% else %>
+  <%= title(t(".title.relations")) %>
+
+  <%= render "buttons", :current => :relations %>
+<% end %>
+
+<table id="rating_list" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><%= render("level", :collection => @level, :current => current_character) %></td>
+    <td><%= render("total_money", :collection => @total_money, :current => current_character) %></td>
+  </tr>
+  <tr>
+    <td><%= render("fights", :collection => @fights, :current => current_character) %></td>
+    <td><%= render("missions", :collection => @missions, :current => current_character) %></td>
+  </tr>
+  <!--<tr>
+    <td><%#= render("relations", :collection => @relations, :current => current_character) %></td>
+  </tr>-->
+</table>

@@ -1,0 +1,168 @@
+<% if @character == current_character %>
+  <%= title(t(".title_my", :user => character_name(@character))) %>
+<% else %>
+  <%= title(
+        t(".title",
+          :user => character_name(@character,
+            :possessive => true,
+            :capitalize => true
+          )
+        )
+      ) %>
+<% end %>
+
+<div id="character">
+  <div class="controls">
+    <% if @character == current_character %>
+	
+	<div class="link_block">
+	 <%= image_tag('/system/assets/000/000/289/original/home.gif', :class => "links_img") %>
+	 <%= link_to  t('layouts.main_menu.home'), mission_groups_path,
+            :class => "links"
+           %>
+	</div>
+		  
+      <%#= link_to_remote(button(:upgrade),
+            :url    => upgrade_character_path(@character),
+            :method => :get,
+            :update => :ajax,
+            :html   => {:class => "upgrade button"}
+          ) if current_character.points > 0 %>
+		  
+		  
+		  <div class="link_block">
+		  <%= image_tag('/system/assets/000/000/275/original/alliance.gif', :class => "links_img") %>
+		  <%= link_to (t(".relations")).html_safe, relations_path,{:class => "links "} %>
+          </div>
+		  
+      <div class="link_block">
+	  <%= image_tag('/system/assets/000/000/271/original/rating.gif', :class => "links_img") %>
+      <%= link_to t('layouts.main_menu.rating'), global_rating_path,
+            :class => "links"
+           %>
+	 </div>	   
+	 
+    <% elsif @secured %>
+      <%= link_to_remote(button(:attack),
+            :url    => fights_path(:victim_id => @character),
+            :update => :result,
+            :html   => {:class => "attack_btn button"}
+          ) if current_character.can_attack?(@character) %>
+
+      <%= link_to_remote(button(:hitlist),
+            :url    => new_character_hit_listing_path(@character),
+            :method => :get,
+            :update => :ajax,
+            :html   => {:class => "hitlist button"}
+          ) if current_character.can_hitlist?(@character) %>
+    <% end %>
+  </div>
+
+  <table class="info" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><%= render "characters/attributes", :character => @character %></td>
+      <td><%= render "characters/statistics", :character => @character %></td>
+      <td class="rank_list">
+        <% if titles = @character.titles.with_state(:visible) and titles.any? %>
+          <% titles.each do |title| %>
+            <%= content_tag(:div, title.name, :class => :rank) %>
+          <% end %>
+        <% else %>
+          <% if @character == current_character %>
+            <%= t(".titles.empty_set_my") %>
+          <% else %>
+            <%= t(".titles.empty_set",
+                  :user => character_name(@character,
+                    :firstnameonly  => true,
+                    :capitalize     => true
+                  )
+                ).html_safe %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+  <%= render "news/feed", :character => @character %>
+
+  <% if @character == current_character || @character.has_allie?(current_character) %>
+    <% ItemGroup.find_each do |group| %>
+      <% collection(@character.inventories.by_item_group(group), :empty_set => false) do |items| %>
+        <div class="item_group">
+          <h2><%= group.name %></h2>
+
+          <div class="items clearfix">
+            <% items.each do |inventory| %>
+              <div class="item">
+                <%= item_image(inventory, :small) %>
+
+                <% if @character == current_character %>
+                  <div class="amount">
+                    <%= t(".items.amount",
+                          :name   => inventory.name,
+                          :amount => inventory.amount
+                        ).html_safe %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %><!-- Other player should see only equipped items -->
+    <% ItemGroup.find_each do |group| %>
+      <% collection(@character.inventories.equipped.by_item_group(group), :empty_set => false) do |items| %>
+        <div class="item_group">
+          <h2><%= group.name %></h2>
+          <div class="items clearfix">
+            <% items.each do |inventory| %>
+              <div class="item">
+                <%= item_image(inventory, :small) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% collection(@character.properties, :empty_set => false) do |properties| %>
+    <div class="properties">
+      <h2><%= t(".properties.title") %></h2>
+
+      <div class="items clearfix">
+        <% properties.each do |property| %>
+          <div class="item">
+            <%= property_image(property, :small) %>
+
+
+            <div class="name">
+              <% if @character == current_character %>
+                <%= t(".properties.name",
+                      :name  => property.name,
+                      :level => property.level
+                    ).html_safe %>
+              <% else %>
+                <%= property.name %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @wall_enabled %>
+    <div id="wall">
+      <h2>
+        <%= t(".wall.title",
+              :user => character_name(@character, :possessive => true, :capitalize => true)
+            ).html_safe %>
+      </h2>
+
+      <%= render('wall_posts/form', :character => @character, :wall_post => WallPost.new) %>
+      <%= render('wall_posts/list', :wall_posts => @wall_posts) %>
+    </div>
+  <% end %>
+</div>

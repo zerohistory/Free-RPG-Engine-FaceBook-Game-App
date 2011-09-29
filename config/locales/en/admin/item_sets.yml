@@ -1,0 +1,25 @@
+en:
+  admin:
+    item_sets:
+      index:
+        title: "Item Sets"
+        empty_set: "No item sets"
+        controls:
+          new: "Add Set"
+          edit: "Edit"
+      new:
+        title: "New Item Set"
+        submit: "Create"
+      create:
+        success: "Item set has been created successfully!"
+      edit:
+        title: "Edit Item Set"
+        submit: "Update"
+      update:
+        success: "Item set has been updated successfully!"
+      form_fields:
+        items: "Items"
+        add_item: "Add Item..."
+      item_fields:
+        remove: "Remove"
+      

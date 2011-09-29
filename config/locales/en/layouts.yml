@@ -1,0 +1,41 @@
+en:
+  layouts:
+    application:
+      admin_interface: "Go to Admin Interface »"
+      maintenance_warning: "The game will be down for a scheduled server maintenance in next %{start_time}. Downtime shouldn't exceed %{length}."
+    fan_specials:
+      title: "Fan Specials"
+      text: "%{app} fans periodically receive free Gold, Gems, weapons, and other useful game items!"
+    bookmark:
+      title: "Bookmark"
+      text: "Don't forget to add %{app} to your bookmarks!"
+    main_menu:
+      home: "Home"
+      missions: "Missions"
+      fights: "Fight"
+      items: "Shop"
+      vip: "Gem Market"
+      inventories: "Inventory"
+      character: "Profile"
+      relations: "Alliance"
+      rating: "Rating"
+      properties: "Properties"
+      upgrade: "Upgrade"
+    main_menu_bottom:
+      home: "Home"
+      missions: "Tasks"
+      vip: "Will Power"
+      inventories: "Tablets"
+      character: "Tribe"
+      relations: "Popularity"
+      properties: "Events"
+    spinner:
+      alt: "Please wait..."
+      text: "Please wait for a few seconds..."
+    character_overview:
+      bank: "Treasury"
+      premium: "Get More"
+      upgrade: "Upgrade!"
+      hospital: "Hospital"
+    tip:
+      label: "Tip:"

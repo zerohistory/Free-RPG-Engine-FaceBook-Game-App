@@ -1,0 +1,13 @@
+<div class="buttons clearfix" id="mission_buttons">
+  <% unless current == :missions %>
+    <%= link_to(button(:missions), mission_groups_path,
+          :class => "missions button"
+        ) %>
+  <% end %>
+
+  <% unless current == :monsters %>
+    <%= link_to(button(:monsters), monsters_path,
+          :class => "monsters button"
+        ) %>
+  <% end %>
+</div>

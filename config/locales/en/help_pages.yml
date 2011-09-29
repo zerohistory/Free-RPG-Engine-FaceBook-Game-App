@@ -1,0 +1,6 @@
+en:
+  help_pages:
+    show:
+      buttons:
+        close: "Close"
+        return: "Return to the game"

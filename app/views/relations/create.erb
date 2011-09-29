@@ -1,0 +1,9 @@
+<% result_for(:invitation) do |builder| %>
+  <% builder.success do %>
+    <%= t("relations.create.message").html_safe %>
+  <% end %>
+
+  <% builder.on_ready do %>
+    $('#invitation .controls').hide();
+  <% end %>
+<% end %>

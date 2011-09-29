@@ -1,0 +1,5 @@
+<% dom_ready do %>
+  $('#assignments').html(<%= render('relations/assignments').to_json.html_safe %>);
+  
+  <%= ga_track_event('Alliance', 'Promoted', @assignment.role.titleize) unless @assignment.new_record? %>
+<% end %>

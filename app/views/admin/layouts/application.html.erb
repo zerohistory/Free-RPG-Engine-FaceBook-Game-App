@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <%= stylesheet_link_tag("admin") %>
+
+  <%= include_jquery_from_google %>
+  <%= javascript_include_tag "jrails", "jquery/dialog", "admin", :cache => 'cache/admin' %>
+
+  <title><%= @admin_title %></title>
+</head>
+<body>
+  <% fb_connect_js(:channel_url => Facebooker2.callback_url + '/channel.html', :cache_url => javascript_path('cache/facebook_connect.js')) do %>
+    $(function(){
+      $(document).trigger('facebook.ready');
+    });
+  <% end %>
+
+  <%= render "admin/layouts/main_menu" %>
+
+  <div id="content">
+    <%= admin_flash_block %>
+
+    <div id="result" style="display:none"></div>
+
+    <%= yield %>
+
+    <div id="footer">
+      <%= t(".footer.text",
+            :engine   => link_to(t(".footer.engine"), "http://railorz.com", :target => :_blank),
+            :version  => File.read(Rails.root.join("VERSION"))
+          ).html_safe %>
+    </div>
+  </div>
+
+  <%= dom_ready %>
+</body>

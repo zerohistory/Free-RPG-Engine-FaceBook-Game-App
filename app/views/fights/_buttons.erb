@@ -1,0 +1,13 @@
+<div class="buttons clearfix" id="fight_buttons">
+  <% unless current == :fight %>
+    <%= link_to(button(:fight), new_fight_path,
+          :class => "fight button"
+        ) %>
+  <% end %>
+
+  <% unless current == :hitlist %>
+    <%= link_to(button(:hitlist), hit_listings_path,
+          :class => "hitlist button"
+        ) if Setting.b(:hit_list_enabled) %>
+  <% end %>
+</div>

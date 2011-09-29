@@ -1,0 +1,15 @@
+<% if @item %>
+  <h1><%= t(".elements_for_title") %> - <%= link_to @item.name, edit_admin_item_path(@item) %></h1><div class="controls">
+  <% form_remote_tag :url => admin_item_elements_path, :method => :post, :update => "elements_list" do %>
+    <%= hidden_field_tag "item_element[item_id]", @item.id %>
+    <%= select_tag "item_element[element_id]", options_for_select(Element.all.to_dropdown) %>
+    <%= text_field_tag "item_element[count]", "1", :size => 6, :autocomplete => :off %>
+    <%= select_tag "item_element[effect_type]", options_for_select([["Attack", 0],["Defence", 1]]) %>
+    <%= submit_tag "Add element" %>
+  <% end %>
+</div>
+
+<% else %>
+  <h1><%= t(".title") %></h1>
+<% end %>
+<%= render :partial => "admin/item_elements/item_elements", :locals => {:item_elements => @item_elements, :item => @item} %>

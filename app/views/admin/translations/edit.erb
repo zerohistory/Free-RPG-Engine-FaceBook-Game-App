@@ -1,0 +1,5 @@
+<% remote_form_for([:admin, @translation], :update => translation_id(@translation.key)) do |form| %>
+  <%= form.text_field :value, :required => true %>
+
+  <%= form.submit %>
+<% end %>

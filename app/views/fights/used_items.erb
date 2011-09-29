@@ -1,0 +1,30 @@
+<table class="items" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="attacker">
+      <h3><%= t(".attacker") %></h3>
+
+      <% @attacker_items.each do |group, items| %>
+        <div class="group">
+          <strong><%= group.name %></strong>
+
+          <%= items.collect{|i|
+                t(".item", :name => i.name, :amount => i.equipped)
+              }.join(", ").html_safe %>
+        </div>
+      <% end %>
+    </td>
+    <td class="victim">
+      <h3><%= t(".victim") %></h3>
+
+      <% @victim_items.each do |group, items| %>
+        <div class="group">
+          <strong><%= group.name %></strong>
+
+          <%= items.collect{|i|
+                t(".item", :name => i.name, :amount => i.equipped)
+              }.join(", ").html_safe %>
+        </div>
+      <% end %>
+    </td>
+  </tr>
+</table>

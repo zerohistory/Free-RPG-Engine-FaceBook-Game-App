@@ -1,0 +1,34 @@
+#new_gift
+  .gift
+    padding: 5px
+    float: left
+    margin: 0 10px 10px 0
+    width = !gifts_item_width
+    border = !gifts_item_border
+
+    .image
+      float: left
+      width = !gifts_item_image_size
+      height = !gifts_item_image_size
+      
+    .name
+      font-weight: bold
+      font-size: 16px
+      margin-bottom: 10px
+
+    .payouts
+      margin = 0 0 10px !gifts_item_image_size
+
+      .payout
+        clear: none
+        
+    .controls
+      clear: both
+    
+      .button
+        float: none
+        
+      .send
+        margin-left: 0
+        +button(!gifts_item_send_icon, 80px)
+

@@ -1,0 +1,187 @@
+<%= title(t(".title")) %>
+
+<div id="current_vip_money">
+  <%#= t(".current.label",
+        :amount => content_tag(:span, number_to_currency(current_character.vip_money), :class => :value)
+      ).html_safe %>
+</div>
+
+<% if @special_items.any? %>
+  <%= render "items/specials", :items => @special_items %>
+<% end %>
+
+<table id="premia" cellspacing="0" cellpadding="0">
+  <!--<tr>
+    <td class="name">
+      <%#= t(".buy_points.text",
+            :amount => content_tag(:span, Setting.i(:premium_points_amount), :class => :points)
+          ).html_safe %>
+    </td>
+    <td class="requirements">
+      <%#= attribute_requirement(:vip_money, Setting.i(:premium_points_price)) %>
+    </td>
+    <td class="controls">
+      <%#= link_to_remote(button(t(".buy_points.button")),
+            :url    => premium_path(:type => :buy_points),
+            :method => :put,
+            :update => :result,
+            :html   => {:class => :button}
+          ) %>
+    </td>
+  </tr>-->
+
+
+  <!--<tr>
+    <td class="name"><%#= t(".hire_mercenary.text") %></td>
+    <td class="requirements">
+      <%#= attribute_requirement(:vip_money, Setting.i(:premium_mercenary_price)) %>
+    </td>
+    <td class="controls">
+      <%# if !current_character.relations.maximum_size? %>
+        <%#= link_to_remote(button(t(".hire_mercenary.button")),
+              :url    => premium_path(:type => :hire_mercenary),
+              :method => :put,
+              :update => :result,
+              :html   => {:class => :button}
+            ) %>
+      <%# else %>
+        <%#= t('.hire_mercenary.maximum') %>
+      <%# end %>
+    </td>
+  </tr>-->
+
+  <!--<tr>
+    <td class="name">
+      <%#= t(".exchange_money.text",
+            :amount => content_tag(:span, number_to_currency(Setting.i(:premium_money_amount)), :class => :basic_money)
+          ).html_safe %>
+    </td>
+    <td class="requirements">
+      <%#= attribute_requirement(:vip_money, Setting.i(:premium_money_price)) %>
+    </td>
+    <td class="controls">
+      <%#= link_to_remote(button(t(".exchange_money.button")),
+            :url    => premium_path(:type => :exchange_money),
+            :method => :put,
+            :update => :result,
+            :html   => {:class => :button}
+          ) %>
+    </td>
+  </tr>-->
+
+  <!--<tr>
+    <td class="name"><%#= t(".refill_energy.text") %></td>
+    <td class="requirements">
+      <%#= attribute_requirement(:vip_money, Setting.i(:premium_energy_price)) %>
+    </td>
+    <td class="controls">
+      <%# if current_character.full_ep? %>
+        <%#= t(".refill_energy.full") %>
+      <%# else %>
+        <%#= link_to_remote(button(t(".refill_energy.button")),
+              :url    => premium_path(:type => :refill_energy),
+              :method => :put,
+              :update => :result,
+              :html   => {:class => :button}
+            ) %>
+      <%# end %>
+    </td>
+  </tr>-->
+
+  <!--<tr>
+    <td class="name"><%#= t(".refill_stamina.text") %></td>
+    <td class="requirements">
+      <%#= attribute_requirement(:vip_money, Setting.i(:premium_stamina_price)) %>
+    </td>
+    <td class="controls">
+      <%# if current_character.full_sp? %>
+        <%#= t(".refill_stamina.full") %>
+      <%# else %>
+        <%#= link_to_remote(button(t(".refill_stamina.button")),
+              :url    => premium_path(:type => :refill_stamina),
+              :method => :put,
+              :update => :result,
+              :html   => {:class => :button}
+            ) %>
+      <%# end %>
+    </td>
+  </tr>-->
+
+  <!--<tr>
+    <td class="name"><%#= t(".refill_health.text") %></td>
+    <td class="requirements">
+      <%#= attribute_requirement(:vip_money, Setting.i(:premium_health_price)) %>
+    </td>
+    <td class="controls">
+      <%# if current_character.full_hp? %>
+        <%#= t(".refill_health.full") %>
+      <%# else %>
+        <%#= link_to_remote(button(t(".refill_health.button")),
+              :url    => premium_path(:type => :refill_health),
+              :method => :put,
+              :update => :result,
+              :html   => {:class => :button}
+            ) %>
+      <%# end %>
+    </td>
+  </tr>-->
+
+  <% if current_character.character_type %>
+    <tr>
+      <td class="name"><%= t(".reset_attributes.text") %></td>
+      <td class="requirements">
+        <%= attribute_requirement(:vip_money, Setting.i(:premium_reset_attributes_price)) %>
+      </td>
+      <td class="controls">
+        <%= link_to_remote(button(t(".reset_attributes.button")),
+              :url      => premium_path(:type => :reset_attributes),
+              :method   => :put,
+              :update   => :result,
+              :confirm  => t(".reset_attributes.confirm"),
+              :html     => {:class => :button}
+            ) %>
+      </td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td class="name">
+      <%= t(".change_name.text").html_safe %>
+    </td>
+    <td class="requirements">
+      <%= attribute_requirement(:vip_money, Setting.i(:premium_change_name_price)) %>
+    </td>
+    <td class="controls">
+      <%= link_to_remote(button(t(".change_name.button")),
+            :url      => premium_path(:type => :change_name),
+            :method   => :put,
+            :update   => :ajax,
+            :confirm  => t(".change_name.confirm"),
+            :html     => {:class => :button}
+          ) %>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="name"><%= t(".reset_character.text") %></td>
+    <td class="requirements">
+      <%= attribute_requirement(:vip_money, Setting.i(:premium_reset_character)) %>
+    </td>
+    <td class="controls">
+      <%= link_to(button(t(".reset_character.button")), premium_path(:type => :reset_character),
+            :method => :put,
+            :confirm => t(".reset_character.confirm"),
+            :class => :button) %>
+    </td>
+  </tr>
+</table>
+
+<div id="get_more_vip">
+  <%#= facebook_money(current_character) %>
+</div>
+
+
+<!--<script type="text/javascript" src="http://assets.tp-cdn.com/static3/js/api/payment_overlay.js"></script>
+<script type="text/javascript">
+  TRIALPAY.fb.show_overlay('234997113183013', 'fbpayments', {sid:'<sid>'});
+</script>-->

@@ -1,0 +1,42 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_property_set_path) %>
+</div>
+
+<% collection @property_sets do %>
+  <table id="property_set_list" class="data">
+    <tr>
+      <th><%= PropertySet.human_attribute_name("name") %></th>
+      <th><%= PropertySet.human_attribute_name("properties") %></th>
+      <th></th>
+    </tr>
+
+    <% @property_sets.each do |property_set| %>
+      <tr>
+        <td class="name"><%= link_to(property_set.name, edit_admin_property_set_path(property_set)) %></td>
+        <td class="items">
+          <table>
+          <% property_set.properties.each do |property, frequency| %>
+            <tr class="item">
+              <td>
+                <% unless property.visible? %>
+                  <span class="state"><%= admin_state(property) %></span>
+                <% end %>
+                <%= property.name %>
+              </td>
+              <td><%= frequency %></td>
+            </tr>
+          <% end %>
+          </table>
+        </td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_admin_property_set_path(property_set)) %>
+          <%= link_to(t(".controls.duplicate"), duplicate_admin_property_set_path(property_set),
+                :method => :put
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

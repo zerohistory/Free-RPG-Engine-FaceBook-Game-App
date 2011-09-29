@@ -1,0 +1,93 @@
+Facebooker2
+===========
+
+Provides rails helpers for interfacing with Facebook's OpenGraph Javascript
+API, http://developers.facebook.com/docs/reference/javascript/.
+
+Requires the mogli gem.
+
+
+Example
+=======
+
+0. Prerequisite: You need a facebook app.  Have your API Key, Application
+Secret, and Application ID handy.
+
+1. Install facebooker2 as a plugin in your rails app.
+
+2. Create config/facebooker.yml with the appropriate environment.
+
+production:
+  app_id: <your application id>
+  secret: <your application secret>
+  api_key: <your application key>
+  callback_url: <your callback url>
+
+3. Create config/initializers/facebooker2.rb and place the following line in it
+
+Facebooker2.load_facebooker_yaml
+
+4. Add the following line to your app/controllers/application_controller.rb
+
+include Facebooker2::Rails::Controller
+
+5. Update your rails applications to use the rails helpers.  This could be in a
+shared login partial.
+
+<%= fb_connect_async_js %>
+<% if current_facebook_user %>
+   <%= "Welcome #{current_facebook_user.first_name} #{current_facebook_user.last_name}!" %>
+   or
+   <%= "Hello #{fb_name(current_facebook_user, :useyou => false)}!" # link to facebook profile
+    %>
+  <%= fb_logout_link("Logout of fb", request.url) %><br />
+<% else
+   # you must explicitly request permissions for facebook user fields.
+   # here we instruct facebook to ask the user for permission for our website
+   # to access the user's facebook email and birthday
+   %>
+  <%= fb_login_and_redirect('<your URL here>', :perms => 'email,user_birthday') %>
+<% end %>
+
+Using with Canvas Applications
+==============================
+
+To improve integration with Facebook and iframe canvas applications, the primary goal
+being things like FB.ui work as a dialog rather than a popup, the application
+needs to be authenticated against the user's account via OAuth before use.
+
+0. Prerequisite: You need a Facebook app. Have your canvas page name handy.
+
+1. Install facebooker2.
+
+2. Create config/facebooker.yml as above, but add the following key:
+
+production:
+  canvas_page_name: <your canvas page name>
+
+3. Add the following lines to your app/controllers/application_controller.rb
+
+include Facebooker2::Rails::Controller
+
+before_filter :ensure_canvas_connected_to_facebook
+
+rescue_from Facebooker2::OAuthException do |exception|
+  redirect_to 'http://www.facebook.com/'
+end
+
+private
+def ensure_canvas_connected_to_facebook
+  ensure_canvas_connected(:email)
+end
+
+4. Create a route that generates a URL for the OAuth callback and calls the appropriate
+action on your controller:
+
+match '/facebook_oauth_connect' => 'application#facebook_oauth_connect'
+
+5. Your canvas application will now ensure that the current user has authorized
+the application before anything else is allowed.  The authorization and FB.ui dialogs
+will appear inline instead of as popups, improving user experience.
+
+Copyright (c) 2010 Mike Mangino, released under the MIT license
+Copyright (c) 2010 John Bintz, released under the MIT license

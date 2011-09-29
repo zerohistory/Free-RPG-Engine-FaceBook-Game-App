@@ -1,0 +1,41 @@
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_polymorphic_path([:admin, mission, MissionLevel])) %>
+</div>
+
+<% collection(mission.levels) do %>
+  <table>
+    <tr>
+      <th>#</th>
+      <th><%= MissionLevel.human_attribute_name("win_amount") %></th>
+      <th><%= MissionLevel.human_attribute_name("chance") %></th>
+      <th><%= MissionLevel.human_attribute_name("energy") %></th>
+      <th><%= MissionLevel.human_attribute_name("experience") %></th>
+      <th><%= MissionLevel.human_attribute_name("money") %></th>
+      <th><%= MissionLevel.human_attribute_name("payouts") %></th>
+    </tr>
+    <% mission.levels.each do |level| %>
+      <tr>
+        <td class="position"><%= level.position %></td>
+        <td class="win_amount"><%= level.win_amount %></td>
+        <td class="chance"><%= '%d%' % level.chance %></td>
+        <td class="energy"><%= level.energy %></td>
+        <td class="experience"><%= level.experience %></td>
+        <td class="basic_money">
+          <%= number_to_currency(level.money_min) %> - <%= number_to_currency(level.money_max) %>
+        </td>
+        <td class="payouts">
+          <%= admin_payouts_preview(level.payouts) %>
+        </td>
+        <td class="controls">
+          <%= link_to(t(".controls.edit"), edit_polymorphic_path([:admin, mission, level])) %>
+          <%= link_to(t(".controls.move_up"), move_admin_mission_mission_level_path(mission, level, :direction => :up),
+                :method => :put
+              ) %>
+          <%= link_to(t(".controls.move_down"), move_admin_mission_mission_level_path(mission, level, :direction => :down),
+                :method => :put
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

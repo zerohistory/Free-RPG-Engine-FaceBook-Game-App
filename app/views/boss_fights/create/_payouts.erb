@@ -1,0 +1,31 @@
+<table class="payouts" cellspacing="0" cellpadding="0">
+  <tr>
+    <% if fight.received_something? %>
+      <td class="received">
+        <h3><%= t(".you_received") %></h3>
+
+        <%= payout(:experience, fight.experience) if fight.won? %>
+
+        <%= payout_list(fight, fight.payouts) %>
+      </td>
+    <% end %>
+
+    <% if fight.lost_something? %>
+      <td class="lost">
+        <h3><%= t(".you_lost") %></h3>
+
+        <%= payout(:energy, fight.ep_cost) if fight.lost? || fight.expired? %>
+
+        <%= payout_list(fight, fight.payouts, :action => :remove) %>
+
+        <% fight.item_losses.each do |loss| %>
+          <%= item_with_amount(loss[:item], loss[:amount]) %>
+        <% end %>
+
+        <% fight.property_losses.each do |property| %>
+          <%= property_type_tag(property) %>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+</table>

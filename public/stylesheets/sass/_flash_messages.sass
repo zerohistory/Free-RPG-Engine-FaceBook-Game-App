@@ -1,0 +1,21 @@
+=flash_message(!color, !bg_color)
+  color = !color
+  border = "1px solid #{!color}"
+  background-color = !bg_color
+
+#flash
+  height: 40px
+  line-height: 40px
+  text-align: center
+  font-size: 17px
+  font-weight: bold
+  margin: 5px 0
+
+  &.success
+    +flash_message(#338833, #d0ffd0)
+
+  &.error
+    +flash_message(#883333, #ffd0d0)
+
+  &.notice
+    +flash_message(#336788, #d0efff)

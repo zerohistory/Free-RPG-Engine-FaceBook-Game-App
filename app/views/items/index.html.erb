@@ -1,0 +1,40 @@
+<div id="inventory_fight_attributes">
+  <%#= render "characters/fight_attributes" %>
+</div>
+
+<%= title(t(".title")) %>
+
+<%= render "inventories/buttons", :current => :shop %>
+
+<div id="item_groups" class="clearfix">
+  <% @item_groups.each do |group| %>
+    <% if group == @current_group %>
+      <span class="current"><%= group.name %></span>
+    <% else %>
+      <%= link_to(group.name, item_group_items_path(:item_group_id => group.id)) %>
+    <% end %>
+  <% end %>
+</div>
+
+<% if @special_items.any? %>
+  <%= render "specials", :items => @special_items %>
+<% end %>
+
+<%= will_paginate @items %>
+
+<table id="item_list" cellspacing="0" cellpadding="0">
+  <% @items.each do |item| %>
+    <%= render(item) %>
+  <% end %>
+</table>
+
+<% if @next_item %>
+  <div id="next_item">
+    <h3><%= t(".next_item",
+          :level => content_tag(:span, @next_item.level, :class => :level),
+          :group => content_tag(:span, @next_item.item_group.name.mb_chars.downcase, :class => :weapon)
+        ).html_safe %></h3>
+  </div>
+<% end %>
+
+<%= will_paginate @items %>

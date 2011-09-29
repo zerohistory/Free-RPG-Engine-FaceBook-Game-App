@@ -1,0 +1,47 @@
+<% dialog :id => :send_gift_notification do |d| %>
+  <h2><%= t(".title") %></h2>
+
+  <p class="text">
+    <%= t(".text") %>
+  </p>
+  
+  <div class="gifts clearfix">
+    <% notification.items.each do |item| %>
+      <div class="gift">
+        <div class="name"><%= item.name %></div>
+        
+        <div class="image"><%= item_image(item, :medium, :tooltip => dom_id(item, :tooltip)) %></div>
+
+        <%= item_tooltip(item) %>
+
+        <%= link_to_function(button(:send), '', 
+              :'data-item-id' => item.id, 
+              :'data-message' => t('gifts.new.request.message', :item => item.name, :app => t('app_name')),
+              :class => 'send button'
+            ) %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="controls">
+    <%= link_to(button(:send_other), new_gift_path, :class => 'send_other button')%>
+  </div>
+
+  <%= render("notifications/disable", :notification => notification) %>
+  
+  <% d.on_ready do %>
+    $('#send_gift_notification').giftForm({
+      request_title: '<%= t('.title') %>', 
+      request_callback_url: '<%= app_requests_path(:type => :gift) %>'
+    });
+    
+    $('#send_gift_notification .gift img').tooltip({
+      delay: 0,
+      track: true,
+      showURL: false,
+      bodyHandler: function(){
+        return $('#' + $(this).attr('tooltip')).clone();
+      }
+    });
+  <% end %>
+<% end %>

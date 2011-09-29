@@ -1,0 +1,18 @@
+<h2><%= t(".title") %></h2>
+
+<table class="rating" cellspacing="0" cellpadding="0">
+  <tr>
+    <th>#</th>
+    <th colspan="2"><%= Character.human_name %></th>
+    <th><%= Character.human_attribute_name("fights_won") %></th>
+  </tr>
+
+  <% rating_table(collection, :fights_won, current) do |character, position, current| %>
+    <% content_tag(:tr, :class => (:current if current)) do %>
+      <td class="position"><%= position %></td>
+      <td class="picture"><%= character_picture_link(character) %></td>
+      <td class="name"><%= character_name_link(character, {}, {:capitalize => true}) %></td>
+      <td class="fights_won last"><%= character.fights_won %></td>
+    <% end %>
+  <% end %>
+</table>

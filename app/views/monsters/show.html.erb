@@ -1,0 +1,13 @@
+<%= title(@monster.name) %>
+
+<%= render "missions/buttons", :current => nil %>
+
+<div id="monster" class="clearfix">
+  <%= render(@monster.state, :monster => @monster, :fight => @fight) %>
+</div>
+
+<% if @monster.created_at > 5.seconds.ago %>
+  <% dom_ready do %>
+    <%= ga_track_event('Monsters', 'Summoned', @monster.name, current_character.level) %>
+  <% end %>
+<% end %>

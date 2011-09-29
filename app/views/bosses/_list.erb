@@ -1,0 +1,3 @@
+<% bosses.each do |boss| %>
+  <%= render("bosses/boss", :boss => boss) if boss.requirements.satisfies?(current_character) && !current_character.boss_fights.won?(boss) %>
+<% end %>

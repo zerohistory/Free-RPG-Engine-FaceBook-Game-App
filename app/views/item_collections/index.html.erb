@@ -1,0 +1,15 @@
+<%= title(t(".title")) %>
+
+<%= render "inventories/buttons", :current => :collections %>
+
+<% collection @collections do %>
+  <div id="item_collection_list">
+    <% @collections.each do |collection| %>
+      <%= render('item_collection', :collection => collection) %>
+    <% end %>
+  </div>
+<% end %>
+
+<% dom_ready do %>
+  CollectionList.setup();
+<% end %>

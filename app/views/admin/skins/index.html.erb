@@ -1,0 +1,41 @@
+<%= admin_title(t(".title")) %>
+
+<div class="controls">
+  <%= link_to(t(".controls.new"), new_admin_skin_path) %>
+</div>
+
+<table id="skin_list" class="data">
+  <tr>
+    <th><%= Skin.human_attribute_name("name") %></th>
+    <th><%= Skin.human_attribute_name("created_at") %></th>
+    <th><%= Skin.human_attribute_name("updated_at") %></th>
+    <th></th>
+  </tr>
+  <% content_tag(:tr, :class => (:current if Skin.with_state(:active).empty?)) do %>
+    <td class="name" colspan="4">
+      <%= link_to(t(".default_skin"), admin_skin_path(:default)) %>
+    </td>
+  <% end %>
+
+  <% @skins.each do |skin| %>
+    <% content_tag(:tr, :class => (:current if skin.active?)) do %>
+      <td class="name">
+        <%= link_to(skin.name, edit_admin_skin_path(skin)) %>
+      </td>
+      <td class="created_at"><%= l(skin.created_at, :format => :short) %></td>
+      <td class="updated_at"><%= l(skin.updated_at, :format => :short) %></td>
+      <td class="controls">
+        <%= link_to(t(".controls.edit"), edit_admin_skin_path(skin)) %>
+        <%= link_to(t(".controls.try"), root_url(:try_skin => skin, :canvas => true), :target => :_blank) %>
+        <%= link_to(t(".controls.activate"), activate_admin_skin_path(skin),
+              :method   => :post,
+              :confirm  => t(".controls.activate_confirm")
+            ) %>
+        <%= link_to(t(".controls.delete"), admin_skin_path(skin),
+              :method   => :delete,
+              :confirm  => t(".controls.delete_confirm")
+            ) %>
+      </td>
+    <% end %>
+  <% end %>
+</table>

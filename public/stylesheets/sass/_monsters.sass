@@ -1,0 +1,107 @@
+.monster_list
+  .monster
+    float: left
+    margin: 0 15px 15px 0
+    border = !main_border
+    text-align: center
+    padding: 15px
+
+    .name
+      font-size: 16px
+      font-weight: bold
+      margin-bottom: 10px
+
+    .image
+      margin-bottom: 10px
+
+    .status
+      margin-bottom: 10px
+      font-weight: bold
+
+      .timer
+        font-weight: normal
+
+    .button
+      text-align: left
+      float: none
+      margin: 0 auto
+
+      &.attack
+        +button(!monster_list_attack_icon, !monster_list_attack_width)
+
+      &.engage
+        +button(!monster_list_engage_icon, !monster_list_engage_width)
+
+      &.reward
+        +button(!monster_list_reward_icon, !monster_list_reward_width)
+
+      &.view
+        +button(!monster_list_view_icon, !monster_list_view_width)
+
+#monster
+  table
+    width: 100%
+
+  .image
+    padding-right: 15px
+    width: 1px
+
+  .health, .timer
+    font-weight: bold
+
+    .value
+      font-weight: normal
+
+  .timer
+    float: right
+
+  .health
+    margin-bottom: 10px
+    
+    .progress_bar
+      margin-top: 5px
+
+  .controls
+    margin: 15px 0
+
+    .button
+      float: left
+
+    .attack
+      +button(!monster_attack_icon)
+
+    .invite
+      +button(!monster_invite_icon)
+
+    .reward
+      +button(!monster_reward_icon)
+
+  .payouts
+    clear: both
+    margin-bottom: 15px
+
+  .fighters
+    width: 250px
+
+    .fighter
+      margin-bottom: 3px
+
+    .damage
+      float: right
+      margin-left: 10px
+
+    .name
+      font-weight: bold
+
+#monster_result
+  .attack
+    +button(!monster_result_attack_icon)
+
+
+#monster_dialog
+  .image
+    float: right
+    margin-left: 15px
+
+  .continue
+    +button(!monster_dialog_continue_icon)

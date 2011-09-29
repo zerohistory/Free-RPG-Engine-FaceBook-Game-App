@@ -1,0 +1,58 @@
+<%= admin_title(t(".title")) %>
+
+<%= render "controls" %>
+
+<div class="data_filter clearfix">
+  <h2><%= t(".filter.title") %></h2>
+
+  <ul>
+    <li>
+      <% if @item_group.nil? %>
+        <strong><%= t(".filter.all_groups") %></strong>
+      <% else %>
+        <%= link_to(t(".filter.all_groups"), balance_admin_items_path) %>
+      <% end %>
+    </li>
+
+    <% ItemGroup.without_state(:deleted).each do |group| %>
+      <li>
+        <% if group == @item_group %>
+          <strong><%= group.name %></strong>
+        <% else %>
+          <%= link_to(group.name, balance_admin_item_group_items_path(group)) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<table id="item_balance_list" class="data">
+  <tr>
+    <th><%= Item.human_attribute_name("level") %></th>
+
+    <% Item::AVAILABILITIES.each do |availability| %>
+      <th><%= availability %></th>
+    <% end %>
+  </tr>
+
+  <% @items.each do |level, availabilities| %>
+    <tr>
+      <td><%= level %></td>
+
+      <% Item::AVAILABILITIES.each do |availability| %>
+        <td>
+          <% if items = Array.wrap(availabilities[availability]) and items.any? %>
+            <table>
+              <% items.each do |item| %>
+                <tr>
+                  <td class="image"><%= image_tag(item.image.url(:icon)) if item.image? %></td>
+                  <td><%= link_to(item.name, edit_admin_item_path(item)) %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

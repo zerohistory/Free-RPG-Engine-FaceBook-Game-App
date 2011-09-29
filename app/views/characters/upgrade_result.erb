@@ -1,0 +1,30 @@
+<% result = capture do %>
+  <% if @success %>
+    <p>
+      <%= t(".messages.success",
+            :attribute  => Character.human_attribute_name(params[:attribute]),
+            :number     => content_tag(:span, current_character.attributes[params[:attribute]], :class => :value)
+          ).html_safe %>
+    </p>
+  <% else %>
+    <p>
+      <%= t(".messages.not_enough_points", :attribute => Character.human_attribute_name(params[:attribute])) %>
+    </p>
+  <% end %>
+<% end %>
+
+<% dom_ready do %>
+  $('#upgrade_result').html(<%= result.to_json.html_safe %>);
+
+  $('#upgrade_list .<%= params[:attribute] %> .value').text('<%= current_character.attributes[params[:attribute]] %>');
+
+  <% if current_character.points == 0 %>
+    $(document).trigger('character.upgrade_complete');
+  <% else %>
+    $('#upgrade_points').text('<%= current_character.points %>');
+  <% end %>
+
+  $(document).trigger('remote_content.received');
+  
+  <%= ga_track_event('Character', 'Attribute Upgrade', params[:attribute].titleize, current_character.level) %>
+<% end %>

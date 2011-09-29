@@ -1,0 +1,141 @@
+#item_groups
+  border:
+    top = !item_group_border
+    bottom = !item_group_border
+  margin: 10px 0 15px 0
+
+  a, .current
+    padding: 0 15px
+    line-height: 30px
+    height: 30px
+    display: block
+    float: left
+    font-weight: bold
+    border: 1px solid transparent
+
+  .current
+    font-size: 24px
+    background-color = !item_group_current_bg_color
+
+  a
+    font-size: 24px
+
+    &:hover
+      background-color = !item_group_current_bg_color
+
+#item_list
+  width: 100%
+
+  td
+    padding: 10px 0
+    border-bottom = !shop_item_border
+
+  .picture
+    width: 80px
+
+  .info
+    padding-right: 10px
+
+    .name
+      font-size: 16px
+      font-weight: bold
+
+    .name, .description
+      margin-bottom: 10px
+
+    .limit
+      color = !shop_item_limit_color
+
+  .info, .payouts, .requirements
+    padding-right: 10px
+
+  .controls
+    text-align: right
+    width: 165px
+
+    select
+      margin: 5px
+
+    .buy
+      +button(!shop_item_buy_icon)
+
+
+#special_items
+  border = !shop_special_item_border
+  margin-bottom: 10px
+  padding: 10px
+
+  .items
+    width: 100%
+
+  .item
+    padding-right: 5px
+
+  .name
+    font-weight: bold
+    font-size: 16px
+    margin-bottom: 5px
+
+  .picture
+    float: left
+    margin-right: 10px
+
+  .requirements, .payouts
+    margin-left: 80px
+    margin-bottom: 10px
+
+  .requirements .requirement, .payouts .payout
+    clear: none
+
+  .controls
+    float: left
+    clear: both
+
+    select
+      margin: 5px
+      float: left
+
+    .button
+      float: left
+      clear: none
+
+    .buy
+      +button(!shop_special_item_buy_icon)
+
+  .limit
+    color = !shop_special_item_limit_color
+
+
+#next_item
+  margin-top: 30px
+  border = !shop_next_item_border
+  padding: 10px
+  font-size: 14px
+
+  .level
+    font-size: 20px
+    font-weight: bold
+
+#shop_result
+  background-image = !shop_result_icon
+
+  .inventory
+    +button(!shop_result_inventory_icon, !shop_result_inventory_width)
+
+  .use
+    +button(!shop_result_use_icon)
+
+#shop_dialog
+  .item
+    td
+      padding-right: 10px
+
+  .item, .description, .limit, .amount
+    margin-bottom: 10px
+
+  .limit
+    color = !shop_special_item_limit_color
+
+  .buttons
+    .buy
+      +button(!shop_item_buy_icon)

@@ -1,0 +1,26 @@
+development:
+  provider: super_rewards
+  key: ezhofm.26953024120
+  secret: 15228884664b8316b3bf1ac204d0e459
+
+#  provider: gambit
+#  key: 4e81af6b60d7a50cce9efe8be31bcfb5
+#  secret: c1cd18e79be65a4d07da4c7349f58e31
+
+#  provider: sometrics
+#  zid: 1247
+#  pid: 2579
+#  secret: thisisnotyourkey
+
+#  provider: offerpal
+#  application_id: 4d41d788fd8f3f7fb38935bb7db21d42
+#  secret: 1940032184011318
+staging:
+  provider: super_rewards
+  key: ezimgo.263278932549
+  secret: df6f88ef54354fc130319b0d56eacac2
+
+production:
+  provider: super_rewards
+  key: jmimiynmnjh.22546135074
+  secret: b071c143daca35eaaa9b6c90ddbd4231

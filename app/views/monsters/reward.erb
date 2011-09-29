@@ -1,0 +1,41 @@
+<% result_for(:monster) do |builder| %>
+  <% if @reward_collected %>
+    <% builder.success do %>
+      <%= t(".messages.success", :monster => content_tag(:strong, @fight.monster.name)).html_safe %>
+    <% end %>
+
+    <table class="payouts">
+      <tr>
+        <td class="received">
+          <h3><%= t(".you_received") %></h3>
+
+          <%= payout_list(@fight, @fight.payouts) %>
+        </td>
+      </tr>
+    </table>
+    
+    <% builder.on_ready do %>
+      <%= ga_track_event('Monsters', 'Reward Collected', @fight.monster.name, @fight.damage) %>
+    <% end %>
+  <% elsif @fight.reward_collected? %>
+    <% builder.fail do %>
+      <%= t(".messages.already_collected").html_safe %>
+    <% end %>
+
+    <% builder.on_ready do %>
+      <%= ga_track_event('Monsters', 'Reward Already Collected', @fight.monster.name) %>
+    <% end %>
+  <% elsif !@fight.significant_damage? %>
+    <% builder.fail do %>
+      <%= t(".messages.insignificant_damage").html_safe %>
+    <% end %>
+
+    <% builder.on_ready do %>
+      <%= ga_track_event('Monsters', 'Insignificant Damage', @fight.monster.name, @fight.damage) %>
+    <% end %>
+  <% end %>
+
+  <% builder.on_ready do %>
+    $('#monster').html(<%= render(@fight.monster.state, :monster => @fight.monster, :fight => @fight).to_json.html_safe %>);
+  <% end %>
+<% end %>

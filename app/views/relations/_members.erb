@@ -1,0 +1,11 @@
+<h2><%= t(".title") %></h2>
+
+<% collection(relations) do %>
+  <table class="relations" cellspacing="0" cellpadding="0">
+    <% relations.each do |relation| %>
+      <%= render "relations/#{relation.class.to_s.underscore}", :relation => relation %>
+    <% end %>
+  </table>
+
+  <%= will_paginate(relations) %>
+<% end %>

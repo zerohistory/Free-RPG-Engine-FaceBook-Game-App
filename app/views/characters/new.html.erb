@@ -1,0 +1,84 @@
+<div class="welcome">
+  <div id="char_select">
+    <% form_for @character, :html => {:id => 'login_form'} do |form| %>
+      <%= hidden_field_tag :reference_code, params[:reference_code] %>
+      <%= hidden_field_tag :reference, params[:reference] %>
+      <%= hidden_field_tag(:request_ids, params[:request_ids]) %>
+
+      <h2>Choose a Civilization</h2>
+      <div id="selector">
+        <div id="prev_character_button" class="prev"></div>
+        <div id="next_character_button" class="next"></div>
+
+        <% if @character_types.any? %>
+          <% idx = 1 %>
+          <% @character_types.each do |character_type| %>
+            <div id="character_type_<%= idx.to_s %>" class="char<%= idx == 1 ? " current" : "" %>" value=<%= character_type.id %>>
+              <% if character_type.image? %>
+                <%= image_tag(character_type.image.url, :size => "468x211") %>
+              <% else %>
+                <img src="../images/char.jpg" width="468px" height="211px" border="0" />
+              <% end %>
+                <br />
+                
+              <div class="name"><%= character_type.name %></div>
+            </div>
+            <% idx += 1 %>
+          <% end %>
+        <% end %>
+
+      </div>
+      <%= hidden_field :character, :character_type_id, :id => "character_type_field" %>
+      <div id="fields">
+        <div id="name" class="fleft">
+          <%= label :character, :name, "Name your Tribe" %>
+          <%= text_field :character, :name %>
+        </div>
+        <div id="submit" class="fright">
+          <a id="submit_button" class="tribe_button" href="#"><span class="side"></span> PLAY </a>
+        </div>
+      </div>
+      <div class="fclear"></div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#submit_button").click(function(){
+    $("#login_form").submit();
+  });
+
+  var current_character_id = 1;
+  function change_current_character(inc)
+  {
+    cc_sel = "#character_type_" + current_character_id;
+    if (inc){
+      current_character_id += 1;
+    } else{
+      current_character_id -= 1;
+    }
+    nc_sel = "#character_type_" + (current_character_id);
+
+    $(cc_sel).removeClass("current");
+    $(nc_sel).addClass("current");
+
+    $("#character_type_field").val($("#character_type_" + current_character_id).attr("value"));
+  }
+
+  $("#next_character_button").click(function(){
+    if (current_character_id < <%= @character_types.size %>){
+      change_current_character(true);
+    }
+  });
+
+  $("#prev_character_button").click(function(){
+    if (current_character_id > 1){
+      change_current_character(false);
+    }
+  });
+
+</script>
+
+<% dom_ready do %>
+  CharacterForm.setup('form.new_character');
+<% end %>

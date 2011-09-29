@@ -1,0 +1,153 @@
+#inventory_buttons
+  margin-bottom: 15px
+
+  .button
+    float: left
+    width: auto
+    margin-right: 15px
+
+  .shop
+    +button(!inventory_buttons_shop_icon)
+
+  .inventory
+    +button(!inventory_buttons_inventory_icon)
+
+  .collections
+    +button(!inventory_buttons_collections_icon)
+
+  .equipment
+    +button(!inventory_buttons_equipment_icon)
+
+  .market
+    +button(!inventory_buttons_market_icon)
+
+.inventory_list
+  table
+    width: 100%
+
+  th
+    padding-top: 10px
+
+  td
+    padding: 10px
+    border-bottom = !inventory_item_border
+
+  .info
+    .name
+      font-size: 16px
+      font-weight: bold
+
+    .name, .description
+      margin-bottom: 5px
+
+  .payouts
+    padding-right: 10px
+
+  .stats
+    font-weight: bold
+
+    .owned, .used
+      margin-bottom: 5px
+
+    .value
+      font-weight: normal
+
+  .spacer
+    border: 0
+
+  .controls
+    width: 90px
+    width: 250px
+    text-align: right
+
+    select
+      margin: 5px
+
+    .sell
+      +button(!inventory_item_sell_icon)
+
+    .market
+      +button(!inventory_item_market_icon)
+
+    .use
+      +button(!inventory_item_use_icon)
+
+#inventory_sell_result
+  background-image = !inventory_sell_result_icon
+
+#inventory_use_result
+  background-image = !inventory_use_result_icon
+
+#allies
+  table
+    width: 100%
+
+  .list
+    height: 250px
+    overflow: auto
+
+  .relations
+    margin-top: 10px
+    display: block
+
+    th
+      padding: 5px
+
+    td
+      cursor: pointer
+      vertical-align: middle
+      padding: 5px
+      width: 100%
+      border-bottom = !new_assignment_relation_border
+
+    .picture
+      width: 60px
+
+    .relations .name
+      padding-right: 10px
+
+    .selected
+      background-color = !new_assignment_selected_bg_color
+      font-weight: bold
+
+      td
+        padding: 4px
+        border:
+          top = !new_assignment_selected_border
+          bottom = !new_assignment_selected_border
+
+      .picture
+        border-left = !new_assignment_selected_border
+
+      .name
+        border-right = !new_assignment_selected_border
+
+#give_inventory
+  table
+    float: left
+    margin-right: 20px
+
+  td
+    vertical-align: middle
+    padding: 5px 10px
+
+    &.name
+      font-size: 16px
+      font-weight: bold
+
+    &.amount
+      .value
+        font-weight: bold
+
+    &.give
+      font-weight: bold
+
+  .character
+    text-align: center
+
+    .name
+      margin-bottom: 5px
+      font-weight: bold
+
+  .give.button
+    +button(!inventory_give_button_icon)

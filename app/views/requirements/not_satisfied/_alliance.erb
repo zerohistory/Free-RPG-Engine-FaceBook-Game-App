@@ -1,0 +1,10 @@
+<% requirement(requirement.name, false) do %>
+  <p>
+    <%= t(".message",
+          :required_value => content_tag(:strong, requirement.value),
+
+          :invite   => link_to(t(".invite"), new_relation_path),
+          :premium  => link_to(t(".premium"), premium_path)
+        ).html_safe %>
+  </p>
+<% end %>

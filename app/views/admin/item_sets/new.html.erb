@@ -1,0 +1,7 @@
+<%= admin_title(t(".title")) %>
+
+<% form_for([:admin, @item_set]) do |form| %>
+  <%= form.fields %>
+
+  <%= form.submit_and_continue %>
+<% end %>

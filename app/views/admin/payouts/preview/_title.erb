@@ -1,0 +1,10 @@
+<% content_tag :div, :class => payout.name do %>
+  <%= ("%s: %s '%s' %s (%d%% %s)" % [
+        payout.apply_on_label,
+        (payout.title.visible? ? '' : content_tag(:span, admin_state(payout.title), :class => :state)),
+        payout.title.name,
+        Title.human_name,
+        payout.chance,
+        payout.action
+      ]).html_safe %>
+<% end %>

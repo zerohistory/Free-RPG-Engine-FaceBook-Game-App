@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <script type="text/javascript">
+    var signed_request = '<%= escape_javascript(facebook_signed_request) %>';
+  </script>
+
+  <%= stylesheet_link_tag(skin_path) %>
+
+  <%= include_jquery_from_google %>
+  <%= javascript_include_tag "jrails", "jquery/tabs", "jquery/dialog", "jquery/scroll_to", "jquery/tooltip", "jquery/carousel", "application", :cache => "cache/all" %>
+
+  <% google_analytics do %>
+    <%= ga_set_variable(1, 'Level', character_level_group(current_character), :visitor) %>
+    <%= ga_set_variable(2, 'Gender', current_user.gender.to_s.titleize, :visitor) if current_user.gender %>
+  <% end%>
+  
+  <style type="text/css">
+    <% if bg_main = Asset["bg_main_#{current_character.character_type.name.parameterize.underscore}"] %>
+      #wrapper { background-image: url("<%= bg_main.image.url %>");}
+    <% end %>
+
+    <% if bg_cont = Asset["bg_cont_#{current_character.character_type.name.parameterize.underscore}"] %>
+      #content { background-image: url("<%= bg_cont.image.url %>");}
+    <% end %>
+
+    <% if bg_bottom = Asset["bg_bottom_#{current_character.character_type.name.parameterize.underscore}"] %>
+      #main { background-image: url("<%= bg_bottom.image.url %>");}
+    <% end %>
+  </style>
+</head>
+<body>
+  <% fb_connect_js(:channel_url => Facebooker2.callback_url + '/channel.html', :cache_url => javascript_path('cache/facebook_connect.js'), :weak_cache => Setting.b(:app_weak_fb_js_cache)) do %>
+    $(function(){
+      $(document).trigger('facebook.ready');
+    })
+  <% end %>
+
+  <% admin_only do %>
+    <div id="admin_menu">
+      <%= link_to(t(".admin_interface"), admin_statistics_path, :target => :admin)  %>
+    </div>
+  <% end %>
+
+  <% maintenance_warning do |settings| %>
+    <div id="maintenance_warning">
+      <%= t(".maintenance_warning",
+            :start_time => distance_of_time_in_words_to_now(settings[:start]),
+            :length => distance_of_time_in_words(settings[:length])
+          ).html_safe %>
+    </div>
+  <% end %>
+
+  <div id="content">
+    <div id="wrapper">
+      <div id="header">
+        <div class="header_nav_block">
+		 <div style="width:100%;">
+		     <div style="float:right; "><%= image_tag "/system/assets/000/000/268/small/experience.png" %></div>
+			 <div style="float:left;"><%= image_tag "/system/assets/000/000/284/original/gold.gif" %></div>
+		 </div>
+          <%= render "layouts/character_overview" %>
+          <%= render "layouts/main_menu", :opts => {:id => "main_menu", :class => "header_menu"} %>
+        </div>
+      </div>
+      <div id="main">
+        <%= render "layouts/tip" if current_user.show_tips? %>
+        <%= render "layouts/spinner" %>
+
+        <% if result = yield(:result) and !result.blank? %>
+          <%= content_tag(:div, result, :id => :result) %>
+        <% else %>
+          <%= content_tag(:div, result, :id => :result, :style => "display:none;") %>
+        <% end %>
+
+        <% if (current_boss_fights = current_character.boss_fights.with_state(:progress)).any? %>
+          <%= render "boss_fights/block", :fights => current_boss_fights %>
+        <% end %>
+
+        <%= yield %>
+
+        <%= render "layouts/main_menu_bottom", :opts => {:id => "bottom_nav"} %>
+      </div><!-- #main -->
+    </div><!-- #wrapper -->
+  </div><!-- #content -->
+
+  <div id="ajax" style="display:none;"></div>
+
+  <%= display_notifications %>
+
+  <% dom_ready do %>
+    $(document).trigger('application.ready');
+  <% end %>
+
+  <%= dom_ready %>
+</body>
+</html>

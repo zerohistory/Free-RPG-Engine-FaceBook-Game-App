@@ -1,0 +1,14 @@
+<% dialog :id => :market_item do |d| %>
+  <h2><%= t(".title") %></h2>
+
+  <p>
+    <%= t(".message.text",
+          :market => link_to(t(".message.market"), market_items_path),
+          :expire_in => Setting.i(:market_expire_period)
+        ).html_safe %>
+  </p>
+  
+  <% d.on_ready do %>
+    <%= ga_track_event('Items', 'Listed on Market', "#{@inventory.name} (#{@inventory.item.availability})", current_character.level) %>
+  <% end %>
+<% end %>

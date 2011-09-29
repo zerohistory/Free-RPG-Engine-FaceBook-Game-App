@@ -1,0 +1,12 @@
+<%= form.field :mission, link_to(form.object.mission.name, edit_admin_mission_path(form.object.mission))  %>
+
+<%= form.text_field :win_amount, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :chance, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :energy, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :experience, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :money_min, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :money_max, :required => true, :size => 6, :autocomplete => :off %>
+
+<h2><%= Mission.human_attribute_name("payouts") %></h2>
+
+<%= form.fields "admin/payouts/collection" %>

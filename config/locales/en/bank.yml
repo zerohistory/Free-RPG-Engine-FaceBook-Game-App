@@ -1,0 +1,14 @@
+en:
+  bank_operations:
+    new:
+      title: Treasury
+      current_balance: "Current Balance: %{amount}"
+      deposit: "Deposit"
+      withdraw: "Withdraw"
+      note: "A %{fee}% processing fee will be taken out of all incoming funds. Withdrawing money to cash is free."
+    deposit:
+      message: "The deposit was processed successfully!"
+      balance: "New Balance: %{amount}"
+    withdraw:
+      message: "The withdrawal was processed successfully!"
+      balance: "New Balance: %{amount}"

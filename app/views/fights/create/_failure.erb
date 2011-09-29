@@ -1,0 +1,45 @@
+<% builder.fail do %>
+  <%= t(".message",
+        :pronoun    => fb_pronoun(fight.victim.user, :objective => true),
+        :user_name  => character_name_link(fight.victim)
+      ).html_safe %>
+<% end %>
+
+<table class="payouts" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="lost">
+      <h3><%= t(".you_lost") %></h3>
+
+      <%= payout(:stamina, Setting.i(:fight_stamina_required)) %>
+      <%= payout(:health, fight.attacker_hp_loss) %>
+      <%= payout(:basic_money, number_to_currency(fight.loser_money)) %>
+      <% fight.losses.each do |loss| %>
+        <%= item_with_amount(loss.item, loss.amount) %>
+      <% end %>
+      <% fight.property_losses.each do |loss| %>
+        <%= property_type_tag(loss.property_type) %>
+      <% end %>
+    </td>
+    <td class="victim_lost">
+      <h3><%= t(".victim_lost", :user_name => character_name_link(fight.victim)).html_safe %></h3>
+
+      <%= payout(:health, fight.victim_hp_loss) %>
+    </td>
+    <% if fight.found_losses.any? %>
+      <td class="victim_received">
+        <h3><%= t(".victim_received", :user_name => character_name_link(fight.victim)).html_safe %></h3>
+
+        <% fight.found_losses.each do |loss| %>
+          <%= item_with_amount(loss.item, loss.amount) %>
+        <% end %>
+        <% fight.found_properties.each do |loss| %>
+          <%= property_type_tag(loss.property_type) %>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+</table>
+
+<% builder.on_ready do %>
+  <%= ga_track_event('Fights', 'Lost') %>
+<% end %>

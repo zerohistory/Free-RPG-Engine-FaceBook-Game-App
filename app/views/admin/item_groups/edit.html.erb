@@ -1,0 +1,7 @@
+<%= admin_title(t(".title", :name => @group.name)) %>
+
+<% form_for [:admin, @group] do |form| %>
+  <%= form.fields %>
+
+  <%= form.submit_and_continue %>
+<% end %>

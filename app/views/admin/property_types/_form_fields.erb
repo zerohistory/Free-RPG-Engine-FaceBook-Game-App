@@ -1,0 +1,43 @@
+<%= form.text_field :name, :required => true, :size => 50 %>
+<%= form.text_field :plural_name, :size => 50 %>
+
+<%= form.text_area :description, :cols => 80, :rows => 5 %>
+
+<%= form.file_field :image, :after_field => form.attachment_preview(:image, :small) %>
+
+<%= form.select :availability, PropertyType::AVAILABILITIES, :required => true %>
+
+<%= form.text_field :level, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :basic_price, :required => true, :size => 6, :autocomplete => :off %>
+<%= form.text_field :vip_price, :size => 6, :autocomplete => :off %>
+<%= form.text_field :income, :size => 6, :required => true, :autocomplete => :off %>
+<%= form.text_field :collect_period, :size => 6, :required => true, :autocomplete => :off %>
+<%= form.text_field :upgrade_cost_increase, :size => 6, :autocomplete => :off %>
+<%= form.text_field :upgrade_limit, :size => 6, :autocomplete => :off %>
+<table>
+  <tr>
+    <td>
+      <%= form.fields 'admin/visibilities/form_fields' %>
+    </td>
+    <td>
+    <td>     
+        <%= form.fields 'admin/ownerships/form_fields' %>
+    </td>
+    </td>
+  </tr>
+</table>
+
+
+<%= form.check_box :can_be_gifted %>
+<%= form.text_field :gift_cost, :size => 6, :autocomplete => :off %>
+
+<%= form.check_box :can_be_lost %>
+<%= form.check_box :can_be_found %>
+<%= form.check_box :auto_collect %>
+
+<h2><%= PropertyType.human_attribute_name("payouts") %></h2>
+
+<%= form.fields "admin/payouts/collection" %>
+
+<h2><%= Mission.human_attribute_name("requirements") %></h2>
+<%= form.fields "admin/requirements/collection" %>

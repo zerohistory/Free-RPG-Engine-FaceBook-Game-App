@@ -1,0 +1,87 @@
+<% if inventories.size > 0 %>
+  <table cellspacing="0" cellpadding="0">
+    <% ItemGroup.all.each do |group| %>
+      <% if by_group = inventories.by_item_group(group) and by_group.any? %>
+        <tr>
+          <th colspan="3"><h2><%= group.name %></h2></th>
+        </tr>
+        <% by_group.each do |inventory| %>
+          <% content_tag_for(:tr, inventory) do %>
+            <td class="picture"><%= item_image(inventory, :small) %></td>
+            <td class="info">
+              <div class="name"><h3><%= inventory.name %></h3></div>
+              <div class="description"><%= inventory.description %></div>
+              <div class="stats">
+                <div class="owned">
+                  <%= t(".owned",
+                        :amount => content_tag(:span, inventory.amount, :class => :value)
+                      ).html_safe %>
+                </div>
+
+                <% if inventory.equipped > 0 %>
+                  <div class="used">
+                    <%= t(".used",
+                          :amount => content_tag(:span, inventory.equipped, :class => :value)
+                        ).html_safe %>
+                  </div>
+                <% end %>
+              </div>
+            </td>
+            <td class="payouts">
+              <%= render "items/effects", :item => inventory %>
+            </td>
+            <td class="controls">
+              <%= link_to_remote(inventory_use_button(inventory),
+                    :url    => use_inventory_path(inventory),
+                    :update => :result,
+                    :html   => {
+                      :"data-click-once" => true,
+                      :class => "use button"
+                    }
+                  ) if inventory.usable? %>
+
+              <% if inventory.can_be_sold? %>
+                <% form_tag "", :class => :clearfix do %>
+                  <%= amount_select_tag %>
+
+                  <%= link_to_remote(button(:sell, :price => number_to_currency(inventory.sell_price)),
+                        :url    => inventory_path(inventory.item),
+                        :method => :delete,
+                        :with   => "$(this).parent('form').serialize()",
+                        :update => :result,
+                        :html   => {
+                          :"data-click-once" => true,
+                          :class => "sell button"
+                        }
+                      ) %>
+                  <% if inventory.can_be_gifted? %>
+                    <%= link_to_remote(button(:gift),
+                          :url    => gift_inventory_path(inventory),
+                          :method => :get,
+                          :with   => "$(this).parent('form').serialize()",
+                          :update => :result,
+                          :html   => {:class => "gift button"}) %>
+                 <% end %>
+
+                <% end %>
+              <% end %>
+
+              <% if inventory.can_be_sold_on_market? and Setting.b(:market_enabled) %>
+                <% if inventory.market_items_count == 0 %>
+                  <%= link_to_remote(button(:sell_on_market),
+                        :url    => new_market_item_path(:inventory_id => inventory),
+                        :method => :get,
+                        :update => :result,
+                        :html   => {:class => "market button"}
+                      ) %>
+                <% else %>
+                  <div class="market_listing"><%= t(".listed_on_market") %></div>
+                <% end %>
+              <% end %>
+            </td>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>

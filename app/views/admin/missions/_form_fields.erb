@@ -1,0 +1,25 @@
+<%= form.select :mission_group_id, MissionGroup.to_dropdown, :required => true %>
+
+<%= form.grouped_select :parent_mission_id, Mission.to_grouped_dropdown, :include_blank => true %>
+
+<%= form.text_field :name, :required => true, :size => 50 %>
+<%= form.text_area :description, :cols => 80, :rows => 5 %>
+
+<%= form.text_area :success_text, :required => true, :cols => 80, :rows => 3 %>
+<%= form.text_area :failure_text, :cols => 80, :rows => 3 %>
+<%= form.text_area :complete_text, :required => true, :cols => 80, :rows => 3 %>
+
+<%= form.file_field :image, :after_field => form.attachment_preview(:image, :small) %>
+
+<%= form.check_box :repeatable %>
+
+<%= form.fields 'admin/visibilities/form_fields' %>
+
+<% form.field_set Mission.human_attribute_name("requirements") do %>
+  <%= form.fields "admin/requirements/collection" %>
+<% end %>
+
+<% form.field_set Mission.human_attribute_name("payouts") do %>
+  <%= form.fields "admin/payouts/collection" %>
+<% end %>
+

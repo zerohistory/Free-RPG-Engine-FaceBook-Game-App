@@ -1,0 +1,48 @@
+#item_collection_list
+  width: 100%
+
+  .item_collection
+    margin-bottom: 20px
+
+    td
+      padding-bottom: 20px
+
+    .info
+      float: left
+      width: 500px
+
+    .payouts
+      float: right
+      width: 240px
+
+    .items
+      .item
+        float: left
+        width: 100px
+        height: 130px
+        border = !thin_border
+        margin: 0 3px 3px 0
+        padding: 5px
+        text-align: center
+
+        .name
+          height: 30px
+          font-weight: bold
+
+        .amount
+          padding-top: 10px
+          font-weight: bold
+
+      .present
+        border = !main_border
+
+    .controls
+      .collect
+        float: left
+        +button(!collection_collect_icon)
+
+      .publish
+        +button(!collection_publish_icon)
+
+#item_collection_result
+  background-image = !collection_result_icon

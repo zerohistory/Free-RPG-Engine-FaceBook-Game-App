@@ -1,0 +1,38 @@
+<% dialog :id => :level_up_notification do |d| %>
+  <h2><%= t(".title") %></h2>
+
+  <div class="text">
+    <%= t(".text",
+          :point_amount => Setting.i(:character_points_per_upgrade),
+          :upgrade      => link_to_remote(t(".upgrade_link"),
+            :url    => upgrade_character_url(current_character),
+            :method => :get,
+            :update => :ajax
+          )
+        ).html_safe %>
+  </div>
+
+  <div class="buttons">
+    <%= link_to_function(button(:continue), stream_dialog(:level_up, :callback => "$(document).trigger('character.level_up_publish')"),
+          :class => "continue button"
+        ) %>
+  </div>
+
+  <%= render("notifications/disable", :notification => notification) %>
+
+  <% d.on_ready do %>
+    $(document).trigger('character.new_level');
+
+    $(document).
+      unbind('character.level_up_publish').
+      bind('character.level_up_publish', function(){
+        <%= remote_function(
+              :url    => upgrade_character_url(current_character),
+              :method => :get,
+              :update => :ajax
+            ) %>
+      });
+
+    <%= ga_track_event('Character', 'Level Up', 'Level', current_character.level) %>
+  <% end %>
+<% end %>

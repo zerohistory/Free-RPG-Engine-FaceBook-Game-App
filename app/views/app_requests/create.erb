@@ -1,0 +1,11 @@
+<% unless params[:no_dialog] %>
+  <% dialog :id => "#{@request_type}_dialog" do %>
+    <h3><%= t(".#{@request_type}.title") %></h3>
+  
+    <p><%= t(".#{@request_type}.message") %></p>
+  <% end %>
+<% end %>
+
+<% dom_ready do %>
+  <%= ga_track_event('Requests', "#{@request_type.titleize} - Sent", @item.try(:name), @requests.size) %>
+<% end %>

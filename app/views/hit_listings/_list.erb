@@ -1,0 +1,29 @@
+<% collection(hit_listings) do %>
+  <table id="hitlist">
+    <tr>
+      <th><%= HitListing.human_attribute_name("victim") %></th>
+      <th><%= HitListing.human_attribute_name("client") %></th>
+      <th><%= HitListing.human_attribute_name("reward") %></th>
+    </tr>
+    <% hit_listings.each do |listing| %>
+      <tr>
+        <td class="victim"><%= character_name_link(listing.victim) %></td>
+        <td class="client"><%= character_name_link(listing.client) %></td>
+        <td class="payouts"><%= payout(:basic_money, number_to_currency(listing.reward)) %></td>
+        <td class="controls">
+          <%= link_to_remote(button(:attack),
+                :url    => hit_listing_path(listing),
+                :method => :put,
+                :update => :result,
+                :html   => {
+                  :"data-click-once" => true,
+                  :class => "attack button"
+                }
+              ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate hit_listings %>
+<% end %>

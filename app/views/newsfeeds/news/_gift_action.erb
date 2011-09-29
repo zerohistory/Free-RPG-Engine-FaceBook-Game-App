@@ -1,0 +1,9 @@
+<% if news.action == :send %>
+  <%= t("news.gift.send", :item => news.amount > 1 ? news.item.plural_name : news.item.name,
+                          :amount => news.amount,
+                          :receiver => news.receiver.name) %>
+<% else %>
+  <%= t("news.gift.received", :item => news.amount > 1 ? news.item.plural_name : news.item.name,
+                              :amount => news.amount,
+                              :sender => news.sender.name) %>
+<% end %>

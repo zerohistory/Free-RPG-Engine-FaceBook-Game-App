@@ -1,0 +1,21 @@
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="image">
+      <%= image_tag(monster.image.url(:large)) %>
+    </td>
+
+    <td class="info">
+      <div class="health">
+        <%= monster_health_bar(monster) %>
+      </div>
+
+      <% if fight.new_record? %>
+        <p><%= t('.too_late') %></p>
+      <% else %>
+        <p><%= t('.expired') %></p>
+      <% end %>
+
+      <%= render('fighters', :monster => monster) %>
+    </td>
+  </tr>
+</table>

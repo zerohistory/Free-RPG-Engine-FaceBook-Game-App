@@ -1,0 +1,41 @@
+<div id="special_items" class="clearfix">
+  <h2><%= t(".header") %></h2>
+
+  <table class="items" cellspacing="0" cellpadding="0">
+    <tr>
+      <% items.each do |item| %>
+      <td class="item">
+        <div class="name"><%= item.name %></div>
+        <div class="picture"><%= item_image(item, :small) %></div>
+        <div class="payouts">
+          <%= render "items/effects", :item => item %>
+        </div>
+
+        <div class="requirements">
+          <h3><%= Item.human_attribute_name("price") %></h3>
+
+          <%= attribute_requirement(:basic_money, number_to_currency(item.basic_price)) if item.basic_price > 0 %>
+          <%= vip_money_requirement(item.vip_price) if item.vip_price > 0 %>
+        </div>
+
+        <% if item.left or item.available_till %>
+          <%= render "items/limit", :item => item %>
+        <% end %>
+
+        <div class="controls">
+          <% form_tag "", :class => :clearfix do %>
+            <%= amount_select_tag %>
+
+            <%= link_to_remote(button(:buy),
+                  :url    => inventories_path(:item_id => item.id),
+                  :update => :result,
+                  :with   => "$(this).parent('form').serialize()",
+                  :html   => {:class => "buy button"}
+                ) %>
+          <% end %>
+        </div>
+      </td>
+      <% end %>
+    </tr>
+  </table>
+</div>

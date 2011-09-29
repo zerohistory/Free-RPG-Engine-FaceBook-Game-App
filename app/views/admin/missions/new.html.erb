@@ -1,0 +1,9 @@
+<%= admin_title(t(".title")) %>
+
+<%= render "controls" %>
+
+<% form_for [:admin, @mission], :html => {:multipart => true} do |form| %>
+  <%= form.fields %>
+
+  <%= form.submit_and_continue %>
+<% end %>

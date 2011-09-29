@@ -1,0 +1,29 @@
+<div class="buttons clearfix" id="alliance_buttons">
+  <% unless current == :relations %>
+    <%= link_to(button(:relations), relations_path(:noredirect => true),
+          :class => "relations button"
+        ) %>
+  <% end %>
+
+  <% unless current == :invite %>
+    <%= link_to(button(:recruit), new_relation_path,
+          :class => "invite button"
+        ) %>
+  <% end %>
+
+  <%#= link_to(button(:hire), premium_path,
+        :class => "mercenaries button"
+      ) %>
+
+  <% unless current == :send_gifts %>
+    <%= link_to(button(:send_gifts), new_gift_path,
+          :class => "send_gifts button"
+        ) %>
+  <% end %>
+  
+  <% unless current == :accept_requests %>
+    <%= link_to(button(:accept_requests), app_requests_path,
+          :class => "accept_requests button"
+        ) %>
+  <% end %>
+</div>

@@ -1,0 +1,17 @@
+<% dialog do |d| %>
+  <h2><%= t(".title") %></h2>
+
+  <% remote_form_for [@victim, @hit_listing], :update => :ajax do |form| %>
+    <%= form.field :victim, character_picture(@victim) + character_name(@victim) %>
+
+    <%= form.text_field :reward %>
+
+    <%= form.submit %>
+  <% end %>
+
+  <div class="note"><%= t(".note", :fee => Setting.i(:hit_list_reward_fee)) %></div>
+
+  <% d.on_ready do %>
+    $(document).trigger('remote_content.received');
+  <% end %>
+<% end %>

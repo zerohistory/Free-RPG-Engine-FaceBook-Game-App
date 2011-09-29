@@ -1,0 +1,37 @@
+<div class="buttons clearfix" id="inventory_buttons">
+  <% unless current == :inventory %>
+    <%= link_to(button(:inventory), inventories_path,
+          :class => "inventory button"
+        ) %>
+  <% end %>
+
+  <% unless Setting.b(:character_auto_equipment) or current == :equipment %>
+    <%= link_to(button(:equipment), equipment_inventories_path,
+          :class => "equipment button"
+        ) %>
+  <% end %>
+
+  <% if current != :collections and Setting.b(:collections_enabled) %>
+    <%= link_to(button(:collections), item_collections_path,
+          :class => "collections button"
+        ) %>
+  <% end %>
+
+  <% unless current == :shop %>
+    <%= link_to(button(:shop), items_path,
+          :class => "shop button"
+        ) %>
+  <% end %>
+
+  <%# unless current == :properties %>
+    <%#= link_to(button(:properties), properties_path,
+          :class => "properties button"
+        ) %>
+  <%# end %>
+
+  <% if current != :market and Setting.b(:market_enabled) %>
+    <%= link_to(button(:market), market_items_path,
+          :class => "market button"
+        ) %>
+  <% end %>
+</div>

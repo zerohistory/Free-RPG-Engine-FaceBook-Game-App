@@ -1,0 +1,59 @@
+<div id="placements">
+  <% (Character::Equipment::MAIN_PLACEMENTS).each do |placement| %>
+    <% content_tag(:div, :class => "placement #{placement}") do %>
+      <% character.equipment.inventories_by_placement(placement).each do |inventory| %>
+        <% content_tag :div, :class => :inventory do %>
+          <%= link_to_remote(image_tag("1px.gif", :width => 16, :height => 16, :alt => t(".remove")),
+                :url    => unequip_inventory_path(inventory, :placement => placement),
+                :update => :result,
+                :html   => {
+                  :"data-click-once" => true,
+                  :class => :remove, 
+                  :title => t(".remove")
+                }
+              ) if character == current_character %>
+
+          <%= item_image(inventory, Character::Equipment::IMAGE_SIZES[placement]) -%>
+
+          <%= item_tooltip(inventory) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="additional clearfix">
+    <h2><%= Character::Equipment.placement_name(:additional) %></h2>
+
+    <% character.equipment.inventories_by_placement(:additional).each do |inventory| %>
+      <% content_tag :div, :class => :inventory do %>
+        <%= link_to_remote(image_tag("1px.gif", :width => 16, :height => 16, :alt => t(".remove")),
+              :url    => unequip_inventory_path(inventory, :placement => :additional),
+              :update => :result,
+              :html   => {
+                :"data-click-once" => true,
+                :class => :remove, 
+                :title => t(".remove")
+              }
+            ) if character == current_character %>
+
+        <%= item_image(inventory, Character::Equipment::IMAGE_SIZES[:additional]) -%>
+
+        <%= item_tooltip(inventory) %>
+      <% end %>
+    <% end %>
+
+    <% inventory_additonal_slots_note do |free_slots| %>
+      <div class="note">
+        <%= t(".additional.free_slots",
+              :count        => free_slots,
+              :count_label  => content_tag(:span, free_slots, :class => (free_slots == 0 ? "value zero" : "value"))
+            ).html_safe %>
+
+        <%= t(".additional.relations",
+              :relations  => link_to(Character.human_attribute_name("relations"), relations_path),
+              :amount     => content_tag(:span, Setting.i(:character_relations_per_equipment_slot), :class => :value)
+            ).html_safe %>
+      </div>
+    <% end %>
+  </div>
+</div>

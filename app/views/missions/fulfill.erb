@@ -1,0 +1,56 @@
+<% result_for(:mission) do |builder| %>
+  <% if @result.saved? %>
+    <% if @result.level_rank.just_completed? %>
+      <%= builder.render("missions/fulfill/completed",
+            :mission  => @mission,
+            :result   => @result,
+            :missions => @missions
+          ) %>
+    <% elsif @result.success? %>
+      <%= builder.render "missions/fulfill/success", :mission => @mission, :result => @result %>
+    <% else %>
+      <%= builder.render "missions/fulfill/failure", :mission => @mission, :result => @result %>
+    <% end %>
+
+    <% builder.on_ready do %>
+      $('#mission_group_list').replaceWith('<%= escape_javascript(render("mission_groups/tabs")) %>');
+    <% end %>
+  <% elsif !@result.enough_energy? %>
+    <%= builder.render("requirements/not_satisfied/energy_point",
+          :requirement => @result.level.energy_requirement
+        ) %>
+    
+    <% builder.on_ready do %>
+      <%= ga_track_event('Missions', 'Not Enough Energy') %>
+    <% end %>
+  <% elsif !@result.requirements_satisfied? %>
+    <% builder.fail do %>
+      <%= t(".requirements_not_satisfied.message") %>
+    <% end %>
+
+    <div class="requirements clearfix">
+      <%= unsatisfied_requirement_list(@mission.requirements) %>
+    </div>
+
+    <% builder.on_ready do %>
+      Mission.requirementCallback = function(){
+        <%= remote_function(
+              :url    => fulfill_mission_path(@mission),
+              :update => :result
+            ) %>
+      };
+
+      $(document).bind('requirement.satisfy', Mission.onRequirementSatisfy);
+
+      <%= ga_track_event('Missions', 'Requirements Unsatisfied') %>
+    <% end %>
+  <% elsif @result.level_rank.completed? %>
+    <% builder.fail do %>
+      <%= t(".already_completed.message") %>
+    <% end %>
+
+    <% builder.on_ready do %>
+      <%= ga_track_event('Missions', 'Already Completed') %>
+    <% end %>
+  <% end %>
+<% end %>

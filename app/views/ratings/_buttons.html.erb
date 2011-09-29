@@ -1,0 +1,9 @@
+<div class="buttons clearfix" id="rating_buttons">
+  <% unless current == :relations %>
+    <%= link_to(button(:relations), rating_path, :class => :button) %>
+  <% end %>
+
+  <% unless current == :global %>
+    <%= link_to(button(:global), global_rating_path, :class => :button) %>
+  <% end %>
+</div>

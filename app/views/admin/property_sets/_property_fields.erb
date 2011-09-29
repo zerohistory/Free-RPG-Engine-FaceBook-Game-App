@@ -1,0 +1,11 @@
+<div class="serializable_item clearfix" id="property_<%= property.object_id %>">
+  <div class="controls">
+    <%= link_to_function(t(".remove"), "SerializableList.remove('#property_#{property.object_id}')", :class => :remove) %>
+  </div>
+
+  <%= label_tag "property_set_properties_#{property.object_id}_property_id", PropertyType.human_name %>
+  <%= select_tag("property_set[properties][#{property.object_id}][property_id]", options_for_select(PropertyType.to_dropdown, property.try(:id)).html_safe) %>
+
+  <%= label_tag "property_set_properties_#{property.object_id}_frequency", PropertySet.human_attribute_name('frequency') %>
+  <%= text_field_tag("property_set[properties][#{property.object_id}][frequency]", frequency, :size => 5) %>
+</div>

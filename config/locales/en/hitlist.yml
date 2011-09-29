@@ -1,0 +1,25 @@
+en:
+  hit_listings:
+    index:
+      title: "Hitlist"
+    list:
+      buttons:
+        attack: "Attack"
+      empty_set: "Right now there are not listings. Please try again later."
+    new:
+      title: "Add to Hitlist"
+      submit: "Tell Your Alliance"
+      note: "Note: A %{fee}% security fee will be charged to safeguard your bounty."
+    create:
+      title: "Hitlist"
+      message: "You've just set a %{reward} bounty on %{victim}!"
+    update:
+      buttons:
+        attack_again: "Attack Again"
+        publish: "Continue »"
+      you_received: "You received:"
+      completed:
+        message: "You've just took out %{victim}! The reward is yours!"
+        publish: "Let your friends know about your success:"
+      incomplete: "The target is still alive. Keep attacking!"
+      already_completed: "Somebody already took out %{victim} before you got the chance!"

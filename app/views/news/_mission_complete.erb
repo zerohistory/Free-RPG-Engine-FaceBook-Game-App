@@ -1,0 +1,29 @@
+<div class="actor">
+  <%= character_picture_link(news.character) %>
+</div>
+
+<% if news.mission.image? %>
+  <div class="subject">
+    <%= image_tag(news.mission.image.url(:icon)) %>
+  </div>
+<% end %>
+
+<div class="description">
+  <% if news.mission.levels.size > 1 %>
+    <%= t(".text.multi_level",
+          :actor    => character_name_link(news.character, {}, {:useyou => true, :capitalize => true}),
+          :mission  => content_tag(:strong, news.mission.name),
+          :level    => content_tag(:strong, news.level_rank.level.position)
+        ).html_safe %>
+  <% else %>
+    <%= t(".text.single_level",
+          :actor    => character_name_link(news.character, {}, {:useyou => true, :capitalize => true}),
+          :mission  => content_tag(:strong, news.mission.name)
+        ).html_safe %>
+  <% end %>
+
+  <% if news.payouts %>
+    <%= t("news.payouts.text", :payouts => payout_string(news.payouts, t("news.payouts.and"))).html_safe %>
+  <% end %>
+</div>
+

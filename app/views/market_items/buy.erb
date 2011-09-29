@@ -1,0 +1,48 @@
+<% result_for :market do |builder| %>
+  <% if @item.errors.empty? %>
+    <% builder.buttons do %>
+      <%= link_to_function(button(:publish), stream_dialog(:item_purchased, @item.inventory.item),
+            :class => "publish button"
+          ) %>
+
+      <%= link_to(button(:inventory), inventories_url,
+            :class => "inventory button"
+          ) %>
+    <% end %>
+
+    <% builder.success do %>
+      <%= t(".messages.success",
+            :amount     => @item.amount,
+            :item_name  => content_tag(:b, @item.amount > 1 ? @item.plural_name : @item.name)
+          ).html_safe %>
+    <% end %>
+
+    <% if @item.price? %>
+      <table class="payouts">
+        <tr>
+          <td class="spent">
+            <h3><%= t(".you_spent.title") %></h3>
+
+            <% if @item.basic_price > 0 %>
+              <%= payout(:basic_money, number_to_currency(@item.basic_price)) %>
+            <% end %>
+
+            <% if @item.vip_price > 0 %>
+              <%= payout(:vip_money, number_to_currency(@item.vip_price)) %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+
+    <% builder.on_ready do %>
+      $('#<%= dom_id(@item) %>').remove();
+
+      <%= ga_track_event('Items', 'Purchased on Market', "#{@item.name} (#{@item.inventory.item.availability})", current_character.level) %>
+    <% end %>
+  <% else %>
+    <% builder.fail do %>
+      <%= @item.errors.on_base %>
+    <% end %>
+  <% end %>
+<% end %>

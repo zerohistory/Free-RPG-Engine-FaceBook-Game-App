@@ -1,0 +1,18 @@
+<%= form.text_field :name, :required => true %>
+<%= form.text_field(:alias,
+      :required     => true,
+      :before_field => "/help_pages/",
+      :comment      => t(".comments.alias")
+    ) %>
+
+<%= form.text_area(:content,
+      :before_field => content_tag(:comment,
+        t(".comments.content.text",
+          :documentation => link_to(t(".comments.content.documentation"), "http://railorz.com/help/help_pages/#formatting",
+            :target => :_blank
+          )
+        ).html_safe,
+        :class => :comment
+      ),
+      :cols => 120
+    ) %>

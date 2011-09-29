@@ -1,0 +1,9 @@
+<%= title(t(".title")) %>
+
+<%= render "inventories/buttons", :current => :properties %>
+
+<div class="note"><%= t(".note") %></div>
+
+<div id="property_list">
+  <%= render "list", :properties => @properties %>
+</div>

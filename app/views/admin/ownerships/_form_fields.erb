@@ -1,0 +1,20 @@
+<% ownership = capture do %>
+  <%= hidden_field_tag("#{form.object_name}[owner_type_ids][]", 0) %>
+
+  <% CharacterType.without_state(:deleted).each do |type| %>
+    <div>
+      <%= check_box_tag(
+            "#{form.object_name}[owner_type_ids][]", type.id,
+            form.object.ownerships.character_types.include?(type),
+            :id => "ownership_#{type.id}"
+          ) %>
+
+      <%= label_tag("ownership_#{type.id}", type.name) %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form.field(:ownership, ownership,
+      :label    => t(".owner_for"),
+      :comment  => t(".comment")
+    ) %>

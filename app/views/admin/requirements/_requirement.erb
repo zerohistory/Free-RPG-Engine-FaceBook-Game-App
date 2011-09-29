@@ -1,0 +1,16 @@
+<div class="requirement serializable_item <%= requirement.name %>" id="requirement_<%= requirement.object_id %>">
+  <div class="controls">
+    <%= link_to_function(t(".move_up"), "SerializableList.moveUp('#requirement_#{requirement.id}')", :class => :move_up) %>
+    <%= link_to_function(t(".move_down"), "SerializableList.moveDown('#requirement_#{requirement.id}')", :class => :move_down) %>
+    <%= link_to_function(t(".remove"), "SerializableList.remove('#requirement_#{requirement.id}')", :class => :remove) %>
+  </div>
+
+  <h4><%= t("requirements.#{requirement.name}.name") %></h4>
+
+  <% fields_for "#{container}[requirements][requirement_#{requirement.object_id}]", requirement do |form| %>
+    <%= form.hidden_field :type, :value => requirement.name %>
+
+    <%= form.fields "admin/requirements/form_fields/#{requirement.name}" %>
+    <%= form.fields "admin/requirements/form_fields/common" %>
+  <% end %>
+</div>

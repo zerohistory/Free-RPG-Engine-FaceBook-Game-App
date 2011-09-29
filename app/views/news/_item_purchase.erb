@@ -1,0 +1,15 @@
+<div class="actor">
+  <%= character_picture_link(news.character) %>
+</div>
+
+<div class="subject">
+  <%= item_image(news.item, :icon) %>
+</div>
+
+<div class="description">
+  <%= t(".text",
+        :actor  => character_name_link(news.character, {}, {:useyou => true, :capitalize => true}),
+        :amount => content_tag(:strong, news.amount),
+        :item   => content_tag(:strong, news.amount > 1 ? news.item.plural_name : news.item.name)
+      ).html_safe %>
+</div>
