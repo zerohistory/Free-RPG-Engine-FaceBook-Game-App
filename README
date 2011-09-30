@@ -6,7 +6,7 @@ They are simple games that operate by simple clicks and automated processes are 
 Most of these games make money regardless of how crappy they are, but the concept has great potential and great
 little games can be made from it.
 
-The layout of the game is in SASS (CSS).
+The layout of the game is in SASS (CSS). The game itself is written on Ruby On Rails.
 
 Some sections of the game have been disabled because they do not work, but there is alot of potential here.
 
