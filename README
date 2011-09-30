@@ -1,3 +1,22 @@
+Free RPG Engine for FaceBook
+
+This is a blank game engine for RPGs such as Mafia Wars on FaceBook. 
+There are many types of games like these. They are simple games that operate by simple clicks and automated processes
+are used to determine the decisions of the players.
+
+Most of these games make money regardless of how crappy they are, but the concept has great potential and great
+little games can be made from it.
+
+The layout of the game is in SASS, a better version of CSS.
+
+Some sections of the game have been disabled because they do not work, but there is alot of potential here.
+
+FaceBook Credits need to be implemented in the game in order to make it able to generate revenue.
+
+We can all collaborate and improve on this engine and then we can benefit from it.
+
+
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create 
