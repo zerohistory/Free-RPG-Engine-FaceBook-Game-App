@@ -5,7 +5,7 @@ gem "rails", "2.3.11", :require => nil
 gem "mysql",            "2.8.1"
 #gem "system_timer",     "1.0"
 #gem "memcache-client",  "1.7.6",  :require => "memcache"
-gem "will_paginate",    "2.3.14"
+gem "will_paginate",    "3.0.5"
 gem "paperclip",        "2.3.6"
 gem "delayed_job",      "1.8.4"
 #gem "taf2-curb",        "0.2.8.0"
