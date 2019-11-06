@@ -17,7 +17,6 @@ GEM
     autotest-growl (0.2.9)
     capistrano (2.5.20)
       highline
-      highline
       net-scp
       net-scp (>= 1.0.0)
       net-sftp
@@ -81,7 +80,7 @@ GEM
     shoulda (2.11.3)
     spork (0.8.4)
     timecop (0.3.5)
-    will_paginate (2.3.14)
+    will_paginate (3.0.5)
 
 PLATFORMS
   ruby
@@ -114,4 +113,4 @@ DEPENDENCIES
   shoulda (= 2.11.3)
   spork
   timecop (= 0.3.5)
-  will_paginate (= 2.3.14)
+  will_paginate (= 3.0.5)
