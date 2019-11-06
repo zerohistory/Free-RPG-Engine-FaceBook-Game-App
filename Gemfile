@@ -21,7 +21,7 @@ gem "ruby-debug"
 # facebooker2 dependencies
 gem "crack",      "0.1.8"
 gem "hashie",     "0.4.0"
-gem "httparty",   "0.6.1"
+gem "httparty",   "0.10.0"
 gem "ruby-hmac",  "0.4.0"
 
 group :development do
