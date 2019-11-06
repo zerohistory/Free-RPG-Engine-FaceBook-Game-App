@@ -17,7 +17,6 @@ GEM
     autotest-growl (0.2.9)
     capistrano (2.5.20)
       highline
-      highline
       net-scp
       net-scp (>= 1.0.0)
       net-sftp
@@ -58,7 +57,7 @@ GEM
     paperclip (2.3.6)
       activerecord
       activesupport
-    rack (1.1.2)
+    rack (1.1.6)
     rails (2.3.11)
       actionmailer (= 2.3.11)
       actionpack (= 2.3.11)
