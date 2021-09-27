@@ -14,7 +14,7 @@ gem "json_pure",        "1.4.6"
 gem "jrails",           "0.6.0"
 gem "haml",             "2.2.20"
 gem "RedCloth",         "4.2.3",  :require => "redcloth"
-gem "nokogiri",         "1.4.3.1"
+gem "nokogiri",         "1.12.5"
 gem "ruby-debug"
 
 
